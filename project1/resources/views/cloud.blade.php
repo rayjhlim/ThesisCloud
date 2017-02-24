@@ -103,7 +103,7 @@
             @endif
 
             <div class="content">
-                <img src="http://www.infobarrel.com/media/image/54054.jpg">
+                <img src="http://www.infobarrel.com/media/image/54054.jpg" onclick="window.location='{{ url("song") }}'">
 
                 <div class="controls">
                     <input id="searchTextBox" type="text">

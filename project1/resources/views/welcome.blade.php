@@ -110,7 +110,7 @@
 
                 <div class="controls">
                     <input id="searchTextBox" type="text">
-                    <button id="searchButton" onclick="search();">Search</button>
+                    <button id="searchButton" onclick="window.location='{{ url("cloud") }}'">Search</button>
                 </div>
             </div>
         </div>

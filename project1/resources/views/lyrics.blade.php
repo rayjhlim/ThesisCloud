@@ -101,8 +101,8 @@
                 </div>
 
                 <div class="buttons">
-                    <button id="backToSongsButton" onclick="backToSongs();">Back to Songs</button>
-                    <button id="backToCloudButton" onclick="backToCloud();">Back to Cloud</button>
+                    <button id="backToSongsButton" onclick="window.location='{{ url("song") }}'">Back to Songs</button>
+                    <button id="backToCloudButton" onclick="window.location='{{ url("cloud") }}'">Back to Cloud</button>
                 </div>
             </div>
         </div>

@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button id="backButton" onclick="back();">Back</button>
+                    <button id="backButton" onclick="window.location='{{ url("cloud") }}'"">Back</button>
                 </div>
             </div>
         </div>
