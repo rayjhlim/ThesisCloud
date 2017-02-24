@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/cloud', function () {
+    return view('cloud');
+});
+
+Route::get('/song', function () {
+    return view('song');
+});
+
+Route::get('/lyrics', function () {
+    return view('lyrics');
+});
+

@@ -63,13 +63,9 @@
                 font-size: 120%;
                 font-family:Arial, Helvetica, sans-serif;
 
-                margin: auto;
+                margin-top:auto;
 
                 text-align: center;
-            }
-
-            h1 {
-                font-size: 60px;
             }
 
             #searchTextBox {
@@ -78,18 +74,19 @@
                 border-color: mediumpurple;
 
                 margin: auto;
+
+                display: block;
             }
 
-            #searchButton {
+            button {
                 background-color: mediumpurple;
-                display: block;
-
+                
                 margin-top: 20px;
-
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom:auto;
             }
+
         </style>
     </head>
     <body>
@@ -106,11 +103,13 @@
             @endif
 
             <div class="content">
-                <h1>WordCloud</h1>
+                <img src="http://www.infobarrel.com/media/image/54054.jpg">
 
                 <div class="controls">
                     <input id="searchTextBox" type="text">
                     <button id="searchButton" onclick="search();">Search</button>
+                    <button id="addToCloudButton" onclick="addToCloud();">Add to Cloud</button>
+                    <button id="shareButton" onclick="share();">Share with Facebook</button>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
 
         <!-- Styles -->
         <style>
-            .full-height {
+            /*.full-height {
                 height: 100vh;
             }
 
@@ -31,10 +31,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
             }
@@ -51,6 +47,12 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }*/
+
+            body {
+                background-color: gray;
+                font-size: 120%;
+                font-family:Arial, Helvetica, sans-serif;
             }
 
             input, button {
@@ -58,38 +60,22 @@
                 font-size: 120%;
             }
 
-            body {
-                background-color: gray;
-                font-size: 120%;
-                font-family:Arial, Helvetica, sans-serif;
-
-                margin: auto;
-
-                text-align: center;
-            }
-
             h1 {
-                font-size: 60px;
+                margin: 15px;
             }
 
-            #searchTextBox {
-                border-style: solid;
-                border-width: 4px;
-                border-color: mediumpurple;
-
-                margin: auto;
-            }
-
-            #searchButton {
-                background-color: mediumpurple;
+            a {
                 display: block;
-
-                margin-top: 20px;
-
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom:auto;
+                margin:15px;
             }
+
+            button {
+                background-color: mediumpurple;
+
+                position:absolute;
+                bottom:0;
+            }
+
         </style>
     </head>
     <body>
@@ -106,11 +92,16 @@
             @endif
 
             <div class="content">
-                <h1>WordCloud</h1>
+                <h1>word</h1>
 
-                <div class="controls">
-                    <input id="searchTextBox" type="text">
-                    <button id="searchButton" onclick="search();">Search</button>
+                <div class="songs">
+                    <a href="url">Song 1 (20)</a>
+                    <a href="url">Song 2 (13)</a>
+                    <a href="url">Song 3 (5)</a>
+                </div>
+
+                <div class="buttons">
+                    <button id="backButton" onclick="back();">Back</button>
                 </div>
             </div>
         </div>
