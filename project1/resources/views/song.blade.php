@@ -95,9 +95,9 @@
                 <h1>word</h1>
 
                 <div class="songs">
-                    <a href="url">Song 1 (20)</a>
-                    <a href="url">Song 2 (13)</a>
-                    <a href="url">Song 3 (5)</a>
+                    <a href="lyrics">Song 1 (20)</a>
+                    <a href="lyrics">Song 2 (13)</a>
+                    <a href="lyrics">Song 3 (5)</a>
                 </div>
 
                 <div class="buttons">
