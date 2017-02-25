@@ -11,47 +11,6 @@
 
         <!-- Styles -->
         <style>
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
 
             input, button {
                 font-family:Arial, Helvetica, sans-serif;
@@ -63,13 +22,21 @@
                 font-size: 120%;
                 font-family:Arial, Helvetica, sans-serif;
 
-                margin: auto;
+                margin-top:25%;
+
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom:auto;
 
                 text-align: center;
             }
 
             h1 {
                 font-size: 60px;
+            }
+
+            .highlight1 {
+                background-color: #FF0;
             }
 
             #searchTextBox {
@@ -90,6 +57,7 @@
                 margin-right: auto;
                 margin-bottom:auto;
             }
+
         </style>
     </head>
     <body>
@@ -105,14 +73,136 @@
                 </div>
             @endif
 
-            <div class="content">
-                <h1>WordCloud</h1>
+        <h1>WordCloud</h1>
 
-                <div class="controls">
-                    <input id="searchTextBox" type="text">
-                    <button id="searchButton" onclick="window.location='{{ url("cloud") }}'">Search</button>
-                </div>
-            </div>
+        <div class="controls">
+            <input id="searchTextBox" type="text">
+            <button id="searchButton" onclick="generateTrackArray(document.getElementById('searchTextBox').value)">Search</button>
+
+            <!--this will not be part of the code, it is just meant to test the word search functionality-->
+            <input id="wordTextBox" type="text">
+            <button id="wordSearchButton" onclick="searchForWordInLyrics(document.getElementById('wordTextBox').value)">Highlight word</button>
         </div>
+
+    <div id="lyrics">
+
+    </div>
+        </div>
+<!--must include jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
+
+    <script>
+
+        // keeping an array of the tracks
+        // by the given artist
+        var trackArray = [];
+
+        // this function populates the array with all of the songs
+        // by the artist inputted in the text box
+        function generateTrackArray(artistName){ 
+
+            // create a paragraph element in the "lyrics" div
+            // to fill in with the lyrics
+            var lyricContentP = document.createElement("p");
+            lyricContentP.setAttribute("id", "lyricContentP");
+            document.getElementById("lyrics").appendChild(lyricContentP);
+
+            // use jquery to make calls to the musixmatch api
+            $.ajax({
+                type: "GET",
+                data: {
+                    // this is our api key
+                    apikey:"a97ea319e25d4f8ba70a6119ce2532d2",
+                    // this is a variable, which is of a String type
+                    q_artist: artistName,
+                    format:"jsonp",
+                    callback:"jsonp_callback"
+                },
+                // search for track in database
+                url: "http://api.musixmatch.com/ws/1.1/track.search",
+                dataType: "jsonp",
+                jsonpCallback: 'jsonp_callback',
+                contentType: 'application/json',
+                // upon query success, execute this code:
+                success: function(data) {
+                    // for debugging
+                    console.log(data); 
+                    console.log(data.message.body.track_list[0].track.album_coverart_350x350);
+                    console.log(data.message.body.track_list[0].track.lyrics_id);
+
+                    for (var i = 0; i < data.message.body.track_list.length; i++) {
+                        var thisTrack = data.message.body.track_list[i].track;
+                        trackArray.push(thisTrack);
+                        console.log(trackArray[i].track_name);
+                        // for each track, get the lyrics
+                        getLyricsFromTrack(thisTrack);
+                    }
+                },
+                // this is what happens when the query is invalid
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }    
+            });
+        };
+
+        function getLyricsFromTrack(track){
+            // for debugging
+            console.log('this is the track id' + track.track_id);
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    apikey:"445d6196c08dc2b7490929f18149d684",
+                    track_id: track.track_id,
+                    format:"jsonp",
+                    callback:"jsonp_callback"
+                },
+                url: "http://api.musixmatch.com/ws/1.1/track.lyrics.get",
+                dataType: "jsonp",
+                jsonpCallback: 'jsonp_callback',
+                contentType: 'application/json',
+                // upon query success, execute this code:
+                success: function(data) {
+                    // for debugging
+                    console.log(data.message.body.lyrics.lyrics_body); 
+
+                    // append to the paragraph that contains all of the
+                    // lyrics in the array of tracks
+                    document.querySelector('#lyricContentP').innerHTML += data.message.body.lyrics.lyrics_body;
+                },
+                // this is what happens when the query is invalid
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }    
+            });
+        };
+
+        function clearHighlight() {
+            var content = document.querySelector('#lyricContentP').innerHTML;
+
+            content = content.replace(/<\/span>/g, '');
+            content = content.replace(/<span class="highlight\d">/g, '');
+
+            document.querySelector('#lyricContentP').innerHTML = content;
+        }
+
+        function searchForWordInLyrics(word) {
+            clearHighlight();
+            
+            console.log('this is the word you are searching for: ' + word);
+            // find matches within the paragraph of all of the lyrics
+            var regExpObj = new RegExp(word, 'gi');
+
+            var content = document.querySelector('#lyricContentP').innerHTML;
+            var newStr = '<span class="highlight1">' + word + '</span>';
+            document.querySelector('#lyricContentP').innerHTML = content.replace(regExpObj, newStr);
+        }
+
+    </script>
+
     </body>
 </html>
