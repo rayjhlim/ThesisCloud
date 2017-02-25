@@ -6,6 +6,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>WelcomePage</title>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        $( function() {
+            var artistMatches = [
+              "Beyonce",
+              "Ed Sheeran",
+              "The Fray",
+              "Frank Ocean",
+              "Frank Sinatra",
+              "Sam Smith",
+              "Flume",
+              "Louis the Child",
+              "One Direction",
+              "Taylor Swift"
+            ];
+            $( ".tags" ).autocomplete({
+                minLength: 3,
+                source: function( request, response ) {
+                    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                    response( $.grep( artistMatches, function( item ){
+                        return matcher.test( item );
+                    }) );
+                }
+            });
+        } );
+        </script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -76,7 +108,7 @@
         <h1>WordCloud</h1>
 
         <div class="controls">
-            <input id="searchTextBox" type="text">
+            <input class="tags" id="searchTextBox" type="text">
             <button id="searchButton" onclick="generateTrackArray(document.getElementById('searchTextBox').value)">Search</button>
 
             <!--this will not be part of the code, it is just meant to test the word search functionality-->
@@ -89,7 +121,7 @@
     </div>
         </div>
 <!--must include jquery library-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  -->   
 
     <script>
 
