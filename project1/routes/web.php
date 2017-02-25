@@ -27,3 +27,10 @@ Route::get('/lyrics', function () {
     return view('lyrics');
 });
 
+Route::get('/cloudFrequencyMap', 
+	'CloudController@createFrequencyMap');
+
+Route::get('/cloudSongFrequency', 'CloudController@createSongFrequency');
+
+Route::get('/lyricsArray', 
+	'CloudController@createSongFrequency');
