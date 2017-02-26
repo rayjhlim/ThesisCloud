@@ -5,25 +5,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class PagesController extends Controller {
+    $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+    $musixmatch = new Musixmatch($musixmatch_api_key);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Cloud Controller
-    |--------------------------------------------------------------------------
-    |
-    | Main controller that will process all data. All views
-    | will call the routers corresponding to the view they are moving onto.
-    | Each route will call the corresponding function in the cloud controller
-    */
-
-    /**
-     * Create the frequency map    
-     * Retrieve artist's id, then albums, then songs, then lyrics
-     * Process lyrics and store words into frequency map
-     * Use for generating word cloud (welcome and cloud page)
-     *
-     * @return map
-     */
     public function createCloudFrequencyMap($artist)
     {
 
@@ -66,8 +50,6 @@ class PagesController extends Controller {
     }
 
     public function getArtistId($artist_name) {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-        $musixmatch = new Musixmatch($musixmatch_api_key);
         $result = $musixmatch->method('artist.search', array(
             'q_artist'  => $artist_name
         ));
@@ -78,8 +60,6 @@ class PagesController extends Controller {
     }
 
     public function getAlbumIdArray($artist_id) {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-        $musixmatch = new Musixmatch($musixmatch_api_key);
         $result = $musixmatch->method('artist.albums.get', array(
             'artist_id'  => $artist_id
         ));
@@ -90,8 +70,6 @@ class PagesController extends Controller {
     }    
 
     public function getTracksIdArray($album_id) {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-        $musixmatch = new Musixmatch($musixmatch_api_key);
         $result = $musixmatch->method('album.tracks.get', array(
             'album_id'  => $album_id
         ));
@@ -102,8 +80,6 @@ class PagesController extends Controller {
     }    
 
 	public function getAbout() {
-	   	$musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-	    $musixmatch = new Musixmatch($musixmatch_api_key);
         $result = $musixmatch->method('album.tracks.get', array(
             'album_id'  => '13750844'
         ));
@@ -124,10 +100,5 @@ class PagesController extends Controller {
 
 
 		return view('about')->with('track_list', $track_list);
-	}
-
-	public function getData() {
-		$number = '12345';
-		return $number;
 	}
 }
