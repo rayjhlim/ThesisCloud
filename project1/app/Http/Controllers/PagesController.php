@@ -5,8 +5,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class PagesController extends Controller {
-    $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-    $musixmatch = new Musixmatch($musixmatch_api_key);
 
     public function createCloudFrequencyMap($artist)
     {
@@ -50,6 +48,9 @@ class PagesController extends Controller {
     }
 
     public function getArtistId($artist_name) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
         $result = $musixmatch->method('artist.search', array(
             'q_artist'  => $artist_name
         ));
@@ -60,6 +61,9 @@ class PagesController extends Controller {
     }
 
     public function getAlbumIdArray($artist_id) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
         $result = $musixmatch->method('artist.albums.get', array(
             'artist_id'  => $artist_id
         ));
@@ -70,6 +74,9 @@ class PagesController extends Controller {
     }    
 
     public function getTracksIdArray($album_id) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
         $result = $musixmatch->method('album.tracks.get', array(
             'album_id'  => $album_id
         ));
@@ -77,9 +84,12 @@ class PagesController extends Controller {
         $track_id_array = 
             $result['message']['body']['track_list'];
         return view('welcome')->with('track_id_array', $track_id_array);
-    }    
+    }
 
 	public function getAbout() {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
         $result = $musixmatch->method('album.tracks.get', array(
             'album_id'  => '13750844'
         ));
