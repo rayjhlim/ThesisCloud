@@ -127,6 +127,11 @@
                 margin-bottom:auto;
             }
 
+            .cloudDiv {
+                background-color: white;
+                margin-bottom: 20px;
+            }
+
         </style>
     </head>
     <body>
@@ -144,7 +149,9 @@
 
             <div class="content">
 
-                <div id='wordcloud'></div>
+                <div class="cloudDiv">
+                    <div id='wordcloud'></div>
+                </div>
 
                 <div class="controls">
                     <input class="tags" id="searchTextBox" type="text">
@@ -159,8 +166,8 @@
 
             d3.wordcloud()
                 .size([500, 300])
-                .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
                 .words(words)
+                .spiral("rectangular")
                 .start();
 
             function search() {
