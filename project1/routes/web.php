@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/cloud', function () {
     return view('cloud');
@@ -25,6 +22,10 @@ Route::get('/song', function () {
 
 Route::get('/lyrics', function () {
     return view('lyrics');
+});
+
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::get('/cloudFrequencyMap', 
