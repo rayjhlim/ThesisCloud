@@ -77,7 +77,7 @@ class PagesController extends Controller {
         return view('welcome')->with('artist_id', $artist_id);
     }
 
-    public function getArtistId($artist_id) {
+    public function getAlbumIdArray($artist_id) {
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
         $musixmatch = new Musixmatch($musixmatch_api_key);
         $result = $musixmatch->method('artist.albums.get', array(
@@ -87,6 +87,18 @@ class PagesController extends Controller {
         $album_id_array = 
             $result['message']['body']['artist_list'];
         return view('welcome')->with('album_id_array', $album_id_array);
+    }    
+
+    public function getTracksIdArray($album_id) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+        $result = $musixmatch->method('album.tracks.get', array(
+            'album_id'  => $album_id
+        ));
+        var_dump($album_id);
+        $track_id_array = 
+            $result['message']['body']['track_list'];
+        return view('welcome')->with('track_id_array', $track_id_array);
     }    
 
 	public function getAbout() {
