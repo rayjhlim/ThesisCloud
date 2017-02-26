@@ -25,11 +25,11 @@ Route::get('/lyrics', function () {
 
 Route::get('/', 'PagesController@getAbout');
 
-Route::get('/find{artist}', ['uses' => 'CloudController@createCloudFrequencyMap']);
+Route::get('/find{artist}', ['uses' => 'PagesController@createCloudFrequencyMap']);
 	// 'CloudController@createCloudFrequencyMap' );
 
 
-Route::get('/cloudSongFrequency', 'CloudController@createSongFrequency');
+Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');
 
 Route::get('/lyricsArray', 
-	'CloudController@createSongFrequency');
+	'PagesController@createSongFrequency');

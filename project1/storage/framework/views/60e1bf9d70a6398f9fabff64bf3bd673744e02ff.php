@@ -94,17 +94,16 @@
     </head>
     <body>
         <form action='/find{artist}' method='GET'>
-            <label>
-                <input name='artist' type='text'>
-            </label>
-            <br>
-            <input type='submit' class='search' value='Search'>
+            <label><h1>SongCloud</h1> <br></label>
+            
+            <input name='artist' type='text' id='searchTextBox'> <br>
+            <input type='submit' class='search' value='Search' id='searchButton'>
         </form>
-        <p>
+<!--         <p>
             <?php $__currentLoopData = $track_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $track): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <p><?php echo e($track['track']['track_name']); ?></p>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </p>
+        </p> -->
         <!-- <div class="flex-center position-ref full-height">
             <?php if(Route::has('login')): ?>
                 <div class="top-right links">

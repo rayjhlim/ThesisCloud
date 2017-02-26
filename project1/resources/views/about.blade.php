@@ -94,17 +94,16 @@
     </head>
     <body>
         <form action='/find{artist}' method='GET'>
-            <label>
-                <input name='artist' type='text'>
-            </label>
-            <br>
-            <input type='submit' class='search' value='Search'>
+            <label><h1>SongCloud</h1> <br></label>
+            
+            <input name='artist' type='text' id='searchTextBox'> <br>
+            <input type='submit' class='search' value='Search' id='searchButton'>
         </form>
-        <p>
+<!--         <p>
             @foreach($track_list as $track)
             <p>{{$track['track']['track_name']}}</p>
             @endforeach
-        </p>
+        </p> -->
         <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
