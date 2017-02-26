@@ -71,9 +71,10 @@ class PagesController extends Controller {
         $result = $musixmatch->method('artist.search', array(
             'q_artist'  => $artist_name
         ));
+        var_dump($artist_name);
         $artist_id = 
-            $result['message']['body']['album_list'][0]['album']['artist_id'];
-        return view('welcome')->with('artist_id', $artist_id)
+            $result['message']['body']['artist_list'][0]['artist']['artist_name'];
+        return view('welcome')->with('artist_id', $artist_id);
     }
 
 	public function getAbout() {

@@ -93,12 +93,19 @@
         </style>
     </head>
     <body>
-        <form action='/find{artist}' method='GET'>
+        <form action='/find{$artist}' method='GET'>
             <label><h1>SongCloud</h1> <br></label>
             
             <input name='artist' type='text' id='searchTextBox'> <br>
             <input type='submit' class='search' value='Search' id='searchButton'>
         </form>
+
+        <p>
+            <?php if(isset($artist_id)): ?>
+                <?php echo e($artist_id); ?>
+
+            <?php endif; ?>
+        </p>
         <!-- <div class="flex-center position-ref full-height">
             <?php if(Route::has('login')): ?>
                 <div class="top-right links">

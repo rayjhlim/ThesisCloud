@@ -93,7 +93,7 @@
         </style>
     </head>
     <body>
-        <form action='/find{artist}' method='GET'>
+        <form action='/find{$artist}' method='GET'>
             <label><h1>SongCloud</h1> <br></label>
             
             <input name='artist' type='text' id='searchTextBox'> <br>
