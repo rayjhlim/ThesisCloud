@@ -5,9 +5,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class PagesController extends Controller {
-	public function getIndex() {
-		return view('pages/welcome');
-	}
+
     /*
     |--------------------------------------------------------------------------
     | Cloud Controller
@@ -62,7 +60,11 @@ class PagesController extends Controller {
             );
         return $array;
     }
-    
+
+    public function startPage() {
+        return view('welcome');
+    }
+
 	public function getAbout() {
 	   	$musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
 	    $musixmatch = new Musixmatch($musixmatch_api_key);

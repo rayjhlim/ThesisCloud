@@ -94,10 +94,7 @@
     </head>
     <body>
         <form action='/find{artist}' method='GET'>
-            <label><h1>SongCloud</h1> <br></label>
-            
-            <input name='artist' type='text' id='searchTextBox'> <br>
-            <input type='submit' class='search' value='Search' id='searchButton'>
+
         </form>
 <!--         <p>
             <?php $__currentLoopData = $track_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $track): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
