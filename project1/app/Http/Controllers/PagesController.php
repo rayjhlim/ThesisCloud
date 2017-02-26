@@ -77,6 +77,18 @@ class PagesController extends Controller {
         return view('welcome')->with('artist_id', $artist_id);
     }
 
+    public function getArtistId($artist_id) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+        $result = $musixmatch->method('artist.albums.get', array(
+            'artist_id'  => $artist_id
+        ));
+        var_dump($artist_id);
+        $album_id_array = 
+            $result['message']['body']['artist_list'];
+        return view('welcome')->with('album_id_array', $album_id_array);
+    }    
+
 	public function getAbout() {
 	   	$musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
 	    $musixmatch = new Musixmatch($musixmatch_api_key);
