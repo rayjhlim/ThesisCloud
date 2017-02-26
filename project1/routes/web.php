@@ -23,9 +23,7 @@ Route::get('/lyrics', function () {
     return view('lyrics');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@getAbout');
 
 Route::get('/find{artist}', ['uses' => 'CloudController@createCloudFrequencyMap']);
 	// 'CloudController@createCloudFrequencyMap' );
