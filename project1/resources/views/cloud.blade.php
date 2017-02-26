@@ -5,7 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>WelcomePage</title>
+        <title>SongCloud - Cloud</title>
+
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
         <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
@@ -44,8 +54,9 @@
                 }
             });
         } );
-        </script>
 
+
+        </script>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -149,16 +160,18 @@
 
             <div class="content">
 
-                <div class="cloudDiv">
+                <div class="cloudDiv" id="cloudID">
                     <div id='wordcloud'></div>
                 </div>
 
                 <div class="controls">
                     <input class="tags" id="searchTextBox" type="text">
-                    <button id="searchButton" onclick="search();">Search</button>
-                    <button id="addToCloudButton" onclick="addToCloud();">Add to Cloud</button>
-                    <button id="shareButton" onclick="share();">Share with Facebook</button>
+                    <button id="searchButton" onclick="search()">Search</button>
+                    <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
+
+                    <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
                 </div>
+                 
             </div>
         </div>
 
@@ -177,10 +190,6 @@
 
             function addToCloud() {
                 var word = document.querySelector('#searchTextBox').value;
-
-            }
-
-            function share() {
 
             }
 
