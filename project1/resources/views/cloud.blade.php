@@ -7,12 +7,20 @@
 
         <title>WelcomePage</title>
 
+        <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/d3.wordcloud.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/example/example.words.js') }}"></script>
+
         <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
         <script>
+
         $( function() {
             var artistMatches = [
               "Beyonce",
@@ -135,7 +143,8 @@
             @endif
 
             <div class="content">
-                <img src="http://www.infobarrel.com/media/image/54054.jpg" onclick="window.location='{{ url("song") }}'">
+
+                <div id='wordcloud'></div>
 
                 <div class="controls">
                     <input class="tags" id="searchTextBox" type="text">
@@ -145,5 +154,29 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+            d3.wordcloud()
+                .size([500, 300])
+                .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
+                .words(words)
+                .start();
+
+            function search() {
+                var word = document.querySelector('#searchTextBox').value;
+
+            }
+
+            function addToCloud() {
+                var word = document.querySelector('#searchTextBox').value;
+
+            }
+
+            function share() {
+
+            }
+
+    </script>
     </body>
 </html>
