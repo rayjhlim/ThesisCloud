@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+//use App\Http\Controllers\Controller;
 
 class CloudController extends Controller
 {
@@ -25,13 +25,12 @@ class CloudController extends Controller
 	 *
 	 * @return map
      */
-    public function createCloudFrequencyMap()
+    public function createCloudFrequencyMap($artist)
     {
-    	$frequencyMap = new SplObjectStorage();
 
     	//TODO
 
-    	return $frequencyMap;
+    	return view('cloud');
     }
 
     /**

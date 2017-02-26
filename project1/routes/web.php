@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/cloud', function () {
     return view('cloud');
 });
@@ -28,8 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cloudFrequencyMap', 
-	'CloudController@createFrequencyMap');
+Route::get('/find{artist}', ['uses' => 'CloudController@createCloudFrequencyMap']);
+	// 'CloudController@createCloudFrequencyMap' );
+
 
 Route::get('/cloudSongFrequency', 'CloudController@createSongFrequency');
 

@@ -93,7 +93,14 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <form action='/find{artist}' method='GET'>
+            <label>
+                <input name='artist' type='text'>
+            </label>
+            <br>
+            <input type='submit' class='search' value='Search'>
+        </form>
+        <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -111,7 +118,7 @@
             <input class="tags" id="searchTextBox" type="text">
             <button id="searchButton" onclick="generateTrackArray(document.getElementById('searchTextBox').value)">Search</button>
 
-            <!--this will not be part of the code, it is just meant to test the word search functionality-->
+            
             <input id="wordTextBox" type="text">
             <button id="wordSearchButton" onclick="searchForWordInLyrics(document.getElementById('wordTextBox').value)">Highlight word</button>
         </div>
@@ -232,7 +239,7 @@
             document.querySelector('#lyricContentP').innerHTML = content.replace(regExpObj, newStr);
         }
 
-    </script>
+    </script> -->
 
     </body>
 </html>
