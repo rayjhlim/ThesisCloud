@@ -25,7 +25,7 @@ Route::get('/lyrics', function () {
 
 Route::get('/', 'PagesController@startPage');
 
-Route::get('/find{$artist}', ['uses' => 'PagesController@getArtistId']);
+Route::get('/find{artist}', ['uses' => 'PagesController@getArtistId']);
 
 
 Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');
