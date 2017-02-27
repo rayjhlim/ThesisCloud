@@ -86,6 +86,28 @@ class PagesController extends Controller {
         return view('cloud')->with('artist_id', $artist_id);
     }
 
+    public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
+        $result = $musixmatch->method('track.search', array(
+            'q_artist'  => $q_artist, 
+            'q_lyrics' => $q_lyrics 
+        ));
+
+        $track_name_array = 
+            $result['message']['body']['track_list'];
+            
+            // //echo $track_id_array for test purposes
+            // echo('###ECHO OF $tracks_id_array###');
+            // foreach($track_name_array as $track_list) {
+            //     echo($track_list['track']['track_name'] . ",");
+            // }
+            // echo('###END OF ECHO###');
+
+        return view('song')->with('track_name_array', $track_name_array);
+    }
+
 
     public function getAlbumIdArray($artist_id) {
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
@@ -142,15 +164,14 @@ class PagesController extends Controller {
         return view('welcome');
     }
 
-    public function postView1()
+    public function postArtistNameToCloudPage()
     {
         return Redirect::route('cloud', ['artist_name' => Input::get('artist_name')]);
     }
 
-    public function view2($artist_name)
-    {
-        // return View::make('view2')->with('name',$name);
-        echo "hello";
-        return view('cloud')->with('artist_name', $artist_name);
-    }
+    // public function postWordToCloudPage()
+    // {
+    //     return Redirect::route('song', ['word' => Input::get('word')]);
+    // }
+
 }
