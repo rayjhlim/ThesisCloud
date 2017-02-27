@@ -93,7 +93,16 @@
         </style>
     </head>
     <body>
-        <form action='/find{$artist}' method='GET'>
+        <?php echo e(Form::open(array('route' => 'form', 'method'=>'post'))); ?>
+
+            <?php echo e($name = Form::text('artist_name')); ?>
+
+            <?php echo e(Form::submit('Go!')); ?>
+
+        <?php echo e(Form::close()); ?>
+
+            
+        <!-- <form action='/find{$artist}' method='GET'>
             <label><h1>SongCloud</h1> <br></label>
             
             <input name='artist' type='text' id='searchTextBox'> <br>
@@ -105,7 +114,7 @@
                 <?php echo e($artist_id); ?>
 
             <?php endif; ?>
-        </p>
+        </p> -->
         <!-- <div class="flex-center position-ref full-height">
             <?php if(Route::has('login')): ?>
                 <div class="top-right links">

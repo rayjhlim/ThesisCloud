@@ -93,7 +93,12 @@
         </style>
     </head>
     <body>
-        <form action='/find{$artist}' method='GET'>
+        {{ Form::open(array('route' => 'form', 'method'=>'post')) }}
+            {{ $name = Form::text('artist_name') }}
+            {{ Form::submit('Go!') }}
+        {{ Form::close() }}
+            
+        <!-- <form action='/find{$artist}' method='GET'>
             <label><h1>SongCloud</h1> <br></label>
             
             <input name='artist' type='text' id='searchTextBox'> <br>
@@ -104,7 +109,7 @@
             @if(isset($artist_id))
                 {{ $artist_id }}
             @endif
-        </p>
+        </p> -->
         <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

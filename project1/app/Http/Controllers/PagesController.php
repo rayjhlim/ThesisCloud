@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Redirect;
+use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
@@ -43,10 +45,6 @@ class PagesController extends Controller {
         return $array;
     }
 
-    public function startPage() {
-        return view('welcome');
-    }
-
     public function getArtistId($artist_name) {
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
         $musixmatch = new Musixmatch($musixmatch_api_key);
@@ -57,7 +55,7 @@ class PagesController extends Controller {
         var_dump($artist_name);
         $artist_id = 
             $result['message']['body']['artist_list'][0]['artist']['artist_name'];
-        return view('welcome')->with('artist_id', $artist_id);
+        return view('cloud')->with('artist_id', $artist_id);
     }
 
     public function getAlbumIdArray($artist_id) {
@@ -111,4 +109,20 @@ class PagesController extends Controller {
 
 		return view('about')->with('track_list', $track_list);
 	}
+
+    public function startPage()
+    {
+        return view('welcome');
+    }
+
+    public function postView1()
+    {
+        return Redirect::route('cloud', ['artist_name' => Input::get('artist_name')]);
+    }
+
+    public function view2($artist_name)
+    {
+        // return View::make('view2')->with('name',$name);
+        return view('cloud')->with('artist_name', $artist_name);
+    }
 }

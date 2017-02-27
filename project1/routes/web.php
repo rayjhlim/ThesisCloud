@@ -23,9 +23,11 @@ Route::get('/lyrics', function () {
     return view('lyrics');
 });
 
-Route::get('/', 'PagesController@startPage');
+Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'));
 
-Route::get('/find{artist}', ['uses' => 'PagesController@getArtistId']);
+Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postView1'));
+
+Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@view2'));
 
 
 Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');
