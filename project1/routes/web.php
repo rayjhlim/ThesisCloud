@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/cloud', function () {
-    return view('cloud');
-});
+// Route::get('/cloud', function () {
+//     return view('cloud');
+// });
 
 Route::get('/song', function () {
     return view('song');
@@ -25,9 +25,9 @@ Route::get('/lyrics', function () {
 
 Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'));
 
-Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postView1'));
+Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postView1'));
 
-Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@view2'));
+Route::get('cloud/{artist_id}', array('as' => 'cloud', 'uses' => 'PagesController@getArtistId'));
 
 
 Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');

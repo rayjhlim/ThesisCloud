@@ -93,13 +93,14 @@
         </style>
     </head>
     <body>
-        {{ Form::open(array('route' => 'form', 'method'=>'post')) }}
+
+        <label><h1>SongCloud</h1> <br></label>    
+        {{ Form::open(array('route' => 'form', 'method'=>'get')) }}
             {{ $name = Form::text('artist_name') }}
             {{ Form::submit('Go!') }}
         {{ Form::close() }}
             
         <!-- <form action='/find{$artist}' method='GET'>
-            <label><h1>SongCloud</h1> <br></label>
             
             <input name='artist' type='text' id='searchTextBox'> <br>
             <input type='submit' class='search' value='Search' id='searchButton'>

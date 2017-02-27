@@ -52,9 +52,9 @@ class PagesController extends Controller {
         $result = $musixmatch->method('artist.search', array(
             'q_artist'  => $artist_name
         ));
-        var_dump($artist_name);
         $artist_id = 
-            $result['message']['body']['artist_list'][0]['artist']['artist_name'];
+            $result['message']['body']['artist_list'][0]['artist']['artist_id'];
+            echo $artist_id;
         return view('cloud')->with('artist_id', $artist_id);
     }
 
@@ -123,6 +123,7 @@ class PagesController extends Controller {
     public function view2($artist_name)
     {
         // return View::make('view2')->with('name',$name);
+        echo "hello";
         return view('cloud')->with('artist_name', $artist_name);
     }
 }
