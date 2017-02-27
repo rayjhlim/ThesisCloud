@@ -27,7 +27,7 @@ Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'))
 
 Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postArtistNameToCloudPage'));
 
-Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@getArtistId'));
+Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@getCloudFrequencyMap'));
 
 // Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postWordToCloudPage'));
 

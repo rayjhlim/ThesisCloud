@@ -8,12 +8,49 @@ use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
-    public function createCloudFrequencyMap($artist)
+    public function getCloudFrequencyMap($artist_name)
     {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+        
+        $artist_name_result = $musixmatch->method('artist.search', array(
+            'q_artist'  => $artist_name
+        ));
+        $artist_id = 
+            $artist_name_result['message']['body']['artist_list'][0]['artist']['artist_id'];
 
-        //TODO
+        $album_id_array_result = $musixmatch->method('artist.albums.get', array(
+            'artist_id'  => $artist_id
+        ));
 
-        return view('cloud');
+        $album_id_array = $album_id_array_result['message']['body']['album_list'];
+
+        $word_map = array();
+
+        foreach($album_id_array as $album_list) {
+            $track_id_array_result = $musixmatch->method('album.tracks.get', array(
+                'album_id'  => $album_list['album']['album_id']
+            ));
+            $track_id_array =  $track_id_array_result['message']['body']['track_list'];
+            foreach($track_id_array as $track_list) {
+                    //print($track_list['track']['track_id'] . ",");
+                    $track_body_result = $musixmatch->method('track.lyrics.get', array(
+                        'track_id'  => $track_list['track']['track_id']
+                    ));
+                    $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+                    $track_body_list = explode(" ", $track_body);
+                    foreach($track_body_list as $word_token) {
+                        if(array_key_exists($word_token, $word_map)) {
+                            $word_map[$word_token] += 1;
+                        } else {
+                            $word_map[$word_token] = 1;
+                        }
+                    }
+            }
+        }
+        print_r($word_map);
+
+        return view('cloud')->with('word_map', $word_map);
     }
 
     /**
