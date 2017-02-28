@@ -23,6 +23,10 @@ Route::get('/lyrics', function () {
     return view('lyrics');
 });
 
+Route::get('/cloud', function () {
+    return view('cloud');
+});
+
 Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'));
 
 Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postArtistNameToCloudPage'));

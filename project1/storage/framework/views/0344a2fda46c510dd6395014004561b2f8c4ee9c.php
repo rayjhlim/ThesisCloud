@@ -215,28 +215,45 @@
                     <button id="screenshotButton" onclick="screenshot()">Screenshot</button>
 
                     <!-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div> -->
+
                 </div>
             </div>
         </div>
 
         <script>
+            var arrayOfWords = [];
+
+            function reformat() {
+
+                var string = <?php echo json_encode($word_map); ?>;
+
+                var matchesArray = string.match(/".*?".\d+/gi);
+
+                for (var i = 0; i < matchesArray.length; i++) {
+                    var stringVar = matchesArray[i].match(/[a-z][a-z]+/gi) + ''; // modifiers: gi
+                    console.log(stringVar);
+                    var intVar = parseInt(matchesArray[i].match(/\d+/));
+                    console.log(intVar);
+
+                    arrayOfWords.push({
+                        text: stringVar,
+                        size: intVar
+                    });
+                }
+
+                console.log(arrayOfWords);
+            }
+
+
+            reformat();
 
             d3.wordcloud()
                 .size([500, 300])
                 // .words([{text: 'word', size: 5}, {text: 'cloud', size: 15}])
-                .words(words)
+                .words(arrayOfWords)
                 .spiral("rectangular")
                 .start();
 
-            function search() {
-                var word = document.querySelector('#searchTextBox').value;
-
-            }
-
-            function addToCloud() {
-                var word = document.querySelector('#searchTextBox').value;
-
-            }
 
             function screenshot() {
                 html2canvas(document.getElementById("screenshotTarget"), {
