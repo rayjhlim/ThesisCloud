@@ -48,7 +48,7 @@ class PagesController extends Controller {
                     }
             }
         }
-        print_r($word_map);
+        // print_r($word_map);
 
         return view('cloud')->with('word_map', $word_map);
     }

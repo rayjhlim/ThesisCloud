@@ -180,6 +180,7 @@
 
             d3.wordcloud()
                 .size([500, 300])
+                // .words([{text: 'word', size: 5}, {text: 'cloud', size: 15}])
                 .words(words)
                 .spiral("rectangular")
                 .start();
