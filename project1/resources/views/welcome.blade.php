@@ -94,9 +94,10 @@
     </head>
     <body>
 
-        <label><h1>SongCloud</h1> <br></label>    
+        <label><h1>SongCloud</h1> <br></label> 
+
         {{ Form::open(array('route' => 'form', 'method'=>'get')) }}
-            {{ $name = Form::text('artist_name') }}
+            {{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
             {{ Form::submit('Go!') }}
         {{ Form::close() }}
             

@@ -8,26 +8,49 @@
         <title>SongCloud - Cloud</title>
 
         <!-- Load Facebook SDK for JavaScript -->
-        <div id="fb-root"></div>
+        <!-- <div id="fb-root"></div>
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
           js = d.createElement(s); js.id = id;
           js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
           fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));</script> -->
 
         <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/d3.wordcloud.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('js/example/example.words.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
 
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+        <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '332918383776701',
+                xfbml: true,
+                version: 'v2.8'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 
         <script>
 
@@ -143,6 +166,20 @@
                 margin-bottom: 20px;
             }
 
+            #canvas-wrap { 
+                position:relative; 
+                width:500px; 
+                height:300px; 
+                background-color: white; 
+            }
+
+            #canvas-wrap canvas { 
+                position:absolute; 
+                top:0; 
+                left:0; 
+                z-index:0 
+            }
+
         </style>
     </head>
     <body>
@@ -160,19 +197,29 @@
 
             <div class="content">
 
-                <div class="cloudDiv" id="cloudID">
+                <!-- <div class="cloudDiv" id="cloudID">
                     <div id='wordcloud'></div>
+</div> -->
+                <div id="screenshotTarget">
+                <div id="canvas-wrap">
+                    <canvas width="500" height="300" id="cloudCanvas1"></canvas>
+                    <div id="wordcloud"></div>
+                </div>
                 </div>
 
                 <div class="controls">
                     <input class="tags" id="searchTextBox" type="text">
                     <button id="searchButton" onclick="search()">Search</button>
                     <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
+                    <button id="shareToFBButton">Share to Facebook</button>
+                    <button id="screenshotButton" onclick="screenshot()">Screenshot</button>
 
-                    <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+                    <!-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div> -->
                 </div>
 
                 <p> Hello, {{ $artist_id }} </p>
+
+                <canvas id="cloudCanvas"></canvas>
                  
             </div>
         </div>
@@ -194,6 +241,142 @@
                 var word = document.querySelector('#searchTextBox').value;
 
             }
+
+            function screenshot() {
+                html2canvas(document.getElementById("screenshotTarget"), {
+                    onrendered: function(canvas) {
+
+                        document.getElementById("cloudCanvas").getContext('2d').drawImage(this, 0, 0);
+                    },
+                    width: 500,
+                    height: 300
+                });
+            }
+
+
+
+
+    (function () {
+        // // Canvas
+        // var canvas = document.getElementById('cloudCanvas');
+        // var ctx = canvas.getContext('2d');
+        // // load image from data url
+        // var imageObj = new Image();
+        // imageObj.onload = function () {
+        //     ctx.drawImage(this, 0, 0);
+        // };
+        // imageObj.src = 'wordcloud.png';
+        
+
+        $('#shareToFBButton').click(function () {
+            html2canvas(document.getElementById("screenshotTarget"), {
+                onrendered: function(canvas) {
+                    // Canvas
+                    console.log("rendered");
+                    canvas.id = "myCloudCanvas";
+                    document.body.appendChild(canvas);
+
+                    // load image from data url
+                    var imageObj = new Image();
+                    imageObj.onload = function () {
+                        ctx.drawImage(this, 0, 0);
+                    };
+
+                    var data = $('#myCloudCanvas')[0].toDataURL("image/png");
+            try {
+                blob = dataURItoBlob(data);
+            } catch (e) {
+                console.log(e);
+            }
+            FB.getLoginStatus(function (response) {
+                console.log(response);
+                if (response.status === "connected") {
+                    postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, "http://localhost:8000", "Artist");
+                } else if (response.status === "not_authorized") {
+                    FB.login(function (response) {
+                        postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, "http://localhost:8000", "Artist");
+                    }, {scope: "publish_actions"});
+                } else {
+                    FB.login(function (response) {
+                        postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, "http://localhost:8000", "Artist");
+                    }, {scope: "publish_actions"});
+                }
+            });
+            var element = document.getElementById("myCloudCanvas");
+            document.body.removeChild(element);
+
+                imageObj.src = 'wordcloud.png';
+                },
+                width: 500,
+                height: 300
+            });
+        });
+
+        function postImageToFacebook(token, filename, mimeType, imageData, message) {
+            var fd = new FormData();
+            fd.append("access_token", token);
+            fd.append("source", imageData);
+            fd.append("no_story", true);
+            // Upload image to facebook without story(post to feed)
+            $.ajax({
+                url: "https://graph.facebook.com/me/photos?access_token=" + token,
+                type: "POST",
+                data: fd,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    console.log("success: ", data);
+                    // Get image source url
+                    FB.api(
+                        "/" + data.id + "?fields=images",
+                        function (response) {
+                            if (response && !response.error) {
+                                //console.log(response.images[0].source);
+                                // Create facebook post using image
+                                FB.api(
+                                    "/me/feed",
+                                    "POST",
+                                    {
+                                        "message": "",
+                                        "picture": response.images[0].source,
+                                        "link": "localhost:8000",
+                                        "name": 'Check out my word cloud!',
+                                        "description": message,
+                                        "privacy": {
+                                            value: 'SELF'
+                                        }
+                                    },
+                                    function (response) {
+                                        if (response && !response.error) {
+                                            /* handle the result */
+                                            console.log("Posted story to facebook");
+                                            console.log(response);
+                                        }
+                                    }
+                                );
+                            }
+                        }
+                    );
+                },
+                error: function (shr, status, data) {
+                    console.log("error " + data + " Status " + shr.status);
+                },
+                complete: function (data) {
+                    //console.log('Post to facebook Complete');
+                }
+            });
+        }
+        function dataURItoBlob(dataURI) {
+            var byteString = atob(dataURI.split(',')[1]);
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], {type: 'image/png'});
+        }
+    })();
 
     </script>
     </body>
