@@ -51,9 +51,10 @@ class PagesController extends Controller {
                             $word_map[$word_token] = 1;
                         }
                     }
-        print_r($track_body_list);
+        //print_r($track_body_list);
             }
         }
+        $word_map = json_encode($word_map);
         return view('cloud')->with('word_map', $word_map);
     }
 
