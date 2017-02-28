@@ -38,6 +38,7 @@ class PagesController extends Controller {
                         'track_id'  => $track_list['track']['track_id']
                     ));
                     $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+                    $track_body = substr($track_body, 0, -75);
                     $track_body_list = explode(" ", $track_body);
                     foreach($track_body_list as $word_token) {
                         if(array_key_exists($word_token, $word_map)) {
