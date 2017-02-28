@@ -11,43 +11,6 @@
 
         <!-- Styles -->
         <style>
-            /*.full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }*/
 
             body {
                 background-color: gray;
@@ -94,14 +57,22 @@
             <div class="content">
                 <h1>word</h1>
 
-                <div class="songs">
+                <ul>
+                    @foreach($track_name_array as $track_list) {
+                        {{ $track_list['track']['track_name'] }}
+                    }
+                    @endforeach
+                </ul>
+
+
+                <!-- <div class="songs">
                     <a href="lyrics">Song 1 (20)</a>
                     <a href="lyrics">Song 2 (13)</a>
                     <a href="lyrics">Song 3 (5)</a>
                 </div>
-
+ -->
                 <div class="buttons">
-                    <button id="backButton" onclick="window.location='{{ url("cloud") }}'"">Back</button>
+                    <button id="backButton" onclick="window.location="'{{ url("cloud") }}'">Back</button>
                 </div>
             </div>
         </div>

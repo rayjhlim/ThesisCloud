@@ -8,12 +8,50 @@ use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
-    public function createCloudFrequencyMap($artist)
+    public function getCloudFrequencyMap($artist_name)
     {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+        
+        $artist_name_result = $musixmatch->method('artist.search', array(
+            'q_artist'  => $artist_name
+        ));
+        $artist_id = 
+            $artist_name_result['message']['body']['artist_list'][0]['artist']['artist_id'];
 
-        //TODO
+        $album_id_array_result = $musixmatch->method('artist.albums.get', array(
+            'artist_id'  => $artist_id
+        ));
 
-        return view('cloud');
+        $album_id_array = $album_id_array_result['message']['body']['album_list'];
+
+        $word_map = array();
+
+        foreach($album_id_array as $album_list) {
+            $track_id_array_result = $musixmatch->method('album.tracks.get', array(
+                'album_id'  => $album_list['album']['album_id']
+            ));
+            $track_id_array =  $track_id_array_result['message']['body']['track_list'];
+            foreach($track_id_array as $track_list) {
+                    //print($track_list['track']['track_id'] . ",");
+                    $track_body_result = $musixmatch->method('track.lyrics.get', array(
+                        'track_id'  => $track_list['track']['track_id']
+                    ));
+                    $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+                    $track_body = substr($track_body, 0, -75);
+                    $track_body_list = explode(" ", $track_body);
+                    foreach($track_body_list as $word_token) {
+                        if(array_key_exists($word_token, $word_map)) {
+                            $word_map[$word_token] += 1;
+                        } else {
+                            $word_map[$word_token] = 1;
+                        }
+                    }
+            }
+        }
+        // print_r($word_map);
+
+        return view('cloud')->with('word_map', $word_map);
     }
 
     /**
@@ -86,6 +124,28 @@ class PagesController extends Controller {
         return view('cloud')->with('artist_id', $artist_id);
     }
 
+    public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
+        $result = $musixmatch->method('track.search', array(
+            'q_artist'  => $q_artist, 
+            'q_lyrics' => $q_lyrics 
+        ));
+
+        $track_name_array = 
+            $result['message']['body']['track_list'];
+            
+            // //echo $track_id_array for test purposes
+            // echo('###ECHO OF $tracks_id_array###');
+            // foreach($track_name_array as $track_list) {
+            //     echo($track_list['track']['track_name'] . ",");
+            // }
+            // echo('###END OF ECHO###');
+
+        return view('song')->with('track_name_array', $track_name_array);
+    }
+
 
     public function getAlbumIdArray($artist_id) {
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
@@ -142,15 +202,14 @@ class PagesController extends Controller {
         return view('welcome');
     }
 
-    public function postView1()
+    public function postArtistNameToCloudPage()
     {
         return Redirect::route('cloud', ['artist_name' => Input::get('artist_name')]);
     }
 
-    public function view2($artist_name)
-    {
-        // return View::make('view2')->with('name',$name);
-        echo "hello";
-        return view('cloud')->with('artist_name', $artist_name);
-    }
+    // public function postWordToCloudPage()
+    // {
+    //     return Redirect::route('song', ['word' => Input::get('word')]);
+    // }
+
 }

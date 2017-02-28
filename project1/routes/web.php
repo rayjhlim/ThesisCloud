@@ -25,12 +25,16 @@ Route::get('/lyrics', function () {
 
 Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'));
 
-Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postView1'));
+Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postArtistNameToCloudPage'));
 
-Route::get('cloud/{artist_id}', array('as' => 'cloud', 'uses' => 'PagesController@getArtistId'));
+Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@getCloudFrequencyMap'));
+
+// Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postWordToCloudPage'));
+
+Route::get('song/{artist_name}/{word}', array('as' => 'song', 'uses' => 'PagesController@getTracksNameArrayFromWord'));
 
 
-Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');
+// Route::get('/cloudSongFrequency', 'PagesController@createSongFrequency');
 
-Route::get('/lyricsArray', 
-	'PagesController@createSongFrequency');
+// Route::get('/lyricsArray', 
+// 	'PagesController@createSongFrequency');
