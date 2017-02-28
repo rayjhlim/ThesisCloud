@@ -94,10 +94,11 @@
     </head>
     <body>
 
-        <label><h1>SongCloud</h1> <br></label>    
+        <label><h1>SongCloud</h1> <br></label> 
+
         <?php echo e(Form::open(array('route' => 'form', 'method'=>'get'))); ?>
 
-            <?php echo e($name = Form::text('artist_name')); ?>
+            <?php echo e($name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags'])); ?>
 
             <?php echo e(Form::submit('Go!')); ?>
 

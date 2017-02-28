@@ -26,7 +26,7 @@ class PagesController extends Controller {
         $album_id_array = $album_id_array_result['message']['body']['album_list'];
 
         $word_map = array();
-
+        $counter = 0;
         foreach($album_id_array as $album_list) {
             $track_id_array_result = $musixmatch->method('album.tracks.get', array(
                 'album_id'  => $album_list['album']['album_id']
@@ -38,8 +38,12 @@ class PagesController extends Controller {
                         'track_id'  => $track_list['track']['track_id']
                     ));
                     $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+                    strtoupper($track_body);
                     $track_body = substr($track_body, 0, -75);
-                    $track_body_list = explode(" ", $track_body);
+                    $track_body = str_replace(',', "", $track_body);
+                    $track_body = str_replace('.', "", $track_body);
+                    $track_body = str_replace('"', "", $track_body);
+                    $track_body_list = preg_split("/\n|\s/", $track_body);
                     foreach($track_body_list as $word_token) {
                         if(array_key_exists($word_token, $word_map)) {
                             $word_map[$word_token] += 1;
@@ -47,10 +51,9 @@ class PagesController extends Controller {
                             $word_map[$word_token] = 1;
                         }
                     }
+        print_r($track_body_list);
             }
         }
-        // print_r($word_map);
-
         return view('cloud')->with('word_map', $word_map);
     }
 
