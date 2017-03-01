@@ -42,7 +42,7 @@
 
 
         <script>
-
+        // Autocomplete code
         $( function() {
             var artistMatches = [
               "Beyonce",
@@ -65,6 +65,13 @@
                     }) );
                 }
             });
+            // $( ".tags" ).change({
+            //     console.log("changing");
+            //     if($(this).val.length >= 3) {
+            //         // update autocomplete matches
+            //         console.log("updating matches");
+            //     }
+            // });
         } );
 
 

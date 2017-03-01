@@ -10,7 +10,7 @@ class PagesController extends Controller {
 
     public function getCloudFrequencyMap($artist_name)
     {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
         $artist_name_result = $musixmatch->method('artist.search', array(
