@@ -42,7 +42,7 @@
 
 
         <script>
-
+        // Autocomplete code
         $( function() {
             var artistMatches = [
               "Beyonce",
@@ -63,6 +63,13 @@
                     response( $.grep( artistMatches, function( item ){
                         return matcher.test( item );
                     }) );
+                }
+            });
+            $( ".tags" ).keyup(function(){
+                if($(this).val().length >= 3) {
+                    // update autocomplete matches
+                    console.log("updating matches");
+                    artistMatches = ["John Legend"];
                 }
             });
         } );

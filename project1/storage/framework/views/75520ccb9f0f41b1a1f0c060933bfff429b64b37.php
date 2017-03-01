@@ -10,7 +10,7 @@
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
         $( function() {
@@ -33,6 +33,13 @@
                     response( $.grep( artistMatches, function( item ){
                         return matcher.test( item );
                     }) );
+                }
+            });
+            $( ".tags" ).keyup(function(){
+                if($(this).val().length >= 3) {
+                    // update autocomplete matches
+                    console.log("updating matches");
+                    artistMatches = ["John Legend"];
                 }
             });
         } );
