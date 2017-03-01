@@ -91,42 +91,75 @@ class PagesController extends Controller {
         $album_id_array = $album_id_array_result['message']['body']['album_list'];
 
         $word_map = array();
-        $counter = 0;
-        foreach($album_id_array as $album_list) {
+        $word_song_freq_map = array();
+        foreach($album_id_array as $album_list)
+        {
             $track_id_array_result = $musixmatch->method('album.tracks.get', array(
                 'album_id'  => $album_list['album']['album_id']
             ));
             $track_id_array =  $track_id_array_result['message']['body']['track_list'];
-            foreach($track_id_array as $track_list) {
-                    //print($track_list['track']['track_id'] . ",");
-                    $track_body_result = $musixmatch->method('track.lyrics.get', array(
-                        'track_id'  => $track_list['track']['track_id']
-                    ));
-                    $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
-                    strtoupper($track_body);
-                    $track_body = substr($track_body, 0, -75);
-                    $track_body = str_replace(',', "", $track_body);
-                    $track_body = str_replace('.', "", $track_body);
-                    $track_body = str_replace('"', "", $track_body);
-                    $track_body_list = preg_split("/\n|\s/", $track_body);
-                    foreach($track_body_list as $word_token) {
-                        if (!array_key_exists(strtolower($word_token), $filler_words)) {
-                            if(array_key_exists($word_token, $word_map)) {
-                                $word_map[$word_token] += 1;
-                            } else if (!empty($word_token)){
-                                $word_map[$word_token] = 1;
-                            }
-                        }                        
-                    }
+            foreach($track_id_array as $track_list)
+            {
+                //print($track_list['track']['track_id'] . ",");
+                $track_body_result = $musixmatch->method('track.lyrics.get', array(
+                    'track_id'  => $track_list['track']['track_id']
+                ));
 
-        //print_r($track_body_list);
-            }
-            //TODO: delete later
+                $track_name = $musixmatch->method('track.get', array(
+                    'track_id'  => $track_list['track']['track_id']
+                ));
+
+                $track_name = $track_name['message']['body']['track']['track_name'];
+                $track_name = strtoupper($track_name);
+
+                $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+                $track_body = strtoupper($track_body);
+
+                $track_body = substr($track_body, 0, -75);
+                $track_body = str_replace(',', "", $track_body);
+                $track_body = str_replace('.', "", $track_body);
+                $track_body = str_replace('"', "", $track_body);
+
+                $track_body_list = preg_split("/\n|\s/", $track_body);
+
+                foreach($track_body_list as $word_token)
+                {
+                    if (!array_key_exists($word_token, $filler_words))
+                    {
+                        if(array_key_exists($word_token, $word_map))
+                        {
+                            $word_map[$word_token] += 1;
+                        }
+                        else if (!empty($word_token))
+                        {
+                            $word_map[$word_token] = 1;
+                        }
+                    }
+                    if(array_key_exists($word_token, $word_song_freq_map))
+                    {
+                        if(array_key_exists($track_name, $word_song_freq_map[$word_token]))
+                        {
+                            $word_song_freq_map[$word_token][$track_name] += 1;
+                        }
+                        else
+                        {
+                            $word_song_freq_map[$word_token][$track_name] = 1;
+                        }
+                    }
+                    else
+                    {
+                        $word_song_freq_map[$word_token][$track_name] = 1;
+                    }                       
+                }
+            }                     
             break;
         }
+
         $word_map = json_encode($word_map);
+
         $data['word_map'] = $word_map;
         $data['artist_name'] = $artist_name;
+        $data['word_song_freq_map'] = $word_song_freq_map;
         return view('cloud')->with('data', $data);
     }
 
