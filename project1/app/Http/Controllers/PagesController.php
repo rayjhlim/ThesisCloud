@@ -348,4 +348,15 @@ class PagesController extends Controller {
     //     return Redirect::route('song', ['word' => Input::get('word')]);
     // }
 
+    public function autoComplete($artist_name) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
+        $relatedArtists = $musixmatch->method('artist.search', 
+            array('artist_name' => $artist_name));
+        $related_artist_array = $relatedArtists['message']['body']['artist_name'];
+//FIGURE OUT HOW TO RETURN BACK TO VIEW WITHOUT CHANGING
+        
+    }
+
 }
