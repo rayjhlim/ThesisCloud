@@ -97,15 +97,30 @@
                 margin-bottom:auto;
             }
 
+            input {
+                border: 2px solid mediumpurple;
+                width: 35%;
+                margin-right: 20%;
+                margin-left: 20%;
+                margin-bottom: 1%
+            }
+
+            input[type="submit"]{
+                background-color: mediumpurple;
+                width: 10%;
+                margin-right: 40%;
+                margin-left: 40%;
+            }
+
         </style>
     </head>
     <body>
 
         <label><h1>SongCloud</h1> <br></label> 
 
-        {{ Form::open(array('route' => 'form', 'method'=>'get')) }}
+        {{ Form::open(array('route' => 'form', 'method'=>'get', 'id'=>'myArr')) }}
             {{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
-            {{ Form::submit('Go!') }}
+            {{ Form::submit('Search') }}
         {{ Form::close() }}
             
         <!-- <form action='/find{$artist}' method='GET'>
