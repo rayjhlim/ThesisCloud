@@ -7,16 +7,6 @@
 
         <title>SongCloud - Cloud</title>
 
-        <!-- Load Facebook SDK for JavaScript -->
-        <!-- <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script> -->
-
         <script type="text/javascript" src="<?php echo e(URL::asset('js/lib/d3/d3.js')); ?>"></script>
         <script type="text/javascript" src="<?php echo e(URL::asset('js/lib/d3/d3.layout.cloud.js')); ?>"></script>
         <script type="text/javascript" src="<?php echo e(URL::asset('js/d3.wordcloud.js')); ?>"></script>
@@ -26,7 +16,6 @@
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -197,9 +186,6 @@
 
             <div class="content">
 
-                <!-- <div class="cloudDiv" id="cloudID">
-                    <div id='wordcloud'></div>
-</div> -->
                 <div id="screenshotTarget">
                 <div id="canvas-wrap">
                     <canvas width="500" height="300" id="cloudCanvas1"></canvas>
@@ -212,9 +198,6 @@
                     <button id="searchButton" onclick="search()">Search</button>
                     <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
                     <button id="shareToFBButton">Share to Facebook</button>
-                    <button id="screenshotButton" onclick="screenshot()">Screenshot</button>
-
-                    <!-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div> -->
 
                 </div>
             </div>
@@ -254,32 +237,7 @@
                 .spiral("rectangular")
                 .start();
 
-
-            function screenshot() {
-                html2canvas(document.getElementById("screenshotTarget"), {
-                    onrendered: function(canvas) {
-
-                        document.getElementById("cloudCanvas").getContext('2d').drawImage(this, 0, 0);
-                    },
-                    width: 500,
-                    height: 300
-                });
-            }
-
-
-
-
     (function () {
-        // // Canvas
-        // var canvas = document.getElementById('cloudCanvas');
-        // var ctx = canvas.getContext('2d');
-        // // load image from data url
-        // var imageObj = new Image();
-        // imageObj.onload = function () {
-        //     ctx.drawImage(this, 0, 0);
-        // };
-        // imageObj.src = 'wordcloud.png';
-        
 
         $('#shareToFBButton').click(function () {
             html2canvas(document.getElementById("screenshotTarget"), {
