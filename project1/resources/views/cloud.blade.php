@@ -65,13 +65,13 @@
                     }) );
                 }
             });
-            // $( ".tags" ).change({
-            //     console.log("changing");
-            //     if($(this).val.length >= 3) {
-            //         // update autocomplete matches
-            //         console.log("updating matches");
-            //     }
-            // });
+            $( ".tags" ).keyup(function(){
+                if($(this).val().length >= 3) {
+                    // update autocomplete matches
+                    console.log("updating matches");
+                    artistMatches = ["John Legend"];
+                }
+            });
         } );
 
 
