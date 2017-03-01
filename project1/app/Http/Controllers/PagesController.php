@@ -10,6 +10,67 @@ class PagesController extends Controller {
 
     public function getCloudFrequencyMap($artist_name)
     {
+        $filler_words = [
+            'about' => 1,
+'below' => 1,
+'excepting' => 1,
+'off' => 1,
+'toward' => 1,
+'above' => 1,
+'beneath' => 1,
+'for' => 1,   
+'on' => 1,
+'under' => 1,
+'across' => 1,
+'besides' => 1,
+'from' => 1,
+'onto' => 1,    
+'underneath' => 1,
+'after' => 1,
+'between' => 1,    
+'in' => 1,
+'out' => 1,
+'until' => 1,
+'against' => 1,    
+'beyond' => 1,    
+'outside' => 1,
+'up' => 1,
+'along' => 1,
+'but' => 1,
+'inside' => 1,
+'over' => 1,
+'upon' => 1,
+'among' => 1,
+'by' => 1,    
+'past' => 1,
+'around' => 1,
+'concerning' => 1,
+'instead' => 1,
+'regarding' => 1,
+'with' => 1,
+'at' => 1,
+'despite' => 1,
+'into' => 1,
+'since' => 1,
+'within' => 1,
+'because' => 1,
+'down' => 1,
+'like' => 1,
+'through' => 1,
+'without' => 1,
+'before' => 1,
+'during' => 1,
+'near' => 1,
+'throughout' => 1,
+'behind' => 1,
+'except' => 1,
+'of' => 1,
+'to' => 1,
+'or' => 1,
+'if' =>1,
+'with respect to' => 1
+        ];
+
         $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
@@ -45,12 +106,15 @@ class PagesController extends Controller {
                     $track_body = str_replace('"', "", $track_body);
                     $track_body_list = preg_split("/\n|\s/", $track_body);
                     foreach($track_body_list as $word_token) {
-                        if(array_key_exists($word_token, $word_map)) {
-                            $word_map[$word_token] += 1;
-                        } else {
-                            $word_map[$word_token] = 1;
-                        }
+                        if (!array_key_exists(strtolower($word_token), $filler_words)) {
+                            if(array_key_exists($word_token, $word_map)) {
+                                $word_map[$word_token] += 1;
+                            } else {
+                                $word_map[$word_token] = 1;
+                            }
+                        }                        
                     }
+
         //print_r($track_body_list);
             }
         }
