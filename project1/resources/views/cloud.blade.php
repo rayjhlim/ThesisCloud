@@ -233,8 +233,8 @@
 
                     arrayOfWords.push({
                         text: stringVar,
-                        size: intVar
-                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar;
+                        size: intVar,
+                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar
                     });
                 }
 
