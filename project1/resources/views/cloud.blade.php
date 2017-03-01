@@ -194,10 +194,12 @@
             <div class="content">
 
                 <div id="screenshotTarget">
-                <div id="canvas-wrap">
-                    <canvas width="500" height="300" id="cloudCanvas1"></canvas>
-                    <div id="wordcloud"></div>
-                </div>
+                    <div id="canvas-wrap">
+                        <canvas width="500" height="300" id="cloudCanvas1"></canvas>
+
+                        <div id="wordcloud"></div>
+                    </div>
+                <h2>{{$data['artist_name']}}</h2>
                 </div>
 
                 <div class="controls">
@@ -231,8 +233,8 @@
 
                     arrayOfWords.push({
                         text: stringVar,
-                        size: intVar
-                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar;
+                        size: intVar,
+                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar
                     });
                 }
 
@@ -291,7 +293,7 @@
                 imageObj.src = 'wordcloud.png';
                 },
                 width: 500,
-                height: 300
+                height: 370
             });
         });
 
