@@ -222,6 +222,32 @@ class PagesController extends Controller {
         return view('song')->with('track_name_array', $track_name_array);
     }
 
+    public function getSongLyrics($q_track) {
+        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch = new Musixmatch($musixmatch_api_key);
+
+        $result = $musixmatch->method('track.search', array(
+            'q_track'  => $q_track, 
+        ));
+
+        $track_id = 
+            $result['message']['body']['track_list'][0]['track']['track_id'];
+
+        //print($track_id);
+
+        $result = $musixmatch->method('track.lyrics.get', array(
+            'track_id'  => $track_id, 
+        ));
+
+        $song =
+            $result['message']['body']['lyrics']['lyrics_body'];
+
+        //print($song);
+
+        return view('lyrics')->with('song', $song);
+
+    }
+
 
     public function getAlbumIdArray($artist_id) {
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
