@@ -57,7 +57,7 @@
             <div class="content">
                 <h1>word</h1>
 
-                <ul>
+                <ul id='songlistarray'>
                     @foreach($track_name_array as $track_list) {
                         {{ $track_list['track']['track_name'] }}
                     }
@@ -65,16 +65,39 @@
                 </ul>
 
 
-                <!-- <div class="songs">
-                    <a href="lyrics">Song 1 (20)</a>
-                    <a href="lyrics">Song 2 (13)</a>
-                    <a href="lyrics">Song 3 (5)</a>
+                <div class="songs">
+
                 </div>
- -->
+
                 <div class="buttons">
                     <button id="backButton" onclick="window.location="'{{ url("cloud") }}'">Back</button>
                 </div>
             </div>
         </div>
+
+        <script>
+
+            console.log('ran the script');
+
+            function displaySongs(songlist) {
+
+                songlist = ['we are never getting back together bitch', 'blank space', 'lol', 'blah'];
+
+                for (var i = 0; i < songlist.length; i++) {
+                    console.log(songlist[i]);
+
+                    var hrefnode = document.createElement('a');
+
+                    hrefnode.href = songlist[i] + ' ' + i;
+                    hrefnode.innerHTML += songlist[i] + ' ' + i;
+
+                    document.querySelector('.songs').appendChild(hrefnode);
+
+                }
+            }
+
+            displaySongs();            
+
+        </script>
     </body>
 </html>
