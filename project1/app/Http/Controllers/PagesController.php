@@ -121,7 +121,9 @@ class PagesController extends Controller {
             break;
         }
         $word_map = json_encode($word_map);
-        return view('cloud')->with('word_map', $word_map);
+        $data['word_map'] = $word_map;
+        $data['artist_name'] = $artist_name;
+        return view('cloud')->with('data', $data);
     }
 
     /**

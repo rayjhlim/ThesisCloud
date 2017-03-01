@@ -215,7 +215,10 @@
 
             function reformat() {
 
-                var string = {!! json_encode($word_map) !!};
+                var string = {!! json_encode($data['word_map']) !!};
+
+                
+                var artist_name = {!! json_encode($data['artist_name']) !!};
 
                 var matchesArray = string.match(/".*?".\d+/gi);
 
