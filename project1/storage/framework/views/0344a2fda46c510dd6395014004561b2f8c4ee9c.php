@@ -194,10 +194,12 @@
             <div class="content">
 
                 <div id="screenshotTarget">
-                <div id="canvas-wrap">
-                    <canvas width="500" height="300" id="cloudCanvas1"></canvas>
-                    <div id="wordcloud"></div>
-                </div>
+                    <div id="canvas-wrap">
+                        <canvas width="500" height="300" id="cloudCanvas1"></canvas>
+
+                        <div id="wordcloud"></div>
+                    </div>
+                <h2><?php echo e($data['artist_name']); ?></h2>
                 </div>
 
                 <div class="controls">
@@ -207,6 +209,7 @@
                     <button id="shareToFBButton">Share to Facebook</button>
 
                 </div>
+
             </div>
         </div>
 
@@ -217,11 +220,9 @@
 
                 var string = <?php echo json_encode($data['word_map']); ?>;
 
+                
                 var artist_name = <?php echo json_encode($data['artist_name']); ?>;
 
-                console.log(artist_name);
-
-                console.log('hello world');
                 var matchesArray = string.match(/".*?".\d+/gi);
 
                 for (var i = 0; i < matchesArray.length; i++) {
@@ -232,7 +233,8 @@
 
                     arrayOfWords.push({
                         text: stringVar,
-                        size: intVar
+                        size: intVar,
+                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar
                     });
                 }
 
@@ -291,7 +293,7 @@
                 imageObj.src = 'wordcloud.png';
                 },
                 width: 500,
-                height: 300
+                height: 370
             });
         });
 
