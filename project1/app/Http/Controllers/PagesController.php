@@ -124,6 +124,7 @@ class PagesController extends Controller {
 
                 foreach($track_body_list as $word_token)
                 {
+                    $word_token = trim($word_token);
                     if (!array_key_exists($word_token, $filler_words))
                     {
                         if(array_key_exists($word_token, $word_map))
