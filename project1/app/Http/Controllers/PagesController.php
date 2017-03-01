@@ -117,9 +117,13 @@ class PagesController extends Controller {
 
         //print_r($track_body_list);
             }
+            //TODO: delete later
+            break;
         }
         $word_map = json_encode($word_map);
-        return view('cloud')->with('word_map', $word_map);
+        $data['word_map'] = $word_map;
+        $data['artist_name'] = $artist_name;
+        return view('cloud')->with('data', $data);
     }
 
     /**

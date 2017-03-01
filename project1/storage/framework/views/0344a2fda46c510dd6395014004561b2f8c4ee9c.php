@@ -42,7 +42,7 @@
 
 
         <script>
-
+        // Autocomplete code
         $( function() {
             var artistMatches = [
               "Beyonce",
@@ -63,6 +63,13 @@
                     response( $.grep( artistMatches, function( item ){
                         return matcher.test( item );
                     }) );
+                }
+            });
+            $( ".tags" ).keyup(function(){
+                if($(this).val().length >= 3) {
+                    // update autocomplete matches
+                    console.log("updating matches");
+                    artistMatches = ["John Legend"];
                 }
             });
         } );
@@ -208,8 +215,13 @@
 
             function reformat() {
 
-                var string = <?php echo json_encode($word_map); ?>;
+                var string = <?php echo json_encode($data['word_map']); ?>;
 
+                var artist_name = <?php echo json_encode($data['artist_name']); ?>;
+
+                console.log(artist_name);
+
+                console.log('hello world');
                 var matchesArray = string.match(/".*?".\d+/gi);
 
                 for (var i = 0; i < matchesArray.length; i++) {
