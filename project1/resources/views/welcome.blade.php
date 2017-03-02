@@ -42,7 +42,7 @@
                         //value = artist name
                         //image = twitter link + "/profile_image?size=mini";
                         for (i = 0; i < data.message.body.artist_list.length; i++) {
-                            if (i <= 5) {
+                            if (i <= 100) {
                                 if (!isEmpty(data.message.body.artist_list[i].artist.artist_name)) {
                                     var name =  data.message.body.artist_list[i].artist.artist_name;
                                     var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
