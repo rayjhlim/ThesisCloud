@@ -30,10 +30,12 @@ Route::get('/', array('as' => 'welcome', 'uses' => 'PagesController@startPage'))
 
 Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postArtistNameToCloudPage'));
 
-//Route::get('cloud/{artist_name}', array('as' => 'cloud', 'uses' => 'PagesController@getCloudFrequencyMap'));
+//Route::get('/{view}/{artist_name}/{word}', array('as' => 'cloud', 'uses' => 'PagesController@getCloudFrequencyMap'));
 
-Route::get('lyrics/{song}', array('as' => 'lyrics', 'uses' => 'PagesController@getSongLyrics'));
+Route::get('lyrics/{song}/{word}', array('as' => 'lyrics', 'uses' => 'PagesController@getSongLyrics'));
 
 // Route::get('form', array('as' => 'form', 'uses'=>'PagesController@postWordToCloudPage'));
 
-Route::get('song/{artist_name}/{word}', array('as' => 'song', 'uses' => 'PagesController@getCloudFrequencyMap'));
+Route::get('/{view}/{artist_name}/{word}', array('as' => 'song', 'uses' => 'PagesController@getCloudFrequencyMap'));
+
+Route::get('/{view}/{artist_name}/{word}', array('as' => 'lyrics', 'uses' => 'PagesController@getCloudFrequencyMap'));

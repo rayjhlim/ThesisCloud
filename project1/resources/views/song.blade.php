@@ -66,8 +66,11 @@
 
                 <ul style="list-style: none;">
                 <?php
+
+                    // var_dump($hasharray);
+                    // example to display
                     foreach ($data['word_song_freq_map'][$data['word']] as $k => $v) {
-                        echo "<li><a href='/lyrics/" . $k . "'>" . $k . " (" . $v . ")</a></li>";
+                        echo "<li><a href='/lyrics/" . $k . '/' . $data['word'] . "'>" . $k . " (" . $v . ")</a></li>";
                     }
                 ?>
                 </ul>
