@@ -161,6 +161,7 @@ class PagesController extends Controller {
                         if(array_key_exists($track_name, $word_song_freq_map[$word_token]))
                         {
                             $word_song_freq_map[$word_token][$track_name] += 1;
+                            arsort($word_song_freq_map[$word_token]);
                         }
                         else
                         {
