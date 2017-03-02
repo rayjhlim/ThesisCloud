@@ -71,7 +71,7 @@
                         //value = artist name
                         //image = twitter link + "/profile_image?size=mini";
                         for (i = 0; i < data.message.body.artist_list.length; i++) {
-                            if (i <= 5) {
+                            if (i <= 100) {
                                 if (!isEmpty(data.message.body.artist_list[i].artist.artist_name)) {
                                     var name =  data.message.body.artist_list[i].artist.artist_name;
                                     var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
@@ -243,10 +243,16 @@ console.log(twitter);
                     
                     <h2><?php echo e($data['artist_name']); ?></h2>
                 </div>
+        <?php echo e(Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr'))); ?>
+
+            <?php echo e($name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags'])); ?>
+
+            <?php echo e(Form::submit('Search')); ?>
+
+        <?php echo e(Form::close()); ?>
+
 
                 <div class="controls">
-                    <input class="tags" id="searchTextBox" type="text">
-                    <button id="searchButton" onclick="search()">Search</button>
                     <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
                     <button id="shareToFBButton">Share to Facebook</button>
 

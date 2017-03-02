@@ -277,7 +277,7 @@ class PagesController extends Controller {
         $word = $q_lyrics;
         $songtitle = $q_track;
 
-        echo("getSongLyrics called with song : " . $songtitle . " word : " . $q_lyrics);
+        //echo("getSongLyrics called with song : " . $songtitle . " word : " . $q_lyrics);
 
         $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
         $musixmatch = new Musixmatch($musixmatch_api_key);

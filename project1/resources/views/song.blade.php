@@ -72,7 +72,7 @@
                     foreach ($data['word_song_freq_map'][$data['word']] as $k => $v) {
                         // var_dump('the song is: ' . $k);
                         // var_dump('the word is: ' . $v);
-                        echo "<li><a href='/lyrics/" . $k . '/' . $data['word'] . "'>" . $k . " (" . $v . ")</a></li>";
+                        echo "<li><a href='http://127.0.0.1:8000/lyrics/" . $k . '/' . $data['word'] . "'>" . $k . " (" . $v . ")</a></li>";
                     }
                 ?>
                 </ul>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button id="backButton" onclick="window.location="'{{ url("cloud") }}'">Back</button>
+                    <button id="backButton">Back</button>
                 </div>
             </div>
         </div>
