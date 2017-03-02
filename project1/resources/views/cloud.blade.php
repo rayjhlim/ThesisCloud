@@ -197,8 +197,10 @@
                     arrayOfWords.push({
                         text: stringVar,
                         size: intVar,
-                        href: 'localhost:8000/song/' + artist_name + '/' + stringVar
+                        href: 'http://127.0.0.1:8000/song/' + artist_name + '/' + stringVar
                     });
+
+                    console.log('your href is: ' + arrayOfWords[i].href);
                 }
 
                 console.log(arrayOfWords);

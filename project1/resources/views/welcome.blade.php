@@ -91,10 +91,10 @@
 
         <label><h1>SongCloud</h1> <br></label> 
 
-        {{ Form::open(array('route' => 'form', 'method'=>'get', 'id'=>'myArr')) }}
-            {{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
-            {{ Form::submit('Search') }}
-        {{ Form::close() }}
+        {{ Form::open(array('route' => 'form', 'method'=>'post')) }}
++            {{ $name = Form::text('artist_name') }}
++            {{ Form::submit('Go!') }}
++        {{ Form::close() }}
             
         <!-- <form action='/find{$artist}' method='GET'>
             

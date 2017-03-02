@@ -371,7 +371,7 @@ class PagesController extends Controller {
 
     public function postArtistNameToCloudPage()
     {
-        return Redirect::route('cloud', ['artist_name' => Input::get('artist_name')]);
+        return Redirect::route('cloud', ['view' => 'cloud', 'artist_name' => Input::get('artist_name'), 'word' => 'word']);
     }
 
     // public function postWordToCloudPage()
@@ -388,6 +388,12 @@ class PagesController extends Controller {
         $related_artist_array = $relatedArtists['message']['body']['artist_name'];
 //FIGURE OUT HOW TO RETURN BACK TO VIEW WITHOUT CHANGING
         
+    }
+
+    public function view2($artist_name)
+    {
+        // return View::make('view2')->with('name',$name);
+        return view('cloud')->with('artist_name', $artist_name);
     }
 
 }
