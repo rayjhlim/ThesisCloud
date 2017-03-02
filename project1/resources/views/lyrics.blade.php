@@ -41,6 +41,10 @@
                 background-color: mediumpurple;
             }
 
+            .highlight1 {
+                background-color: #FF0;
+            }
+
         </style>
     </head>
     <body>
@@ -57,7 +61,7 @@
             @endif
 
             <div class="content">
-                <h1>
+                <h1 id="songtitle">
                     <?php
                         //var_dump($data);
                         echo $data[1];
@@ -66,8 +70,6 @@
 
                 <div class="songs">
                     <p id="lyricContent">
-
-                        <!-- this is how you should take in arrays in the view -->
                         <?php
                             echo $data[2];
                         ?>
@@ -84,13 +86,28 @@
 
         <script>
 
+            var content = document.querySelector('#lyricContent').innerHTML;
+            content = content.toLowerCase();
+            content = content.replace('******* this lyrics is not for commercial use *******', '');
+            content = content.replace(/[\])[(]/g, '');
+            content = content.replace(/\d*/g, '');
+
+            highlightText();
+
             function highlightText(){
-                var content = document.querySelector('#lyricContent').innerHTML;
-                var highlight = document.querySelector('#highlightText').value;
+                console.log('this is the content of the lyrics: ' + content);
+
+                //var highlight = document.querySelector('#songtitle').innerHTML;
+                var word = {!! json_encode($data[0]) !!};
+                var highlight = word.toLowerCase();
+                var regExpObj = new RegExp(highlight, 'g');
+
+                console.log('this is the word: ' + highlight);
 
                 var newStr = '<span class="highlight1">' + highlight + '</span>';
 
-                document.querySelector('#mainStr').innerHTML = content.replace(highlight, newStr);
+                document.querySelector('#lyricContent').innerHTML = content.replace(regExpObj, newStr);
+            
             }
 
         </script>
