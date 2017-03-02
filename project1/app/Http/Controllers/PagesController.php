@@ -98,86 +98,70 @@ class PagesController extends Controller {
         $musixmatch_api_key = "2287a48029b846476c13b4768cf55b97";
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
-        $artist_name_result = $musixmatch->method('artist.search', array(
-            'q_artist'  => $artist_name
-        ));
-        $artist_id = 
-            $artist_name_result['message']['body']['artist_list'][0]['artist']['artist_id'];
-
-        $album_id_array_result = $musixmatch->method('artist.albums.get', array(
-            'artist_id'  => $artist_id
+        $result = $musixmatch->method('track.search', array(
+            'q_artist'  => $artist_name,
+            'page_size' => '20'
         ));
 
-        $album_id_array = $album_id_array_result['message']['body']['album_list'];
+        $track_array = $result['message']['body']['track_list'];
 
         $word_map = array();
         $word_song_freq_map = array();
-        foreach($album_id_array as $album_list)
+
+        foreach($track_array as $track) 
         {
-            $track_id_array_result = $musixmatch->method('album.tracks.get', array(
-                'album_id'  => $album_list['album']['album_id']
+            $track_body_result = $musixmatch->method('track.lyrics.get', array(
+                'track_id' => $track['track']['track_id']
             ));
-            $track_id_array =  $track_id_array_result['message']['body']['track_list'];
-            foreach($track_id_array as $track_list)
+
+            $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
+            $track_body = strtoupper($track_body);
+            $track_body = substr($track_body, 0, -75);
+            $track_body = str_replace(',', "", $track_body);
+            $track_body = str_replace('.', "", $track_body);
+            $track_body = str_replace('"', "", $track_body);
+
+
+            $track_name = $track['track']['track_name'];
+            $track_name = strtoupper($track_name);
+
+            $track_body_list = preg_split("/\n|\s/", $track_body);
+
+            foreach($track_body_list as $word_token)
             {
-                //print($track_list['track']['track_id'] . ",");
-                $track_body_result = $musixmatch->method('track.lyrics.get', array(
-                    'track_id'  => $track_list['track']['track_id']
-                ));
-
-                $track_name = $musixmatch->method('track.get', array(
-                    'track_id'  => $track_list['track']['track_id']
-                ));
-
-                $track_name = $track_name['message']['body']['track']['track_name'];
-                $track_name = strtoupper($track_name);
-
-                $track_body = $track_body_result['message']['body']['lyrics']['lyrics_body'];
-                $track_body = strtoupper($track_body);
-
-                $track_body = substr($track_body, 0, -75);
-                $track_body = str_replace(',', "", $track_body);
-                $track_body = str_replace('.', "", $track_body);
-                $track_body = str_replace('"', "", $track_body);
-
-                $track_body_list = preg_split("/\n|\s/", $track_body);
-
-                foreach($track_body_list as $word_token)
+                $word_token = trim($word_token);
+                if (!array_key_exists($word_token, $filler_words))
                 {
-                    $word_token = trim($word_token);
-                    if (!array_key_exists($word_token, $filler_words))
+                    if(array_key_exists($word_token, $word_map))
                     {
-                        if(array_key_exists($word_token, $word_map))
-                        {
-                            $word_map[$word_token] += 1;
-                        }
-                        else if (!empty($word_token))
-                        {
-                            $word_map[$word_token] = 1;
-                        }
+                        $word_map[$word_token] += 1;
                     }
-                    if(array_key_exists($word_token, $word_song_freq_map))
+                    else if (!empty($word_token))
                     {
-                        if(array_key_exists($track_name, $word_song_freq_map[$word_token]))
-                        {
-                            $word_song_freq_map[$word_token][$track_name] += 1;
-                            arsort($word_song_freq_map[$word_token]);
-                        }
-                        else
-                        {
-                            $word_song_freq_map[$word_token][$track_name] = 1;
-                        }
+                        $word_map[$word_token] = 1;
+                    }
+                }
+                if(array_key_exists($word_token, $word_song_freq_map))
+                {
+                    if(array_key_exists($track_name, $word_song_freq_map[$word_token]))
+                    {
+                        $word_song_freq_map[$word_token][$track_name] += 1;
+                        arsort($word_song_freq_map[$word_token]);
                     }
                     else
                     {
                         $word_song_freq_map[$word_token][$track_name] = 1;
-                    }                       
+                    }
                 }
-            }                     
-            break;
+                else
+                {
+                    $word_song_freq_map[$word_token][$track_name] = 1;
+                }                       
+            }
         }
 
         $word_map = json_encode($word_map);
+
 
         $data['word_map'] = $word_map;
         $data['artist_name'] = $artist_name;
