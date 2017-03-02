@@ -61,6 +61,14 @@
 
                 <div class="songs">
                     <p id="lyricContent"> {{ $song }} </p>
+
+                    <!-- this is how you should take in arrays in the view -->
+                    <?php
+                    // var_dump($songs);
+                    // foreach ($songs as $s) {
+                    //     echo "<li><a href='lyrics/" . $s . "'>" . $s . "</a></li>";
+                    // }
+                    ?>
                 </div>
 
                 <div class="buttons">

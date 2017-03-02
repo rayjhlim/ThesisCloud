@@ -220,7 +220,6 @@
 
                 var string = {!! json_encode($data['word_map']) !!};
 
-                
                 var artist_name = {!! json_encode($data['artist_name']) !!};
 
                 var matchesArray = string.match(/".*?".\d+/gi);
@@ -234,7 +233,7 @@
                     arrayOfWords.push({
                         text: stringVar,
                         size: intVar,
-                        href: 'http://127.0.0.1:8000/song/' + [artist_name] + '/' + stringVar
+                        href: 'http://localhost:8000/song/' + [artist_name] + '/' + stringVar
                     });
                 }
 

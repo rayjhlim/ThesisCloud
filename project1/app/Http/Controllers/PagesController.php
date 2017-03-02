@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
+    // DO NOT DELETE: THIS IS FOR REFERENCE
     public function example() {
+
         return view('song', [
             'songs' => ['one', 'two', 'three'],
+
             'test' => 'test value',
+
             'hasharray' => [
                 "IT" => "IT value",
                 "she" => "she value",
@@ -23,7 +27,7 @@ class PagesController extends Controller {
             ]);
     }
 
-    public function getCloudFrequencyMap($artist_name)
+    public function getCloudFrequencyMap($artist_name, $word)
     {
         $filler_words = [
             "IT" => 1,
@@ -177,8 +181,10 @@ class PagesController extends Controller {
         $data['word_map'] = $word_map;
         $data['artist_name'] = $artist_name;
         $data['word_song_freq_map'] = $word_song_freq_map;
-        return view('cloud')->with('data', $data);
-    }
+
+        // this is how to pass an array to the view
+        return view('song', ['word_map' => $word_song_freq_map[$word]]);
+    } 
 
     /**
      * Create the frequency of word in all of artist's songs

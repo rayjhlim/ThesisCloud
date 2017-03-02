@@ -59,21 +59,16 @@
 
                 <ul id='songlistarray'>
                 <!-- embedded php block that loops through the $songs array to display links -->
-                 <?php
-                    // var_dump($songs);
-                    foreach ($songs as $s) {
-                        echo "<li><a href='lyrics/" . $s . "'>" . $s . "</a></li>";
-                    }
-                 ?>
+                 
                 </ul>
 
-                <ul>
+                <ul style="list-style: none;">
                 <?php
 
                     // var_dump($hasharray);
-                    // example to display key value pairs
-                    foreach ($hasharray as $k => $v) {
-                        echo "<li>" . $k . ": " . $v . "</li>";
+                    // example to display
+                    foreach ($word_map as $k => $v) {
+                        echo "<li><a href='lyrics/" . $k . "'>" . $k . " (" . $v . ")</a></li>";
                     }
 
                 ?>
@@ -90,29 +85,5 @@
             </div>
         </div>
 
-        <script>
-
-            console.log('ran the script');
-
-            function displaySongs(songlist) {
-
-                songlist = ['we are never getting back together bitch', 'blank space', 'lol', 'blah'];
-
-                for (var i = 0; i < songlist.length; i++) {
-                    console.log(songlist[i]);
-
-                    var hrefnode = document.createElement('a');
-
-                    hrefnode.href = songlist[i] + ' ' + i;
-                    hrefnode.innerHTML += songlist[i] + ' ' + i;
-
-                    document.querySelector('.songs').appendChild(hrefnode);
-
-                }
-            }
-
-            displaySongs();            
-
-        </script>
     </body>
 </html>
