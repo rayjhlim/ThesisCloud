@@ -16,7 +16,6 @@
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -38,44 +37,37 @@
             js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    </script>
+        </script>
 
 
         <script>
-        // Autocomplete code
+        // Autocomplete functionality
         $( function() {
-            var artistMatches = [
-              "Beyonce",
-              "Ed Sheeran",
-              "The Fray",
-              "Frank Ocean",
-              "Frank Sinatra",
-              "Sam Smith",
-              "Flume",
-              "Louis the Child",
-              "One Direction",
-              "Taylor Swift"
-            ];
+            var artistMatches = [];
             $( ".tags" ).autocomplete({
                 minLength: 3,
                 source: function( request, response ) {
                     var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
                     response( $.grep( artistMatches, function( item ){
-                        return matcher.test( item );
+                        return matcher.test( item.value );
                     }) );
                 }
-            });
+            }).data("uiAutocomplete")._renderItem = function (ul, item) {
+                    return $("<li />")
+                        .data("item.autocomplete", item)
+                        .append("<a><img src='" + item.image + "' />" + item.value + "</a>")
+                        .appendTo(ul);
+            };
             $( ".tags" ).keyup(function(){
                 if($(this).val().length >= 3) {
                     // update autocomplete matches
                     console.log("updating matches");
-                    artistMatches = ["John Legend"];
+                    artistMatches = [{value:"John Legend", image:"http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png"}];
                 }
             });
         } );
-
-
         </script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -93,12 +85,6 @@
 
             .position-ref {
                 position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
             }
 
             .content {
@@ -150,16 +136,11 @@
 
             button {
                 background-color: mediumpurple;
-                
+                color: black;
                 margin-top: 20px;
                 margin-left: auto;
                 margin-right: auto;
                 margin-bottom:auto;
-            }
-
-            .cloudDiv {
-                background-color: white;
-                margin-bottom: 20px;
             }
 
             #canvas-wrap { 
@@ -169,37 +150,20 @@
                 background-color: white; 
             }
 
-            #canvas-wrap canvas { 
-                position:absolute; 
-                top:0; 
-                left:0; 
-                z-index:0 
-            }
-
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <?php if(Route::has('login')): ?>
-                <div class="top-right links">
-                    <?php if(Auth::check()): ?>
-                        <a href="<?php echo e(url('/home')); ?>">Home</a>
-                    <?php else: ?>
-                        <a href="<?php echo e(url('/login')); ?>">Login</a>
-                        <a href="<?php echo e(url('/register')); ?>">Register</a>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
 
             <div class="content">
 
                 <div id="screenshotTarget">
-                    <div id="canvas-wrap">
-                        <canvas width="500" height="300" id="cloudCanvas1"></canvas>
 
+                    <div id="canvas-wrap">
                         <div id="wordcloud"></div>
                     </div>
-                <h2><?php echo e($data['artist_name']); ?></h2>
+                    
+                    <h2><?php echo e($data['artist_name']); ?></h2>
                 </div>
 
                 <div class="controls">
@@ -233,7 +197,7 @@
                     arrayOfWords.push({
                         text: stringVar,
                         size: intVar,
-                        href: 'http://localhost:8000/song/' + artist_name + '/' + stringVar + ''
+                        href: 'localhost:8000/song/' + artist_name + '/' + stringVar
                     });
                 }
 
@@ -245,7 +209,6 @@
 
             d3.wordcloud()
                 .size([500, 300])
-                // .words([{text: 'word', size: 5}, {text: 'cloud', size: 15}])
                 .words(arrayOfWords)
                 .spiral("rectangular")
                 .start();
