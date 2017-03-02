@@ -8,6 +8,21 @@ use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller {
 
+    public function example() {
+        return view('song', [
+            'songs' => ['one', 'two', 'three'],
+            'test' => 'test value',
+            'hasharray' => [
+                "IT" => "IT value",
+                "she" => "she value",
+                "he"=> "he value",
+                "they"=> "they value",
+                "about" => "about value",
+            ]
+
+            ]);
+    }
+
     public function getCloudFrequencyMap($artist_name)
     {
         $filler_words = [

@@ -58,10 +58,25 @@
                 <h1>word</h1>
 
                 <ul id='songlistarray'>
-                    @foreach($track_name_array as $track_list) {
-                        {{ $track_list['track']['track_name'] }}
+                <!-- embedded php block that loops through the $songs array to display links -->
+                 <?php
+                    // var_dump($songs);
+                    foreach ($songs as $s) {
+                        echo "<li><a href='lyrics/" . $s . "'>" . $s . "</a></li>";
                     }
-                    @endforeach
+                 ?>
+                </ul>
+
+                <ul>
+                <?php
+
+                    // var_dump($hasharray);
+                    // example to display key value pairs
+                    foreach ($hasharray as $k => $v) {
+                        echo "<li>" . $k . ": " . $v . "</li>";
+                    }
+
+                ?>
                 </ul>
 
 

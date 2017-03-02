@@ -15,6 +15,8 @@
 //     return view('cloud');
 // });
 
+Route::get('/example', 'PagesController@example');
+
 Route::get('/song', function () {
     return view('song');
 });
