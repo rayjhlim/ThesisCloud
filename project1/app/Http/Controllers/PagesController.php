@@ -27,7 +27,7 @@ class PagesController extends Controller {
             ]);
     }
 
-    public function getCloudFrequencyMap($artist_name, $word)
+    public function getCloudFrequencyMap($artist_name)
     {
         $filler_words = [
             "IT" => 1,
@@ -183,7 +183,8 @@ class PagesController extends Controller {
         $data['word_song_freq_map'] = $word_song_freq_map;
 
         // this is how to pass an array to the view
-        return view('song', ['word_map' => $word_song_freq_map[$word]]);
+        return view('cloud', ['data' => $data]);
+        //return view('song', ['word_map' => $word_song_freq_map[$word]]);
     } 
 
     /**
