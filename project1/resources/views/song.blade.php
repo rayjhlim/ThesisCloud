@@ -55,7 +55,9 @@
             @endif
 
             <div class="content">
-                <h1>word</h1>
+                <?php
+                    echo "<h1>" . $data['word'] . "</h1>";
+                ?>
 
                 <ul id='songlistarray'>
                 <!-- embedded php block that loops through the $songs array to display links -->
@@ -67,10 +69,9 @@
 
                     // var_dump($hasharray);
                     // example to display
-                    foreach ($word_map as $k => $v) {
-                        echo "<li><a href='lyrics/" . $k . "'>" . $k . " (" . $v . ")</a></li>";
+                    foreach ($data['word_song_freq_map'][$data['word']] as $k => $v) {
+                        echo "<li><a href='/lyrics/" . $k . '/' . $data['word'] . "'>" . $k . " (" . $v . ")</a></li>";
                     }
-
                 ?>
                 </ul>
 

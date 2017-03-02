@@ -27,7 +27,7 @@ class PagesController extends Controller {
             ]);
     }
 
-    public function getCloudFrequencyMap($artist_name)
+    public function getCloudFrequencyMap($view, $artist_name, $word)
     {
         $filler_words = [
             "IT" => 1,
@@ -161,6 +161,7 @@ class PagesController extends Controller {
                         if(array_key_exists($track_name, $word_song_freq_map[$word_token]))
                         {
                             $word_song_freq_map[$word_token][$track_name] += 1;
+                            arsort($word_song_freq_map[$word_token]);
                         }
                         else
                         {
@@ -181,9 +182,10 @@ class PagesController extends Controller {
         $data['word_map'] = $word_map;
         $data['artist_name'] = $artist_name;
         $data['word_song_freq_map'] = $word_song_freq_map;
+        $data['word'] = $word;
 
         // this is how to pass an array to the view
-        return view('cloud', ['data' => $data]);
+        return view($view, ['data' => $data]);
         //return view('song', ['word_map' => $word_song_freq_map[$word]]);
     } 
 
@@ -279,7 +281,12 @@ class PagesController extends Controller {
         return view('song')->with('track_name_array', $track_name_array);
     }
 
-    public function getSongLyrics($q_track) {
+    public function getSongLyrics($q_track, $q_lyrics) {
+        $word = $q_lyrics;
+        $songtitle = $q_track;
+
+        echo("getSongLyrics called with song : " . $songtitle . " word : " . $q_lyrics);
+
         $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
@@ -296,12 +303,29 @@ class PagesController extends Controller {
             'track_id'  => $track_id, 
         ));
 
-        $song =
+        $lyrics =
             $result['message']['body']['lyrics']['lyrics_body'];
 
         //print($song);
 
-        return view('lyrics')->with('song', $song);
+        return view('lyrics', ['data' => [$word, $songtitle, $lyrics]]);
+
+        //return view('lyrics')->with('song', $song);
+
+        // return view('song', [
+        //     'songs' => ['one', 'two', 'three'],
+
+        //     'test' => 'test value',
+
+        //     'hasharray' => [
+        //         "IT" => "IT value",
+        //         "she" => "she value",
+        //         "he"=> "he value",
+        //         "they"=> "they value",
+        //         "about" => "about value",
+        //     ]
+
+        // ]);
 
     }
 

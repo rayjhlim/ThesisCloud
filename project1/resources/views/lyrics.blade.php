@@ -57,18 +57,22 @@
             @endif
 
             <div class="content">
-                <h1>song title</h1>
+                <h1>
+                    <?php
+                        //var_dump($data);
+                        echo $data[1];
+                    ?>
+                </h1>
 
                 <div class="songs">
-                    <p id="lyricContent"> {{ $song }} </p>
+                    <p id="lyricContent">
 
-                    <!-- this is how you should take in arrays in the view -->
-                    <?php
-                    // var_dump($songs);
-                    // foreach ($songs as $s) {
-                    //     echo "<li><a href='lyrics/" . $s . "'>" . $s . "</a></li>";
-                    // }
-                    ?>
+                        <!-- this is how you should take in arrays in the view -->
+                        <?php
+                            echo $data[2];
+                        ?>
+                    </p>
+                    
                 </div>
 
                 <div class="buttons">
@@ -77,5 +81,18 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+            function highlightText(){
+                var content = document.querySelector('#lyricContent').innerHTML;
+                var highlight = document.querySelector('#highlightText').value;
+
+                var newStr = '<span class="highlight1">' + highlight + '</span>';
+
+                document.querySelector('#mainStr').innerHTML = content.replace(highlight, newStr);
+            }
+
+        </script>
     </body>
 </html>

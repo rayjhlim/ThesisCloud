@@ -233,7 +233,7 @@
                     arrayOfWords.push({
                         text: stringVar,
                         size: intVar,
-                        href: 'http://localhost:8000/song/' + [artist_name] + '/' + stringVar
+                        href: 'http://localhost:8000/song/' + artist_name + '/' + stringVar + ''
                     });
                 }
 
