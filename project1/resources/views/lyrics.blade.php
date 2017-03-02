@@ -95,7 +95,7 @@
             highlightText();
 
             function highlightText(){
-                console.log('this is the content of the lyrics: ' + content);
+                //console.log('this is the content of the lyrics: ' + content);
 
                 //var highlight = document.querySelector('#songtitle').innerHTML;
                 var word = {!! json_encode($data[0]) !!};

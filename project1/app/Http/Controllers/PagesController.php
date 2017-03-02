@@ -275,6 +275,7 @@ class PagesController extends Controller {
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
         $result = $musixmatch->method('track.search', array(
+            // 'q_artist' => $q_artist,
             'q_track'  => $q_track, 
         ));
 
@@ -293,24 +294,6 @@ class PagesController extends Controller {
         //print($song);
 
         return view('lyrics', ['data' => [$word, $songtitle, $lyrics]]);
-
-        //return view('lyrics')->with('song', $song);
-
-        // return view('song', [
-        //     'songs' => ['one', 'two', 'three'],
-
-        //     'test' => 'test value',
-
-        //     'hasharray' => [
-        //         "IT" => "IT value",
-        //         "she" => "she value",
-        //         "he"=> "he value",
-        //         "they"=> "they value",
-        //         "about" => "about value",
-        //     ]
-
-        // ]);
-
     }
 
 

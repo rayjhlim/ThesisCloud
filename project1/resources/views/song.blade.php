@@ -70,6 +70,8 @@
                     // var_dump($hasharray);
                     // example to display
                     foreach ($data['word_song_freq_map'][$data['word']] as $k => $v) {
+                        // var_dump('the song is: ' . $k);
+                        // var_dump('the word is: ' . $v);
                         echo "<li><a href='/lyrics/" . $k . '/' . $data['word'] . "'>" . $k . " (" . $v . ")</a></li>";
                     }
                 ?>

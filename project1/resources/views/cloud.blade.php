@@ -44,6 +44,76 @@
         // Autocomplete functionality
         $( function() {
             var artistMatches = [];
+
+            function getRelatedArtists(artistName){ 
+                artistMatches = [];
+                var artist_name = artistName;
+                // use jquery to make calls to the musixmatch api
+                $.ajax({
+                    type: "GET",
+                    data: {
+                        // this is our api key
+                        apikey:"2287a48029b846476c13b4768cf55b97",
+                        // this is a variable, which is of a String type
+                        q_artist: artistName,
+                        format:"jsonp",
+                        callback:"jsonp_callback"
+                    },
+                    // search for track in database
+                    url: "http://api.musixmatch.com/ws/1.1/artist.search",
+                    dataType: "jsonp",
+                    jsonpCallback: 'jsonp_callback',
+                    contentType: 'application/json',
+                    // upon query success, execute this code:
+                    success: function(data) {
+                        // for debugging
+                        //value = artist name
+                        //image = twitter link + "/profile_image?size=mini";
+                        for (i = 0; i < data.message.body.artist_list.length; i++) {
+                            if (i <= 5) {
+
+                                if (!isEmpty(data.message.body.artist_list[i].artist.artist_name)) {
+                                    var name =  data.message.body.artist_list[i].artist.artist_name;
+                                    var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
+
+
+                                    if (isEmpty(twitter)) {
+                                        twitter = 'http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png';
+                                    }
+                                    artistMatches.push( {
+                                        value: name,
+                                        image: twitter
+                                        
+                                    });
+                                    
+                                }
+                                    
+                                else if (!isEmpty(data.message.body.artist_list[i].artist.artist_twitter_url)) {
+                                    var name = data.message.body.artist_list[i].artist.artist_name;
+                                    var twitter = data.message.body.artist_list[i].artist.artist_twitter_url + "/profile_image?size=mini";
+
+                                    artistMatches.push({
+                                        value: name,
+                                        image: twitter
+                                    });
+                                }
+                            }
+                        }
+
+                    },
+                    // this is what happens when the query is invalid
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }    
+                });
+            }
+            function isEmpty(val){
+                return (val === undefined || val == null || val.length <= 0) ? true : false;
+            }
+        $( function() {
+            var artistMatches = [];
             $( ".tags" ).autocomplete({
                 minLength: 3,
                 source: function( request, response ) {

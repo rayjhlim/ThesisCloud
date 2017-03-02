@@ -10,31 +10,36 @@
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
         <script>
-        // Autocomplete functionality
         $( function() {
-            var artistMatches = [];
+            var artistMatches = [
+              "Beyonce",
+              "Ed Sheeran",
+              "The Fray",
+              "Frank Ocean",
+              "Frank Sinatra",
+              "Sam Smith",
+              "Flume",
+              "Louis the Child",
+              "One Direction",
+              "Taylor Swift"
+            ];
             $( ".tags" ).autocomplete({
                 minLength: 3,
                 source: function( request, response ) {
                     var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
                     response( $.grep( artistMatches, function( item ){
-                        return matcher.test( item.value );
+                        return matcher.test( item );
                     }) );
                 }
-            }).data("uiAutocomplete")._renderItem = function (ul, item) {
-                    return $("<li />")
-                        .data("item.autocomplete", item)
-                        .append("<a><img src='" + item.image + "' />" + item.value + "</a>")
-                        .appendTo(ul);
-            };
+            });
             $( ".tags" ).keyup(function(){
                 if($(this).val().length >= 3) {
                     // update autocomplete matches
                     console.log("updating matches");
-                    artistMatches = [{value:"John Legend", image:"http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png"}];
+                    artistMatches = ["John Legend"];
                 }
             });
         } );
@@ -69,13 +74,35 @@
                 font-size: 60px;
             }
 
+            .highlight1 {
+                background-color: #FF0;
+            }
+
+            #searchTextBox {
+                border-style: solid;
+                border-width: 4px;
+                border-color: mediumpurple;
+
+                margin: auto;
+            }
+
+            #searchButton {
+                background-color: mediumpurple;
+                display: block;
+
+                margin-top: 20px;
+
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom:auto;
+            }
+
             input {
                 border: 2px solid mediumpurple;
                 width: 35%;
                 margin-right: 20%;
                 margin-left: 20%;
-                margin-bottom: 1%;
-                color: black;
+                margin-bottom: 1%
             }
 
             input[type="submit"]{
@@ -91,13 +118,14 @@
 
         <label><h1>SongCloud</h1> <br></label> 
 
-        <?php echo e(Form::open(array('route' => 'form', 'method'=>'post'))); ?>
+        <?php echo e(Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr'))); ?>
 
-+            <?php echo e($name = Form::text('artist_name')); ?>
+            <?php echo e($name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags'])); ?>
 
-+            <?php echo e(Form::submit('Go!')); ?>
+            <?php echo e(Form::submit('Search')); ?>
 
-+        <?php echo e(Form::close()); ?>
+        <?php echo e(Form::close()); ?>
+
 
             
         <!-- <form action='/find{$artist}' method='GET'>
