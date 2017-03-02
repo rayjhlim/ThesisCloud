@@ -252,7 +252,7 @@ class PagesController extends Controller {
     }
 
     public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
         $result = $musixmatch->method('track.search', array(
@@ -279,7 +279,7 @@ class PagesController extends Controller {
 
         echo("getSongLyrics called with song : " . $songtitle . " word : " . $q_lyrics);
 
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
+        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
         $result = $musixmatch->method('track.search', array(
@@ -365,21 +365,6 @@ class PagesController extends Controller {
         return Redirect::route('cloud', ['view' => 'cloud', 'artist_name' => Input::get('artist_name'), 'word' => 'word', 'first_artist_data' => '00']);
     }
 
-    // public function postWordToCloudPage()
-    // {
-    //     return Redirect::route('song', ['word' => Input::get('word')]);
-    // }
-
-    public function autoComplete($artist_name) {
-        $musixmatch_api_key = "a97ea319e25d4f8ba70a6119ce2532d2";
-        $musixmatch = new Musixmatch($musixmatch_api_key);
-
-        $relatedArtists = $musixmatch->method('artist.search', 
-            array('artist_name' => $artist_name));
-        $related_artist_array = $relatedArtists['message']['body']['artist_name'];
-//FIGURE OUT HOW TO RETURN BACK TO VIEW WITHOUT CHANGING
-        
-    }
 
     public function view2($artist_name)
     {

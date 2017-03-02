@@ -43,17 +43,18 @@
         <script>
         // Autocomplete functionality
         $( function() {
-            var artistMatches = [];
+            var artistMatches = [
+
+            ];
 
             function getRelatedArtists(artistName){ 
                 artistMatches = [];
-                var artist_name = artistName;
                 // use jquery to make calls to the musixmatch api
                 $.ajax({
                     type: "GET",
                     data: {
                         // this is our api key
-                        apikey:"2287a48029b846476c13b4768cf55b97",
+                        apikey:"63ee20957db474cd79ff92b17ce0198c",
                         // this is a variable, which is of a String type
                         q_artist: artistName,
                         format:"jsonp",
@@ -71,14 +72,14 @@
                         //image = twitter link + "/profile_image?size=mini";
                         for (i = 0; i < data.message.body.artist_list.length; i++) {
                             if (i <= 5) {
-
                                 if (!isEmpty(data.message.body.artist_list[i].artist.artist_name)) {
                                     var name =  data.message.body.artist_list[i].artist.artist_name;
                                     var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
-
-
                                     if (isEmpty(twitter)) {
                                         twitter = 'http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png';
+                                    } else {
+                                        twitter = twitter.substring(20);
+                                        twitter = 'http://avatars.io/twitter/' + twitter + '/small';
                                     }
                                     artistMatches.push( {
                                         value: name,
@@ -86,11 +87,19 @@
                                         
                                     });
                                     
+console.log(name);
+console.log(twitter);
+
                                 }
                                     
                                 else if (!isEmpty(data.message.body.artist_list[i].artist.artist_twitter_url)) {
                                     var name = data.message.body.artist_list[i].artist.artist_name;
-                                    var twitter = data.message.body.artist_list[i].artist.artist_twitter_url + "/profile_image?size=mini";
+                                    var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
+                                    twitter = 'http://avatars.io/twitter/' + twitter + '/small';
+
+console.log(name);
+console.log(twitter);
+
 
                                     artistMatches.push({
                                         value: name,
@@ -99,7 +108,6 @@
                                 }
                             }
                         }
-
                     },
                     // this is what happens when the query is invalid
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -112,8 +120,7 @@
             function isEmpty(val){
                 return (val === undefined || val == null || val.length <= 0) ? true : false;
             }
-        $( function() {
-            var artistMatches = [];
+
             $( ".tags" ).autocomplete({
                 minLength: 3,
                 source: function( request, response ) {
@@ -132,7 +139,8 @@
                 if($(this).val().length >= 3) {
                     // update autocomplete matches
                     console.log("updating matches");
-                    artistMatches = [{value:"John Legend", image:"http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png"}];
+                    //artistMatches = [{value: "John Legend",image:"http://capletonmusic.com/news/wp-content/uploads/2015/11/itunes.png"}]
+                    getRelatedArtists($(this).val());
                 }
             });
         } );
