@@ -29,6 +29,8 @@ class PagesController extends Controller {
 
     public function getCloudFrequencyMap($view, $artist_name, $word)
     {
+        //print('$first_artist_data:' . $first_artist_data);
+
         $filler_words = [
             "IT" => 1,
             "she" => 1,
@@ -95,7 +97,8 @@ class PagesController extends Controller {
         ];
 
         // $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
-        $musixmatch_api_key = "2287a48029b846476c13b4768cf55b97";
+        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
+
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
         $result = $musixmatch->method('track.search', array(
@@ -162,6 +165,11 @@ class PagesController extends Controller {
 
         $word_map = json_encode($word_map);
 
+        // if($first_artist_data != '00') {
+        //     print('$first_artist_data != 00') {
+        //         $data['first_artist_data'] = $first_artist_data;
+        //     }
+        // }
 
         $data['word_map'] = $word_map;
         $data['artist_name'] = $artist_name;
@@ -354,7 +362,7 @@ class PagesController extends Controller {
 
     public function postArtistNameToCloudPage()
     {
-        return Redirect::route('cloud', ['view' => 'cloud', 'artist_name' => Input::get('artist_name'), 'word' => 'word']);
+        return Redirect::route('cloud', ['view' => 'cloud', 'artist_name' => Input::get('artist_name'), 'word' => 'word', 'first_artist_data' => '00']);
     }
 
     // public function postWordToCloudPage()
