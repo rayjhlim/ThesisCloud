@@ -90,7 +90,8 @@ class PagesController extends Controller {
             "if" =>1
         ];
 
-        $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
+        // $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
+        $musixmatch_api_key = "2287a48029b846476c13b4768cf55b97";
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
         $artist_name_result = $musixmatch->method('artist.search', array(
