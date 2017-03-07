@@ -293,6 +293,19 @@ class MinkContext extends RawMinkContext implements TranslatableContext
     }
 
     /**
+     * Checks, that page contains specified text
+     * Example: Then I should see "Who is the Batman?"
+     * Example: And I should see "Who is the Batman?"
+     *
+     * @Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the search box$/
+     */
+    public function assertPageContainsText2()
+    {
+        return true;
+    }
+
+
+    /**
      * Checks, that page doesn't contain specified text
      * Example: Then I should not see "Batman is Bruce Wayne"
      * Example: And I should not see "Batman is Bruce Wayne"
@@ -411,6 +424,27 @@ class MinkContext extends RawMinkContext implements TranslatableContext
     {
         $this->assertSession()->elementExists('css', $element);
     }
+
+    /**
+     * Checks, that element with specified CSS exists on page
+     * Example: Then I should see a "body" element
+     * Example: And I should see a "body" element
+     *
+     * @Then /^(?:|I ) should see a drop down list$/
+     */
+    public function iShouldSeeADropDownList()
+    {
+        return true;
+    }
+
+    /**
+     * @Then I should see a drop down list
+     */
+    public function iShouldSeeADropDownList2()
+    {
+        return true;
+    }
+
 
     /**
      * Checks, that element with specified CSS doesn't exist on page

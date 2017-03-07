@@ -19654,3 +19654,9 @@ Stack trace:
 #49 /home/student/csci310firstProject/project1/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 /home/student/csci310firstProject/project1/server.php(21): require_once('/home/student/c...')
 #51 {main}  
+[2017-03-07 06:41:57] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Cannot redeclare Behat\MinkExtension\Context\MinkContext::assertPageContainsText2() in /home/student/csci310firstProject/project1/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php:315
+Stack trace:
+#0 {main}  
+[2017-03-07 06:58:07] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Cannot redeclare Behat\MinkExtension\Context\MinkContext::iShouldSeeADropDownList() in /home/student/csci310firstProject/project1/vendor/behat/mink-extension/src/Behat/MinkExtension/Context/MinkContext.php:442
+Stack trace:
+#0 {main}  

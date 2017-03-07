@@ -31,4 +31,62 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
     }
 
+    /**
+     * @Then the search bar should have a state of no selection
+     */
+    public function theSearchBarShouldHaveAStateOfNoSelection()
+    {
+        return true;
+    }
+
+    /**
+     * @Then the search bar should have a state of yes selection
+     */
+    public function theSearchBarShouldHaveAStateOfYesSelection()
+    {
+        return true;
+    }
+
+    /**
+     * @When /^I type "([^"]*)" in the textbox$/
+     */
+    public function iType($name)
+    {
+        return true;
+    }
+
+    /**
+     * @Given there are more than :arg1 characters in the textbox
+     */
+    public function thereAreMoreThanCharactersInTheTextbox($arg1)
+    {
+        return true;
+    }
+
+    /**
+     * @When /^I click "Taylor Swift"$/
+     */
+    public function iClick()
+    {
+        return true;
+    }
+
+
+    /** Click on the element with the provided CSS Selector
+     *
+     * @When /^I click on the element with css selector "([^"]*)"$/
+     */
+    public function iClickOnTheElementWithCSSSelector($cssSelector)
+    {
+        $session = $this->getSession();
+        $element = $session->getPage()->find(
+            'xpath',
+            $session->getSelectorsHandler()->selectorToXpath('css', $cssSelector) // just changed xpath to css
+        );
+        if (null === $element) {
+            throw new \InvalidArgumentException(sprintf('Could not evaluate CSS Selector: "%s"', $cssSelector));
+        }
+ 
+        $element->click();
+    }
 }

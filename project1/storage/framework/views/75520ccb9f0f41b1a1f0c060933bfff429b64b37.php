@@ -57,20 +57,12 @@
                                         image: twitter
                                         
                                     });
-                                    
-console.log(name);
-console.log(twitter);
-
                                 }
                                     
                                 else if (!isEmpty(data.message.body.artist_list[i].artist.artist_twitter_url)) {
                                     var name = data.message.body.artist_list[i].artist.artist_name;
                                     var twitter = data.message.body.artist_list[i].artist.artist_twitter_url;
                                     twitter = 'http://avatars.io/twitter/' + twitter + '/small';
-
-console.log(name);
-console.log(twitter);
-
 
                                     artistMatches.push({
                                         value: name,
@@ -106,6 +98,7 @@ console.log(twitter);
                         .append("<a><img src='" + item.image + "' />" + item.value + "</a>")
                         .appendTo(ul);
             };
+
             $( ".tags" ).keyup(function(){
                 if($(this).val().length >= 3) {
                     // update autocomplete matches
@@ -172,6 +165,7 @@ console.log(twitter);
 
         <?php echo e(Form::close()); ?>
 
+        <submit></submit>
 
     </body>
 </html>
