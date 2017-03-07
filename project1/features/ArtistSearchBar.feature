@@ -37,7 +37,3 @@ Scenario: If the user clicks on an artist from the suggestions drop-down, the te
 	When I click "Taylor Swift"
 	Then I should see "Taylor Swift" in the search box
 	And the search bar should have a state of yes selection
-
-
-
-
