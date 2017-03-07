@@ -8,13 +8,26 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    public function testWelcomePage()
     {
-        $this->assertTrue(true);
+        $response = $this->call('GET', '/', []);
+        $this->assertEquals(200, $response->status());
+    }
+    public function testSongCloudAppearsOnWelcomePage()
+    {
+        $response = $this->call('GET', '/', []);
+        $songcloud = strval($response);
+        $this->assertContains('SongCloud', $songcloud);
+    }
+    public function testCloudStatus()
+    {
+        $response = $this->call('GET', '/cloud/Kanye West/word/00', []);
+        $this->assertEquals(200, $response->status());
+    }
+    public function testCloudArtistName()
+    {
+        $response = $this->call('GET', '/cloud/Kanye West/word/00');
+        $artistname = strval($response);
+        $this->assertContains('Kanye West', $artistname);
     }
 }
