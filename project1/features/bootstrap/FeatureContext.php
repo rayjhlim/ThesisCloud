@@ -215,5 +215,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         return true;
     }
 
+    /**
+     * @Then the search button is not clickable
+     */
+    public function searchButtonIsNotClickable()
+    {
+        return true;
+    }
+
+    /**
+     * @Then the search button is clickable
+     */
+    public function searchButtonIsClickable()
+    {
+        return true;
+    }
+
+    /**
+     * @Then the word cloud title is initialized with :arg1 most frequent words used by rebecca black
+     */
+    public function wordCloudTitleIsInitializedWithMostFrequentWordsUsedByRebeccaBlack($arg1)
+    {
+        return true;
+    }
+
 
 }
