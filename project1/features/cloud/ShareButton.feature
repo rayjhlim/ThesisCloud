@@ -1,7 +1,7 @@
 Feature: Share Button
 	In order to prove that the share button works
 	on the cloud page, we need to test that each of its
-	pieces work as intentended. 
+	pieces work as intended. 
 
 Scenario: REQ-1: Upon clicking the Share Button, the user is redirected to the Facebook website with the action of creating a new post.
 	Given I am on the WordCloudPage
@@ -11,7 +11,7 @@ Scenario: REQ-1: Upon clicking the Share Button, the user is redirected to the F
 
 Scenario: REQ-1: Upon clicking the Share Button, the user is redirected to the Facebook website with the action of creating a new post.
 	Given I am on the WordCloudPage
-	And the headers should contain “Taylor Swift Justin Bieber”
+	And the headers should contain “Taylor Swift, Justin Bieber”
 	And I press "shareToFBButton"
 	Then I should see Facebook page
 
