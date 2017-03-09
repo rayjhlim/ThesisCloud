@@ -11,7 +11,7 @@ Scenario: REQ-1: Upon initialization, the text area contains the lyrics of the s
 
 Scenario: REQ-1-2: Upon initialization, the text area contains the lyrics of the song with which the Lyrics feature is initialized.
 	Given I am on SongListPage 
-	And the artists are "Taylor Swift" and "Swedish House Mafia"
+	And the artist are "Taylor Swift" and "Swedish House Mafia"
 	And the header contains “love”
 	And I press the song “YOU'RE IN LOVE (1)”
 	Then I am on LyricsPage

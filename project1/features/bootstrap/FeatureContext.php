@@ -31,6 +31,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
     }
 
+    // disclaimer: the functions below are not implemented
+
     /***************** BELOW ARE THE FUNCTIONS FOR HOME PAGE FEATURES *****************/
 
 
@@ -97,6 +99,25 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // path is populated with filler variables
         $this->visitPath('/cloud/Taylor Swift/word/00');
+    }
+
+    /**
+     * @Given there are more than :arg1 characters in the textbox
+     */
+    public function thereAreMoreThanCharactersInTheTextbox($arg1)
+    {
+        // this should check the number of characters in the search box
+        return true;
+    }
+
+    /**
+     * @When /^I click "Taylor Swift"$/
+     */
+    public function iClick()
+    {
+        // this function simulates the clicking 
+        // selecting an artist from the search box
+        return true;
     }
 
     /**
@@ -173,25 +194,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnLyricsPage()
     {
+        // this should navigate to the lyrics page
         return true;   
     }
-
-    /**
-     * @Given there are more than :arg1 characters in the textbox
-     */
-    public function thereAreMoreThanCharactersInTheTextbox($arg1)
-    {
-        return true;
-    }
-
-    /**
-     * @When /^I click "Taylor Swift"$/
-     */
-    public function iClick()
-    {
-        return true;
-    }
-
 
     /** Click on the element with the provided CSS Selector
      *
@@ -199,6 +204,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheElementWithCSSSelector($cssSelector)
     {
+        // this function was originally supposed to check autocorrect
         $session = $this->getSession();
         $element = $session->getPage()->find(
             'xpath',
@@ -244,7 +250,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // we did not implement the functionality for 
         // multiple artists
-        
+
         return false;
     }
 
@@ -258,7 +264,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
 
+
+    /************************************************************************************/
     /***************** BELOW ARE ADDITIONAL FUNCTIONS FOR TESTS TO PASS *****************/
+
+    /**
+     * @Given the artist are :arg1 and :arg2
+     */
+    public function theArtistAreAnd($arg1, $arg2)
+    {
+        // thie function should return false 
+        // because we did not implement two artists
+        // inserted this line because i know it will return false
+        $this->assertSession()->addressEquals($this->locatePath('/'));
+    }
 
     /**
      * @Then the search bar should have a state of no selection
@@ -367,6 +386,18 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         return false;
     }
+
+    /**
+     * @Given the headers should contain “Taylor Swift Justin Bieber”
+     */
+    public function theHeadersShouldContainTaylorSwiftJustinBieber()
+    {
+        // thie function should return false 
+        // because we did not implement two artists
+        // inserted this line because i know it will return false
+        $this->assertSession()->addressEquals($this->locatePath('/'));
+    }
+
 
 
 }
