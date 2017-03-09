@@ -7,7 +7,7 @@ Scenario: Navigate to homepage
 	Given I am on the homepage
 	Then I should see "SongCloud"
 	And I should see an "input" element
-	And I should see an "search" button
+	And I should see an "Search" element
 
 Scenario: Autocomplete suggestions are not selected
 	Given I am on the homepage
