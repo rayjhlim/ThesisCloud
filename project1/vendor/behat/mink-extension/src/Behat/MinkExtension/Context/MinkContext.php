@@ -293,19 +293,6 @@ class MinkContext extends RawMinkContext implements TranslatableContext
     }
 
     /**
-     * Checks, that page contains specified text
-     * Example: Then I should see "Who is the Batman?"
-     * Example: And I should see "Who is the Batman?"
-     *
-     * @Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the search box$/
-     */
-    public function assertPageContainsText2()
-    {
-        return true;
-    }
-
-
-    /**
      * Checks, that page doesn't contain specified text
      * Example: Then I should not see "Batman is Bruce Wayne"
      * Example: And I should not see "Batman is Bruce Wayne"
@@ -423,38 +410,6 @@ class MinkContext extends RawMinkContext implements TranslatableContext
     public function assertElementOnPage($element)
     {
         $this->assertSession()->elementExists('css', $element);
-    }
-
-    /**
-     * Checks, that element with specified CSS exists on page
-     * Example: Then I should see a "body" element
-     * Example: And I should see a "body" element
-     *
-     * @Then /^(?:|I )should see an? "search" button$/
-     */
-    public function assertElementOnPage2()
-    {
-        return true;
-    }
-
-    /**
-     * Checks, that element with specified CSS exists on page
-     * Example: Then I should see a "body" element
-     * Example: And I should see a "body" element
-     *
-     * @Then /^(?:|I ) should see a drop down list$/
-     */
-    public function iShouldSeeADropDownList()
-    {
-        return true;
-    }
-
-    /**
-     * @Then I should see a drop down list
-     */
-    public function iShouldSeeADropDownList2()
-    {
-        return true;
     }
 
 
@@ -614,78 +569,4 @@ class MinkContext extends RawMinkContext implements TranslatableContext
     {
         return str_replace('\\"', '"', $argument);
     }
-
-    /**
-     * @When I click word “walking” from the cloud
-     */
-    public function iClickWordWalkingFromTheCloud()
-    {
-        return true;
-    }
-
-    /**
-     * @Given the header contains “daydream”
-     */
-    public function theHeaderContainsDaydream()
-    {
-        return true;
-    }
-
-    /**
-     * @Given I press the song “STYLE (:arg1)”
-     */
-    public function iPressTheSongStyle($arg1)
-    {
-        return true;
-    }
-
-    /**
-     * @Given the header contains “love”
-     */
-    public function theHeaderContainsLove()
-    {
-        return true;
-    }
-
-    /**
-     * @Given I press the song “YOU'RE IN LOVE (:arg1)”
-     */
-    public function iPressTheSongYouReInLove($arg1)
-    {
-        return true;
-    }
-
-    /**
-     * @Given the :arg1 is “STYLE”
-     */
-    public function theIsStyle($arg1)
-    {
-        return true;
-    }
-
-    /**
-     * @Given the header should contain “Taylor Swift”
-     */
-    public function theHeaderShouldContainTaylorSwift()
-    {
-        return true;
-    }
-
-    /**
-     * @Then the header should contain “walking”
-     */
-    public function theHeaderShouldContainWalking()
-    {
-       return true;
-    }
-
-    /**
-     * @Then the header should contain “Style by Taylor Swift”
-     */
-    public function theHeaderShouldContainStyleByTaylorSwift()
-    {
-        return false;
-    }
-
-
 }

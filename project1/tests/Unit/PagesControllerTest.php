@@ -8,38 +8,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PagesControllerTest extends TestCase
 {
-    // public function testWelcomePage()
-    // {
-    //     $response = $this->call('GET', '/', []);
-    //     $this->assertEquals(200, $response->status());
-    // }
-    // public function testSongCloudAppearsOnWelcomePage()
-    // {
-    //     $response = $this->call('GET', '/', []);
-    //     $songcloud = strval($response);
-    //     $this->assertContains('SongCloud', $songcloud);
-    // }
-    // public function testCloudStatus()
-    // {
-    //     $response = $this->call('GET', '/cloud/Kanye West/word/00', []);
-    //     $this->assertEquals(200, $response->status());
-    // }
-    // public function testCloudArtistName()
-    // {
-    //     $response = $this->call('GET', '/cloud/Kanye West/word/00');
-    //     $artistname = strval($response);
-    //     $this->assertContains('Kanye West', $artistname);
-    // }
-
-    // public function testStartPageViewReturn()
-    // {
-        
-    //     $response = $this->call('GET','', []);
-    //     $response->method_call->startPage();
-    //     $this->assertEquals(200, $response->status());
-    //     $stringResponse = strval($response);
-    //     $this->assertContains('Welcome to SongCloud', $stringResponse);
-    // }
 
     public function testGetCloudFrequencyMapForCloud()
     {
@@ -51,17 +19,6 @@ class PagesControllerTest extends TestCase
         $response = $controller->$func($view, $artist_name, $word);
         $stringResponse = strval($response);
         $this->assertContains('postImageToFacebook(', $stringResponse); // method only found in cloud
-    }
-
-    public function tetsGetTracksNameArrayFromWord()
-    {
-        $controller = new PagesController();
-        $func = "getTrackNameArrayFromWord";
-        $artist = "JOHN LEGEND";
-        $lyrics = "CRAZY";
-        $response = $controller->$func($artist, $lyrics);
-        $stringResponse = strval($response);
-        $this->assertContains('songlistarray', $stringResponse); // id only found in song
     }
 
     public function testGetSongLyrics()
