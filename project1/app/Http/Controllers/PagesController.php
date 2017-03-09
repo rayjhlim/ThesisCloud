@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Input;
 class PagesController extends Controller {
 
     // DO NOT DELETE: THIS IS FOR REFERENCE
-    public function example() {
+    // public function example() {
 
-        return view('song', [
-            'songs' => ['one', 'two', 'three'],
+    //     return view('song', [
+    //         'songs' => ['one', 'two', 'three'],
 
-            'test' => 'test value',
+    //         'test' => 'test value',
 
-            'hasharray' => [
-                "IT" => "IT value",
-                "she" => "she value",
-                "he"=> "he value",
-                "they"=> "they value",
-                "about" => "about value",
-            ]
+    //         'hasharray' => [
+    //             "IT" => "IT value",
+    //             "she" => "she value",
+    //             "he"=> "he value",
+    //             "they"=> "they value",
+    //             "about" => "about value",
+    //         ]
 
-            ]);
-    }
+    //         ]);
+    // }
 
     public function getCloudFrequencyMap($view, $artist_name, $word)
     {
@@ -245,10 +245,10 @@ class PagesController extends Controller {
     }
 
 
-    public function view2($artist_name)
-    {
-        // return View::make('view2')->with('name',$name);
-        return view('cloud')->with('artist_name', $artist_name);
-    }
+    // public function view2($artist_name)
+    // {
+    //     // return View::make('view2')->with('name',$name);
+    //     return view('cloud')->with('artist_name', $artist_name);
+    // }
 
 }
