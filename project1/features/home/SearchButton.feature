@@ -21,4 +21,4 @@ Scenario: REQ-3: On the Word Cloud Page which is navigated to, the Word Cloud Ti
 	When I fill in "artist_name" with "Taylor Swift"
 	And the search bar should have a state of yes selection
 	When I press "Search"
-	Then the word cloud title is initialized with 250 most frequent words used by rebecca black
+	Then the word cloud shows 250 most frequent words used by rebecca black

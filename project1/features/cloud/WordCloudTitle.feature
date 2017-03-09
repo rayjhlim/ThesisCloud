@@ -12,7 +12,7 @@ Feature: Word cloud title
 
 	Scenario: REQ-1 (two artists): Upon initialization, the label's text lists the name(s) of the artist(s) of the Word Cloud Title is initialized for, delimited by commas
 		Given I am on the WordCloudPage
-		And the song page is initialize for the artists "Rebecca Black" and "Swedish House Mafia"
+		And the artists are: "Rebecca Black" and "Swedish House Mafia"
 		And I press "Search"
 		Then I am on the WordCloudPage
 		And the header should contain “Rebecca Black, Swedish House Mafia”
