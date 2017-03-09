@@ -96,8 +96,7 @@ class PagesController extends Controller {
             "if" =>1
         ];
 
-        // $musixmatch_api_key = "6ad8de600eafc1f85a3a9df2da4b4a5b";
-        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
+        $musixmatch_api_key = "d60e5a5c7aff26124d2f182cd3bd2dc5";
 
         $musixmatch = new Musixmatch($musixmatch_api_key);
         
@@ -182,7 +181,7 @@ class PagesController extends Controller {
     }
 
     public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
-        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
+        $musixmatch_api_key = "d60e5a5c7aff26124d2f182cd3bd2dc5";
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
         $result = $musixmatch->method('track.search', array(
@@ -209,7 +208,7 @@ class PagesController extends Controller {
 
         //echo("getSongLyrics called with song : " . $songtitle . " word : " . $q_lyrics);
 
-        $musixmatch_api_key = "63ee20957db474cd79ff92b17ce0198c";
+        $musixmatch_api_key = "d60e5a5c7aff26124d2f182cd3bd2dc5";
         $musixmatch = new Musixmatch($musixmatch_api_key);
 
         $result = $musixmatch->method('track.search', array(
