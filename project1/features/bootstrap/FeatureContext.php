@@ -344,6 +344,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theSearchBarShouldHaveAStateOfNoSelection()
     {
+        // we have not implemented the yes or no selection
+        // As a result, we had to resort to creating a 
+        // function that always returns true.
         return true;
     }
 
@@ -352,6 +355,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theSearchBarShouldHaveAStateOfYesSelection()
     {
+        // we have not implemented the yes or no selection
+        // As a result, we had to resort to creating a 
+        // function that always returns true.
+
         return true;
     }
 
@@ -361,6 +368,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function searchButtonIsNotClickable()
     {
+        // we could not find a way of 
+        // checking if the css form is clickable or not
+        // and had to resort to creating a function
+        // that always returns true.
+
         return true;
     }
 
@@ -369,6 +381,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function searchButtonIsClickable()
     {
+        // we could not find a way of 
+        // checking if the css form is clickable or not
+        // and had to resort to creating a function
+        // that always returns true.
+
         return true;
     }
 
@@ -641,6 +658,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theWordCloudShowsMostFrequentWordsUsedBy($arg1, $arg2)
     {
+        // we could not find a way of counting the number of words displayed
+        // by the word cloud using behat. 
+        // As a result, we had to resort to creating a function
+        // that always returns true.
         return true;
     }
 }
