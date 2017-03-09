@@ -37,3 +37,17 @@ Scenario: If the user clicks on an artist from the suggestions drop-down, the te
 	When I click "Taylor Swift"
 	Then I should see "Taylor Swift" in the search box
 	And the search bar should have a state of yes selection
+
+Scenario: REQ-5: The suggestions drop-down menu should contain at least 3 artists whose names are approximate matches for the text in the textbox.
+	Given I am on the homepage
+	When I type "taylor" in the textbox
+	Then I should see a drop down list
+	And the drop down suggestions should contain at least 3 artist names
+	And the artist names should be similar to the text in the textbox
+
+Scenario: REQ-6: For each artist in the suggestions drop-down, a name and image should be displayed.
+	Given I am on the homepage
+	When I type "taylor" in the textbox
+	Then I should see a drop down list
+	And each entry should contain a name and an image
+
