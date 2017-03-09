@@ -161,7 +161,6 @@
             {{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
             {{ Form::submit('Search') }}
         {{ Form::close() }}
-        <submit></submit>
 
     </body>
 </html>

@@ -165,7 +165,10 @@
 
         <?php echo e(Form::close()); ?>
 
-        <submit></submit>
+        <form>
+        <button></button>
+        </form>
+        
 
     </body>
 </html>

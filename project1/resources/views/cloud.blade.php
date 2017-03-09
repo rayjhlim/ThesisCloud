@@ -249,9 +249,10 @@ console.log(twitter);
         {{ Form::close() }}
 
                 <div class="controls">
-                    <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
-                    <button id="shareToFBButton">Share to Facebook</button>
-
+                    <form>
+                        <button id="addToCloudButton" onclick="addToCloud()">Add to Cloud</button>
+                        <button id="shareToFBButton">Share to Facebook</button>
+                    </form>
                 </div>
 
             </div>
