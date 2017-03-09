@@ -16,3 +16,9 @@ Feature: Add Button
 		When I type "Justin Bieber" in the textbox
 		And I press "addToCloudButton"
 		Then the header should contain “Taylor Swift Justin Bieber”
+
+	Scenario: REQ-3: Upon clicking the Add Button, the artist selected in the Artist Search Bar is added to the Word Cloud.
+		Given I am on the WordCloudPage
+		When I type "Justin Bieber" in the textbox
+		And I press "addToCloudButton"
+		Then the lyrics of the artist should be added to the Word Cloud 

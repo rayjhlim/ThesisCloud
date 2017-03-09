@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Input;
 class PagesController extends Controller {
 
     // DO NOT DELETE: THIS IS FOR REFERENCE
-    public function example() {
+    // public function example() {
 
-        return view('song', [
-            'songs' => ['one', 'two', 'three'],
+    //     return view('song', [
+    //         'songs' => ['one', 'two', 'three'],
 
-            'test' => 'test value',
+    //         'test' => 'test value',
 
-            'hasharray' => [
-                "IT" => "IT value",
-                "she" => "she value",
-                "he"=> "he value",
-                "they"=> "they value",
-                "about" => "about value",
-            ]
+    //         'hasharray' => [
+    //             "IT" => "IT value",
+    //             "she" => "she value",
+    //             "he"=> "he value",
+    //             "they"=> "they value",
+    //             "about" => "about value",
+    //         ]
 
-            ]);
-    }
+    //         ]);
+    // }
 
     public function getCloudFrequencyMap($view, $artist_name, $word)
     {
@@ -180,27 +180,27 @@ class PagesController extends Controller {
         //return view('song', ['word_map' => $word_song_freq_map[$word]]);
     }
 
-    public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
-        $musixmatch_api_key = "d60e5a5c7aff26124d2f182cd3bd2dc5";
-        $musixmatch = new Musixmatch($musixmatch_api_key);
+    // public function getTracksNameArrayFromWord($q_artist, $q_lyrics) {
+    //     $musixmatch_api_key = "d60e5a5c7aff26124d2f182cd3bd2dc5";
+    //     $musixmatch = new Musixmatch($musixmatch_api_key);
 
-        $result = $musixmatch->method('track.search', array(
-            'q_artist'  => $q_artist, 
-            'q_lyrics' => $q_lyrics 
-        ));
+    //     $result = $musixmatch->method('track.search', array(
+    //         'q_artist'  => $q_artist, 
+    //         'q_lyrics' => $q_lyrics 
+    //     ));
 
-        $track_name_array = 
-            $result['message']['body']['track_list'];
+    //     $track_name_array = 
+    //         $result['message']['body']['track_list'];
             
-            // //echo $track_id_array for test purposes
-            // echo('###ECHO OF $tracks_id_array###');
-            // foreach($track_name_array as $track_list) {
-            //     echo($track_list['track']['track_name'] . ",");
-            // }
-            // echo('###END OF ECHO###');
+    //         // //echo $track_id_array for test purposes
+    //         // echo('###ECHO OF $tracks_id_array###');
+    //         // foreach($track_name_array as $track_list) {
+    //         //     echo($track_list['track']['track_name'] . ",");
+    //         // }
+    //         // echo('###END OF ECHO###');
 
-        return view('song')->with('track_name_array', $track_name_array);
-    }
+    //     return view('song')->with('track_name_array', $track_name_array);
+    // }
 
     public function getSongLyrics($q_track, $q_lyrics) {
         $word = $q_lyrics;
@@ -244,10 +244,10 @@ class PagesController extends Controller {
     }
 
 
-    public function view2($artist_name)
-    {
-        // return View::make('view2')->with('name',$name);
-        return view('cloud')->with('artist_name', $artist_name);
-    }
+    // public function view2($artist_name)
+    // {
+    //     // return View::make('view2')->with('name',$name);
+    //     return view('cloud')->with('artist_name', $artist_name);
+    // }
 
 }

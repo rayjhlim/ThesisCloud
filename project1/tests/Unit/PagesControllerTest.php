@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace App\Http\Controllers;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -8,26 +8,46 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PagesControllerTest extends TestCase
 {
-    public function testWelcomePage()
+
+    public function testGetCloudFrequencyMapForCloud()
     {
-        $response = $this->call('GET', '/', []);
-        $this->assertEquals(200, $response->status());
+        $controller = new PagesController();
+        $func = "getCloudFrequencyMap";
+        $view = "cloud";
+        $artist_name = "Taylor Swift";
+        $word = "word";
+        $response = $controller->$func($view, $artist_name, $word);
+        $stringResponse = strval($response);
+        $this->assertContains('postImageToFacebook(', $stringResponse); // method only found in cloud
     }
-    public function testSongCloudAppearsOnWelcomePage()
+
+    public function testGetSongLyrics()
     {
-        $response = $this->call('GET', '/', []);
-        $songcloud = strval($response);
-        $this->assertContains('SongCloud', $songcloud);
+        $controller = new PagesController();
+        $func = "getSongLyrics";
+        $track = "NIGHT CHANGES";
+        $lyrics = "MOTHER";
+        $response = $controller->$func($track, $lyrics);
+        $stringResponse = strval($response);
+        $this->assertContains('highlightText()', $stringResponse); // method only found in song
     }
-    public function testCloudStatus()
+
+    public function testStartPage() 
     {
-        $response = $this->call('GET', '/cloud/Kanye West/word/00', []);
-        $this->assertEquals(200, $response->status());
+        $controller = new PagesController();
+        $func = "startPage";
+        $response = $controller->$func();
+        $stringResponse = strval($response);
+        $this->assertContains('Welcome to SongCloud!', $stringResponse); // string only found in welcome
     }
-    public function testCloudArtistName()
+
+    public function testPostArtistNameToCloudPage()
     {
-        $response = $this->call('GET', '/cloud/Kanye West/word/00');
-        $artistname = strval($response);
-        $this->assertContains('Kanye West', $artistname);
+        $controller = new PagesController();
+        $func = "postArtistNameToCloudPage";
+        $response = $controller->$func();
+        $stringResponse = strval($response);
+        $this->assertNotContains('<h2>{{$data', $stringResponse); // test that tag data has been filled in
     }
+
 }
