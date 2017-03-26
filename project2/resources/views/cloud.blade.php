@@ -10,14 +10,14 @@
 	<style>
 		body {
 			background-color: #6495ed;
-			margin-top: 23%;
+			margin-top: auto;
 			margin-right: auto;
 			margin-left: auto;
 			margin-bottom: auto;
 			text-align: center;
 		}
 
-		h1 {
+		h2 {
 			font-weight: bold;
 			color: white;
 			font-size: 25px;
@@ -44,6 +44,7 @@
 			width: 18%;
 			margin-top: 0%;
 			text-align: center;
+			font-weight: bold;
 		}
 
 		.form {
@@ -57,9 +58,14 @@
 
 <body>
 	<div id="outerlayer">
-		<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
 
-		{!! Form::open([]) !!}
+		<div id="wordcloud"> 
+
+		</div>
+
+		<h2> The researcher's surname <br> </h2>
+
+		{!! Form::open(['method'=>'post']) !!}
 
 			{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
 			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
