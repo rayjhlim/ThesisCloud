@@ -80,30 +80,43 @@
 	<script>
 
 	var myString = 'Come away with me in the night Come away with me And I will write you a song Come away with me on a bus Come away where they tempt us, with their lies And I want to walk with you On a cloudy day In fields where the yellow grass grows knee-high So you try to come Come away with me and we will kiss On a mountaintop Come away with me And I will never stop loving you And I want to wake up with the rain Falling on a tin roof While I am safe there in your arms So all I ask is for you To come away with me in the night Come away with me';
-	
+
 	var newArray = [], wordObj;
 
 	wordFrequency(myString);
 
 	// function that calculates word frequency
 	function wordFrequency(txt){
+		txt = txt.toLowerCase();
+
 		var wordArray = txt.split(/[ .?!,*'"]/);
 
 		wordArray.forEach(function (word) {
 			wordObj = newArray.filter(function (w){
 				return w.text == word;
 			});
+
 			if (wordObj.length) {
 				wordObj[0].size += 1;
 			} else {
-				newArray.push({text: word, size: 1});
+				newArray.push({text: word, size: 1});	
 			}
 		});
 
-		console.log(newArray);
+		for (i = 0; i < newArray.length; i++) {
+			//console.log(newArray[i].text);
+			if (newArray[i].text == 'with' || newArray[i].text == 'the' || newArray[i].text == 'is' || newArray[i].text == 'are'
+				|| newArray[i].text == 'and' || newArray[i].text == 'a' || newArray[i].text == 'was' || newArray[i].text == 'were'
+				|| newArray[i].text == 'in' || newArray[i].text == 'to') {
+				//console.log('found filler');
+				newArray.splice(i,1);
+			}
+		}
 
+		console.log(newArray);
 		return newArray;
 	}
+
 	
 	//document.write(JSON.stringify(wordFrequency("count everything, count all the words, count all the words!").sort(function(a,b){return a.size<b.size})).split("},").join("}<br/>"));
 			
