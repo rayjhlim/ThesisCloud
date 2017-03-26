@@ -17,7 +17,7 @@
 			text-align: center;
 		}
 
-		h1 {
+		h2 {
 			font-weight: bold;
 			color: white;
 			font-size: 25px;
@@ -58,7 +58,12 @@
 
 <body>
 	<div id="outerlayer">
-		<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
+
+		<div id="wordcloud"> 
+
+		</div>
+
+		<h2> The researcher's surname <br> </h2>
 
 		{!! Form::open(['method'=>'post']) !!}
 
