@@ -3,9 +3,13 @@ Feature: Textbox
 	on the home page, we need to test that each of its
 	features work as intentended. 
 
+Scenario: Home page should contain a welcome message
+    Given I am on the homepage
+    Then I should see an "h1" element
+
 Scenario: Home page should contain a textbox
     Given I am on the homepage
-    I should see a "text" element
+    Then I should see a "text" element
 
 Scenario: Click the search button when search bar is empty
 	Given I am on the homepage

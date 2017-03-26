@@ -24,12 +24,6 @@
 			margin-bottom: 2%
 		}
 
-		h2 {
-			font-weight: bold;
-			color: #6495ed;
-			font-size: 16px;
-		}
-
 		input[type=text] {
 			font-size: 14px;
 			width: 38%;
@@ -65,7 +59,9 @@
 			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
 
 		{!! Form::close() !!}
-	</div>
+
+	</div>x
+
 </body>
 
 </html>

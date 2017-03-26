@@ -24,11 +24,6 @@
 			margin-bottom: 2%
 		}
 
-		h2 {
-			font-weight: bold;
-			color: #6495ed;
-			font-size: 16px;
-		}
 
 		input[type=text] {
 			font-size: 14px;
@@ -65,6 +60,8 @@
 
 		<h2> The researcher's surname <br> </h2>
 
+		<div id="wordcloud"></div>
+
 		{!! Form::open(['method'=>'post']) !!}
 
 			{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
@@ -72,6 +69,52 @@
 
 		{!! Form::close() !!}
 	</div>
+
+	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/d3.wordcloud.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/example/example.words.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+
+	var myString = 'Come away with me in the night Come away with me And I will write you a song Come away with me on a bus Come away where they tempt us, with their lies And I want to walk with you On a cloudy day In fields where the yellow grass grows knee-high So you try to come Come away with me and we will kiss On a mountaintop Come away with me And I will never stop loving you And I want to wake up with the rain Falling on a tin roof While I am safe there in your arms So all I ask is for you To come away with me in the night Come away with me';
+	
+	var newArray = [], wordObj;
+
+	wordFrequency(myString);
+
+	// function that calculates word frequency
+	function wordFrequency(txt){
+		var wordArray = txt.split(/[ .?!,*'"]/);
+
+		wordArray.forEach(function (word) {
+			wordObj = newArray.filter(function (w){
+				return w.text == word;
+			});
+			if (wordObj.length) {
+				wordObj[0].size += 1;
+			} else {
+				newArray.push({text: word, size: 1});
+			}
+		});
+
+		console.log(newArray);
+
+		return newArray;
+	}
+	
+	//document.write(JSON.stringify(wordFrequency("count everything, count all the words, count all the words!").sort(function(a,b){return a.size<b.size})).split("},").join("}<br/>"));
+			
+	d3.wordcloud()
+		.size([500, 300])
+		.words(newArray)
+		.spiral("rectangular")
+		.start();
+	
+	</script>
+
 </body>
 
 </html>
