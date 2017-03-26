@@ -47,6 +47,8 @@
 			margin-left: auto;
 			font-family: serif;
 		}
+
+
 	</style>
 
 </head>
@@ -67,8 +69,15 @@
 			{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
 			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
 
+			<div class="slider">
+				<span> <br> Set how many papers to include in the word cloud <br> </span>
+				<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
+				<span id="sliderValue"> 10 </span>
+			</div>
+
 		{!! Form::close() !!}
 	</div>
+
 
 	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
@@ -76,7 +85,6 @@
 	<script type="text/javascript" src="{{ URL::asset('js/example/example.words.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 	<script>
 
 	var myString = 'Come away with me in the night Come away with me And I will write you a song Come away with me on a bus Come away where they tempt us, with their lies And I want to walk with you On a cloudy day In fields where the yellow grass grows knee-high So you try to come Come away with me and we will kiss On a mountaintop Come away with me And I will never stop loving you And I want to wake up with the rain Falling on a tin roof While I am safe there in your arms So all I ask is for you To come away with me in the night Come away with me';
@@ -103,6 +111,10 @@
 		console.log(newArray);
 
 		return newArray;
+	}
+
+	function showSliderValue(newValue) {
+		document.getElementById("sliderValue").innerHTML = newValue;
 	}
 	
 	//document.write(JSON.stringify(wordFrequency("count everything, count all the words, count all the words!").sort(function(a,b){return a.size<b.size})).split("},").join("}<br/>"));

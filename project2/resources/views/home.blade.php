@@ -10,7 +10,7 @@
 	<style>
 		body {
 			background-color: #6495ed;
-			margin-top: 23%;
+			margin-top: 20%;
 			margin-right: auto;
 			margin-left: auto;
 			margin-bottom: auto;
@@ -22,7 +22,7 @@
 			font-weight: bold;
 			color: white;
 			font-size: 25px;
-			margin-bottom: 2%
+			margin-bottom: 3%
 		}
 
 		h2 {
@@ -52,29 +52,13 @@
 			margin-left: auto;
 		}
 
-		$sliderWidth: 50% !default;
-		$sliderHandleDefaultColor: white !default;
-		$sliderHandlerHoverColor: black !default; 
-		$sliderHandlerSize: 10px !default;
-		$sliderTrackColor: #d7dcdf !default;
-		$sliderTrackHeight: 5px !default;
-		$sliderLabelColor: white !default;
-		$sliderLabelWidth: 16px !default;
-
-		.adjustSliderInfo {
-			color: white;
-			font-size: 14px;
-			width: 58%;
-		}
-
 		.slider {
-			margin: 38px 0 0 0%;
-			width: $sliderWidth;
-
+			margin-right: auto;
+			margin-left: auto;
+			margin-top: 1%;
+			color: white;
+			font-size: 16px;
 		}
-
-	
-
 
 	</style>
 
@@ -88,13 +72,11 @@
 		{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
 		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
 
-		<span class="adjustSliderInfo"> <br> Set how many papers to include in the word cloud <br> </span>
-		
-		<div class="slider">
+        <div class="slider">
+			<span> <br> Set how many papers to include in the word cloud <br> </span>
 			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
-			<span class="sliderLabel"> <br> 10 </span>
-		<
-
+			<span id="sliderValue"> 10 </span>
+		</div>
 
 	{!! Form::close() !!}
 
