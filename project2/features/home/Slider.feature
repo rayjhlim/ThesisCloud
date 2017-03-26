@@ -5,4 +5,4 @@ Feature: Slider
 
 Scenario: Home page should contain a slider
     Given I am on the homepage
-    I should see a "range" element
+    Then I should see a "range" element
