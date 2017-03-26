@@ -5,17 +5,7 @@ Feature: Search Button
 
 Scenario: Home page should contain a search button
     Given I am on the homepage
-    I should see a "submit" element
-
-Scenario: Click the search button when search bar is empty
-	Given I am on the homepage
-    And the "text" element is not filled
-	Then the "submit" element is not clickable
-
-Scenario: Search button is clickable if and only if the Search Bar is filled
-	Given I am on the homepage
-    And the "text" element is filled
-	Then the "submit" element is clickable
+    Then I should see a "submit" element
 
 Scenario: If search name exists, navigate to cloud page
 	Given I am on the homepage
