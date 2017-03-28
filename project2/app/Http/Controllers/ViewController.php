@@ -18,19 +18,18 @@ class ViewController extends Controller
     */
 
     /**
-	 * Create the frequency map    
-	 * Retrieve artist's id, then albums, then songs, then lyrics
-	 * Process lyrics and store words into frequency map
-	 * Use for generating word cloud (welcome and cloud page)
-	 *
-	 * @return map
+     * returns search of author/key word
+     * @return json
      */
-    public function getStartView()
+    public function getStartView($search_term)
     {
-
-    	//TODO
-
-    	return view('home');
+        $url = 'http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext={trim($search_term)}';
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $array = json_decode($json, TRUE);
+        print_r($array);
+        return view('home');
     }
 
     /**
