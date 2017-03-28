@@ -4,28 +4,22 @@ namespace App\Http\Controllers;
 
 //use App\Http\Controllers\Controller;
 
+/*
+|--------------------------------------------------------------------------
+| Cloud Controller
+|--------------------------------------------------------------------------
+| Main controller that will process all data. All views
+| will call the routers corresponding to the view they are moving onto.
+| Each route will call the corresponding function in the cloud controller
+*/
+
 class CloudController extends Controller
 {
-
-    /*
-    |--------------------------------------------------------------------------
-    | Cloud Controller
-    |--------------------------------------------------------------------------
-    |
-    | Main controller that will process all data. All views
-    | will call the routers corresponding to the view they are moving onto.
-    | Each route will call the corresponding function in the cloud controller
-    */
-
     /**
 	 * Create the frequency map    
-	 * Retrieve artist's id, then albums, then songs, then lyrics
-	 * Process lyrics and store words into frequency map
-	 * Use for generating word cloud (welcome and cloud page)
-	 *
 	 * @return map
      */
-    public function createCloudFrequencyMap($artist)
+    public function createCloudFrequencyMap()
     {
 
     	//TODO

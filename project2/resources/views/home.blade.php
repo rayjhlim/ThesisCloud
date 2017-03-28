@@ -67,9 +67,9 @@
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
 
-	{!! Form::open([]) !!}
+	{!! Form::open(['action'=>'CloudController@createCloudFrequencyMap', 'method'=>'post']) !!}
 
-		{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
+		{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
 		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
 
         <div class="slider">
