@@ -10,7 +10,7 @@
 	<style>
 		body {
 			background-color: #6495ed;
-			margin-top: 23%;
+			margin-top: 20%;
 			margin-right: auto;
 			margin-left: auto;
 			margin-bottom: auto;
@@ -22,7 +22,13 @@
 			font-weight: bold;
 			color: white;
 			font-size: 25px;
-			margin-bottom: 2%
+			margin-bottom: 3%
+		}
+
+		h2 {
+			font-weight: bold;
+			color: #6495ed;
+			font-size: 16px;
 		}
 
 		h2 {
@@ -52,6 +58,7 @@
 			margin-left: auto;
 		}
 
+<<<<<<< HEAD
 		$sliderWidth: 50% !default;
 		$sliderHandleDefaultColor: white !default;
 		$sliderHandlerHoverColor: black !default; 
@@ -76,12 +83,23 @@
 	
 
 
+=======
+		.slider {
+			margin-right: auto;
+			margin-left: auto;
+			margin-top: 1%;
+			color: white;
+			font-size: 16px;
+		}
+
+>>>>>>> 1f6be42cdee25112d27164ee1d0180538aff3c02
 	</style>
 
 </head>
 
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
+<<<<<<< HEAD
 
 	{!! Form::open([]) !!}
 
@@ -98,6 +116,22 @@
 
 	{!! Form::close() !!}
 
+=======
+
+	{!! Form::open(['action'=>'CloudController@createCloudFrequencyMap', 'method'=>'post']) !!}
+
+		{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
+		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
+
+        <div class="slider">
+			<span> <br> Set how many papers to include in the word cloud <br> </span>
+			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
+			<span id="sliderValue"> 10 </span>
+		</div>
+
+	{!! Form::close() !!}
+
+>>>>>>> 1f6be42cdee25112d27164ee1d0180538aff3c02
 	<script type="text/javascript">
 
 		function showSliderValue(newValue) {
