@@ -62,6 +62,10 @@
 
 		<h2> The researcher's surname <br> </h2>
 
+		<h1>
+		{{$researcher_name}}
+		<h1>
+
 		<div id="wordcloud"></div>
 
 		{!! Form::open(['method'=>'post']) !!}
@@ -69,11 +73,13 @@
 			
 			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
 
-			<div class="slider">
+			{{ Form::selectRange('number', 10, 15) }}
+
+			<!--<div class="slider">
 				<span> <br> Set how many papers to include in the word cloud <br> </span>
 				<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
 				<span id="sliderValue"> 10 </span>
-			</div>
+			</div>-->
 
 		{!! Form::close() !!}
 	</div>
@@ -126,9 +132,6 @@
 		return newArray;
 	}
 
-	
-	//document.write(JSON.stringify(wordFrequency("count everything, count all the words, count all the words!").sort(function(a,b){return a.size<b.size})).split("},").join("}<br/>"));
-			
 	d3.wordcloud()
 		.size([500, 300])
 		.words(newArray)

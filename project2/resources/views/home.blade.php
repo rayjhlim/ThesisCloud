@@ -103,7 +103,7 @@
 	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
 		<!--{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}-->
-		{{ $name = Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }}
+		{{ Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }}
 		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
 
         <div class="slider">
