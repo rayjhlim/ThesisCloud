@@ -19,3 +19,6 @@ Route::get('/cloud', function() {
 	return view('cloud');
 });
 
+Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postResearcherNameToCloudPage'));
+
+Route::get('cloud/{researcher_name}', array('as' => 'cloud', 'uses' => 'PagesController@view2'));

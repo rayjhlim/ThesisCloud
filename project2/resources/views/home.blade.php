@@ -92,35 +92,18 @@
 			font-size: 16px;
 		}
 
->>>>>>> 1f6be42cdee25112d27164ee1d0180538aff3c02
+
 	</style>
 
 </head>
 
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
-<<<<<<< HEAD
+	
+	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
-	{!! Form::open([]) !!}
-
-		{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
-		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
-
-		<span class="adjustSliderInfo"> <br> Set how many papers to include in the word cloud <br> </span>
-		
-		<div class="slider">
-			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
-			<span class="sliderLabel"> <br> 10 </span>
-		<
-
-
-	{!! Form::close() !!}
-
-=======
-
-	{!! Form::open(['action'=>'CloudController@createCloudFrequencyMap', 'method'=>'post']) !!}
-
-		{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
+		<!--{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}-->
+		{{ $name = Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }}
 		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
 
         <div class="slider">
@@ -129,14 +112,13 @@
 			<span id="sliderValue"> 10 </span>
 		</div>
 
-	{!! Form::close() !!}
+	{{ Form::close() }}
 
->>>>>>> 1f6be42cdee25112d27164ee1d0180538aff3c02
 	<script type="text/javascript">
 
-		function showSliderValue(newValue) {
-			document.getElementById("sliderValue").innerHTML = newValue;
-		}
+	function showSliderValue(newValue) {
+		document.getElementById("sliderValue").innerHTML = newValue;
+	}
 
 	</script>
 </body>

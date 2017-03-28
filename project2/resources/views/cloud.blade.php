@@ -65,8 +65,8 @@
 		<div id="wordcloud"></div>
 
 		{!! Form::open(['method'=>'post']) !!}
-
-			{!! Form::text('textfield', null, ['class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}
+			{{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
+			
 			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
 
 			<div class="slider">
@@ -85,6 +85,7 @@
 	<script type="text/javascript" src="{{ URL::asset('js/example/example.words.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script>
 
 	var myString = 'Come away with me in the night Come away with me And I will write you a song Come away with me on a bus Come away where they tempt us, with their lies And I want to walk with you On a cloudy day In fields where the yellow grass grows knee-high So you try to come Come away with me and we will kiss On a mountaintop Come away with me And I will never stop loving you And I want to wake up with the rain Falling on a tin roof While I am safe there in your arms So all I ask is for you To come away with me in the night Come away with me';
@@ -125,12 +126,6 @@
 		return newArray;
 	}
 
-<<<<<<< HEAD
-=======
-	function showSliderValue(newValue) {
-		document.getElementById("sliderValue").innerHTML = newValue;
-	}
->>>>>>> 1f6be42cdee25112d27164ee1d0180538aff3c02
 	
 	//document.write(JSON.stringify(wordFrequency("count everything, count all the words, count all the words!").sort(function(a,b){return a.size<b.size})).split("},").join("}<br/>"));
 			
@@ -139,6 +134,11 @@
 		.words(newArray)
 		.spiral("rectangular")
 		.start();
+
+
+	function showSliderValue(newValue) {
+		document.getElementById("sliderValue").innerHTML = newValue;
+	}
 	
 	</script>
 
