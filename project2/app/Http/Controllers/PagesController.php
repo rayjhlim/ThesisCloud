@@ -13,7 +13,7 @@ class PagesController extends Controller {
         return view('welcome');
     }
 
-    public function view2($researcher_name)
+    public function goToCloudPage($researcher_name)
     {
         return view('cloud')->with('researcher_name', $researcher_name);
     }

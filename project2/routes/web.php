@@ -21,8 +21,11 @@ Route::get('/cloud', function() {
 
 Route::get('/list', function() {
 	return view('list');
+
+Route::get('/abstract', function() {
+	return view('abstract');
 });
 
 Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postResearcherNameToCloudPage'));
 
-Route::get('cloud/{researcher_name}', array('as' => 'cloud', 'uses' => 'PagesController@view2'));
+Route::get('cloud/{researcher_name}/', array('as' => 'cloud', 'uses' => 'PagesController@goToCloudPage'));
