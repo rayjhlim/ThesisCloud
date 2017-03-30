@@ -105,7 +105,7 @@
 	
 	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
-		{!! Form::text('researcher_name', null, ['id' => 'researcher_name']) !!}
+		{!! Form::text('search_term', null, ['id' => 'search_term']) !!}
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton']) !!}
 
 	{{ Form::close() }}

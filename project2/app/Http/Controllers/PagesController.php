@@ -23,9 +23,9 @@ class PagesController extends Controller {
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
-        $array = json_decode($json, TRUE);
+        $search_data = json_decode($json, TRUE);
 
-        return view('welcome');
+        return view('cloud')->with('search_data', $search_data);
     }
 
     /*
@@ -38,9 +38,14 @@ class PagesController extends Controller {
         $xml = simplexml_load_file($url, 'SimpleXMLElement',
             LIBXML_NOCDATA);
         $json = json_encode($xml);
-        $author_json = json_decode($json, TRUE);
+        $search_data = json_decode($json, TRUE);
+        $all_abstracts = "";
 
-        return view('welcome');
+        for ($x = 0; $x <= 5; $x++) {
+            $all_abstracts .= $search_data['document'][$x]['abstract'];
+        } 
+
+        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author]);
     }
 
     /*
@@ -58,16 +63,15 @@ class PagesController extends Controller {
         return view('welcome');
     }
 
-    public function goToCloudPage($researcher_name)
+    public function goToCloudPage($search_term)
     {
-        return view('cloud')->with('researcher_name', 
-            $researcher_name);
+        return view('cloud')->with('search_term', $search_term);
     }
 
     public function postResearcherNameToCloudPage()
     {
         // redirect to cloud page using form input
-        return Redirect::route('cloud', ['view' => 'cloud', 'researcher_name' => Input::get('researcher_name')]);
+        return Redirect::route('cloud', ['author' => Input::get('search_term'), 'num_pages' => 10]);
     }
 
 }

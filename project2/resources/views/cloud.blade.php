@@ -60,11 +60,7 @@
 
 		</div>
 
-		<h2> The researcher's surname <br> </h2>
-
-		<h1>
-		{{$researcher_name}}
-		<h1>
+		<h2> {{$author}} <br> </h2>
 
 		<div id="wordcloud"></div>
 
@@ -94,7 +90,7 @@
 	
 	<script>
 
-	var myString = 'Come away with me in the night Come away with me And I will write you a song Come away with me on a bus Come away where they tempt us, with their lies And I want to walk with you On a cloudy day In fields where the yellow grass grows knee-high So you try to come Come away with me and we will kiss On a mountaintop Come away with me And I will never stop loving you And I want to wake up with the rain Falling on a tin roof While I am safe there in your arms So all I ask is for you To come away with me in the night Come away with me';
+	var myString = {!! json_encode($search_data) !!};
 
 	var newArray = [], wordObj;
 
@@ -137,7 +133,6 @@
 		.words(newArray)
 		.spiral("rectangular")
 		.start();
-
 
 	function showSliderValue(newValue) {
 		document.getElementById("sliderValue").innerHTML = newValue;

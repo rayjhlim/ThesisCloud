@@ -31,5 +31,6 @@ Route::get('/abstract', function() {
 
 Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postResearcherNameToCloudPage'));
 
-Route::get('cloud/{researcher_name}/', array('as' => 'cloud', 'uses' => 'PagesController@goToCloudPage'));
-// Route::get('cloud/{researcher_name}/', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
+// Route::get('cloud/{search_term}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
+
+Route::get('cloud/{author}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
