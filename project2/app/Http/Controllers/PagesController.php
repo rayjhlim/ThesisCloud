@@ -49,6 +49,22 @@ class PagesController extends Controller {
     }
 
     /*
+    * function used for Welcome page
+    * returns json data of search result
+    */
+    public function getInfoFromWord($author, $num_pages, $word)  {
+        $author = trim($author);
+        $word = trim($word);
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$num_pages";
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $search_data = json_decode($json, TRUE);
+
+        return view('list')->with('search_data', $search_data);
+    }
+
+    /*
     * function used to get papers from same conference
     * returns json data of other papers
     */

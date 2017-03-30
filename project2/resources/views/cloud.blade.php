@@ -80,7 +80,6 @@
 		{!! Form::close() !!}
 	</div>
 
-
 	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.layout.cloud.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/d3.wordcloud.js') }}"></script>
@@ -91,6 +90,8 @@
 	<script>
 
 	var myString = {!! json_encode($search_data) !!};
+
+	var author = {!! json_encode($author) !!};
 
 	var newArray = [], wordObj;
 
@@ -110,21 +111,22 @@
 			if (wordObj.length) {
 				wordObj[0].size += 1;
 			} else {
-				newArray.push({text: word, size: 1});	
+				newArray.push({text: word, size: 1, href:'http://localhost:8000/cloud/'+ author +'/10/'+ word});	
 			}
 		});
 
-		for (i = 0; i < newArray.length; i++) {
-			//console.log(newArray[i].text);
-			if (newArray[i].text == 'with' || newArray[i].text == 'the' || newArray[i].text == 'is' || newArray[i].text == 'are'
-				|| newArray[i].text == 'and' || newArray[i].text == 'a' || newArray[i].text == 'was' || newArray[i].text == 'were'
-				|| newArray[i].text == 'in' || newArray[i].text == 'to') {
-				//console.log('found filler');
-				newArray.splice(i,1);
-			}
-		}
+		// for (i = 0; i < newArray.length; i++) {
+		// 	//console.log(newArray[i].text);
+		// 	if (newArray[i].text == 'with' || newArray[i].text == 'the' || newArray[i].text == 'is' || newArray[i].text == 'are'
+		// 		|| newArray[i].text == 'and' || newArray[i].text == 'a' || newArray[i].text == 'was' || newArray[i].text == 'were'
+		// 		|| newArray[i].text == 'in' || newArray[i].text == 'to') {
+		// 		//console.log('found filler');
+		// 		newArray = newArray.splice(i,1);
+		// 	}
+		// }
 
 		console.log(newArray);
+		newArray = newArray.splice(0, 100);
 		return newArray;
 	}
 

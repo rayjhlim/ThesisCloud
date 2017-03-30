@@ -83,6 +83,11 @@
 </body>
 
 <script>
+
+	var infoTitle = {!! json_encode($search_data['document'][0]['title']) !!};
+	var infoAuthors = {!! json_encode($search_data['document'][0]['authors']) !!};
+	var infoDownload = {!! json_encode($search_data['document'][0]['pdf']) !!};
+
 	// function to create a new row in the table
 	function addTableEntry() {
 
@@ -90,19 +95,19 @@
 
 		// Title cell
 		var title = document.createElement("td");
-		var node0 = document.createTextNode("Title yay");
+		var node0 = document.createTextNode(infoTitle);
 		title.appendChild(node0);
 		row.appendChild(title);
 
 		// Author cell
 		var authors = document.createElement("td");
-		var node1 = document.createTextNode("Authors yay");
+		var node1 = document.createTextNode(infoAuthors);
 		authors.appendChild(node1);
 		row.appendChild(authors);
 
 		// Conference name cell
 		var conf = document.createElement("td");
-		var node2 = document.createTextNode("Conference yay");
+		var node2 = document.createTextNode("conference yay");
 		conf.appendChild(node2);
 		row.appendChild(conf);
 
@@ -117,7 +122,7 @@
 		dl.className = "sorttable_nosort";
 		var link = document.createElement("a");
 		link.href = "http://www.google.com/";
-		var node4 = document.createTextNode("Download yay");
+		var node4 = document.createTextNode(infoDownload);
 		link.appendChild(node4);
 		dl.appendChild(link);
 		row.appendChild(dl);
