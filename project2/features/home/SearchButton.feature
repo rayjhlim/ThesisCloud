@@ -5,10 +5,10 @@ Feature: Search Button
 
 Scenario: Home page should contain a search button
     Given I am on the homepage
-    Then I should see a "submit" element
+    Then I should see a button called "submitButton"
 
 Scenario: If search name exists, navigate to cloud page
 	Given I am on the homepage
     And the "text" element is filled
-    And I click the "submit" element
+    And I press the "Generate word cloud"
 	Then I should see the "cloud" page

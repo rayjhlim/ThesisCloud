@@ -17,7 +17,7 @@ use Behat\MinkExtension\Context\MinkContext;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
+class HomeContext extends MinkContext implements Context, SnippetAcceptingContext
 {
     /**
      * Initializes context.
@@ -31,6 +31,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
     }
 
-    
+    /**
+     * @When I press the :arg1
+     */
+    public function iPressThe($arg1)
+    {
+        $element=$this->getSession()->getPage()->find('named', array('id_or_name', $arg1));
+        $element->press();
+    }
 
+    /**
+    * @Then I should see a button called :arg1
+    */
+    public function iShouldSeeAButtonCalled($arg1)
+    {
+        $string = '#' + $arg1;
+        $this->assertSession()->elementExists('css', $string);
+    }
 }
