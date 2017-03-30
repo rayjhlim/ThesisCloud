@@ -69,9 +69,9 @@
 		<div id="wordcloud"></div>
 
 		{!! Form::open(['method'=>'post']) !!}
-			{{ $name = Form::input('artist_name', 'artist_name', null, ['class' => 'tags']) }}
+			{{ Form::input('artist_name', 'artist_name', null, ['class' => 'tags', 'name'=>'researcher_name', 'type'=>'researcher_name', 'id' => 'researcher_name']) }}
 			
-			{!! Form::submit('Generate word cloud',['class'=>'form']) !!}
+			{!! Form::submit('Generate word cloud',['class'=>'form', 'name'=>'submit', 'type'=>'submit']) !!}
 
 			{{ Form::selectRange('number', 10, 15) }}
 

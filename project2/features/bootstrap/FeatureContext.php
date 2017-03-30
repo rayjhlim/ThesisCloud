@@ -32,7 +32,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * Opens cloudpge
+     * Opens cloudpage
      * Example: Given I am on "/cloud"
      * Example: When I go to "/cloud"
      * Example: And I go to "/cloud"
@@ -43,7 +43,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function iAmOnWordCloudPage()
     {
         // path is populated with filler variables
-        $this->visitPath('/cloud/Aaron Cote/word/00');
+        $this->visitPath('/cloud/Aaron Cote');
+        //$this->visitPath('/cloud/Budiman');
     }
 
     /**
@@ -52,7 +53,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function theHeaderShouldContainAaronCote()
     {
-        return true;
+        $this->assertSession()->responseContains("Aaron Cote");
     }
 
     /**
@@ -103,6 +104,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function iPressSearch()
     {
         return true; 
+    }
+
+    public function theWordCloudIsForBudiman()
+    {
+        return true;
     }
 
 }

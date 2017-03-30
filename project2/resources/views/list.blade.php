@@ -71,7 +71,7 @@
 			  		<th class="sorttable_nosort">Download Link</th>
 			  	</tr>
 			</thead>
-			<tbody>
+			<tbody id="tableContents">
 			  <tr><td>Jan Molby</td><td>£12,000</td><td>Jan Molby</td><td>£12,000</td><td>£12</td</tr>
 			  <tr><td>Steve Nicol</td><td>£8,500</td><td>Jan Molby</td><td>£1200</td><td>£120</td</tr>
 			  <tr><td>Steve McMahon</td><td>£9,200</td><td>Jan Molby</td><td>£120</td><td>£1200</td</tr>
@@ -81,5 +81,53 @@
 	</div>
 
 </body>
+
+<script>
+	// function to create a new row in the table
+	function addTableEntry() {
+
+		var row = document.createElement("tr");
+
+		// Title cell
+		var title = document.createElement("td");
+		var node0 = document.createTextNode("Title yay");
+		title.appendChild(node0);
+		row.appendChild(title);
+
+		// Author cell
+		var authors = document.createElement("td");
+		var node1 = document.createTextNode("Authors yay");
+		authors.appendChild(node1);
+		row.appendChild(authors);
+
+		// Conference name cell
+		var conf = document.createElement("td");
+		var node2 = document.createTextNode("Conference yay");
+		conf.appendChild(node2);
+		row.appendChild(conf);
+
+		// Word frequency cell
+		var freq = document.createElement("td");
+		var node3 = document.createTextNode("Frequency yay");
+		freq.appendChild(node3);
+		row.appendChild(freq);
+
+		// Download link cell
+		var dl = document.createElement("td");
+		dl.className = "sorttable_nosort";
+		var link = document.createElement("a");
+		link.href = "http://www.google.com/";
+		var node4 = document.createTextNode("Download yay");
+		link.appendChild(node4);
+		dl.appendChild(link);
+		row.appendChild(dl);
+
+		var element = document.getElementById("tableContents");
+		element.appendChild(row);
+	}
+
+	addTableEntry();
+
+</script>
 
 </html>
