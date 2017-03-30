@@ -15,8 +15,14 @@ Route::get('/', function() {
 	return view('home');
 });
 
+// Route::get('/', 'ViewController@getStartView');
+
 Route::get('/cloud', function() {
 	return view('cloud');
+});
+
+Route::get('/list', function() {
+	return view('list');
 });
 
 Route::get('/abstract', function() {
@@ -26,3 +32,4 @@ Route::get('/abstract', function() {
 Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postResearcherNameToCloudPage'));
 
 Route::get('cloud/{researcher_name}/', array('as' => 'cloud', 'uses' => 'PagesController@goToCloudPage'));
+// Route::get('cloud/{researcher_name}/', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
