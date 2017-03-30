@@ -71,40 +71,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         return true;
     }
-    
-    /**
-     * @Then the image of the cloud shared to my Facebook profile
-     */
-    public function theImageOfTheCloudSharedToMyFacebookProfile()
-    {
-        // this function should check the image
-        return true;
-    }
-
-    /**
-     * @Then I should be logged in to my Facebook profile
-     */
-    public function iShouldBeLoggedInToMyFacebookProfile()
-    {
-       // checks if logs you in to facebook profile
-       return true;
-    }
-
-    /**
-     * @When I select :arg1
-     */
-    public function iSelect($arg1)
-    {
-        return true; 
-    }
-
-    /**
-     * @When I press Search
-     */
-    public function iPressSearch()
-    {
-        return true; 
-    }
 
     public function theWordCloudIsForBudiman()
     {

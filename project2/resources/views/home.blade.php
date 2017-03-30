@@ -99,21 +99,24 @@
 
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
+
+	<!--{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}-->
+		<!-- {{ Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }} -->
 	
 	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
-		<!--{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}-->
-		{{ Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }}
-		{!! Form::submit('Generate word cloud',['id'=>'submitButtom', 'class'=>'form']) !!}
-
-        <div class="slider">
-			<span> <br> Set how many papers to include in the word cloud <br> </span>
-			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
-			<span id="sliderValue"> 10 </span>
-		</div>
+		{!! Form::text('researcher_name', null, ['id' => 'researcher_name']) !!}
+		{!! Form::submit('Generate word cloud', ['id'=>'submitButton']) !!}
 
 	{{ Form::close() }}
 
+	 <div class="slider">
+		<span> <br> Set how many papers to include in the word cloud <br> </span>
+		<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
+		<span id="sliderValue"> 10 </span>
+	</div>
+
+		
 	<script type="text/javascript">
 
 	function showSliderValue(newValue) {
