@@ -60,7 +60,7 @@
 
 		</div>
 
-		<h2> {{$author}} <br> </h2>
+		<h2> Search term: {{$author}} <br> </h2>
 
 		<div id="wordcloud"></div>
 
@@ -71,11 +71,11 @@
 
 			{{ Form::selectRange('number', 10, 15) }}
 
-			<!--<div class="slider">
+			<div class="slider">
 				<span> <br> Set how many papers to include in the word cloud <br> </span>
 				<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
 				<span id="sliderValue"> 10 </span>
-			</div>-->
+			</div>
 
 		{!! Form::close() !!}
 	</div>
@@ -95,10 +95,12 @@
 
 	var newArray = [], wordObj;
 
-	wordFrequency(myString);
+	generateHash(myString);
+	filterArray();
+	generateWordCloud();
 
 	// function that calculates word frequency
-	function wordFrequency(txt){
+	function generateHash(txt){
 		txt = txt.toLowerCase();
 
 		var wordArray = txt.split(/[ .?!,*'"]/);
@@ -111,30 +113,51 @@
 			if (wordObj.length) {
 				wordObj[0].size += 1;
 			} else {
-				newArray.push({text: word, size: 1, href:'http://localhost:8000/cloud/'+ author +'/10/'+ word});	
+				newArray.push({text: word, size: 1, href:'http://localhost:8000/'+ author +'/10/'+ word});	
 			}
 		});
-
-		// for (i = 0; i < newArray.length; i++) {
-		// 	//console.log(newArray[i].text);
-		// 	if (newArray[i].text == 'with' || newArray[i].text == 'the' || newArray[i].text == 'is' || newArray[i].text == 'are'
-		// 		|| newArray[i].text == 'and' || newArray[i].text == 'a' || newArray[i].text == 'was' || newArray[i].text == 'were'
-		// 		|| newArray[i].text == 'in' || newArray[i].text == 'to') {
-		// 		//console.log('found filler');
-		// 		newArray = newArray.splice(i,1);
-		// 	}
-		// }
-
-		console.log(newArray);
-		newArray = newArray.splice(0, 100);
+		
 		return newArray;
 	}
 
-	d3.wordcloud()
+	function filterArray() {
+		// sort by value
+		newArray.sort(function (a, b) {
+		  return a.size - b.size;
+		});
+
+		// console.log('before splicing... array has size: ' + newArray.length);
+		// var count = 0;
+		for (var i = 0; i < newArray.length; i++) {
+			// console.log('text: "' + newArray[i].text + '"   size: ' + newArray[i].size);
+			// this algorithm assumes that all filler words have a frequency greater than
+			if (newArray[i].size > 5) {
+				// console.log(newArray[i].text + ' had size greater than 5 so taking it out');
+				newArray.splice(i, 1);
+				i--;
+				// count++;
+			}
+		}
+
+		// console.log('spliced ' + count + ' times')
+
+		// now only return the top 100 so that the api is not slow
+		newArray.splice(0, 150);
+
+		// console.log('after splicing... array has size: ' + newArray.length);
+		// for (var i = 0; i < newArray.length; i++) {
+		// 	console.log('text: "' + newArray[i].text + '"   size: ' + newArray[i].size);
+		// }
+	}
+
+	function generateWordCloud() {
+		d3.wordcloud()
 		.size([500, 300])
 		.words(newArray)
 		.spiral("rectangular")
 		.start();
+	}
+	
 
 	function showSliderValue(newValue) {
 		document.getElementById("sliderValue").innerHTML = newValue;

@@ -61,7 +61,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('list')->with('search_data', $search_data);
+        return view('list')->with(['search_data'=> $search_data, 'word' => $word]);
     }
 
     /*

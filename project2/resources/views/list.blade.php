@@ -53,6 +53,8 @@
 
 		<h2> List Page <br> </h2>
 
+		<h4> Word: {{$word}} <br> </h4>
+
 		
 	</div>
 
@@ -87,6 +89,7 @@
 	var infoTitle = {!! json_encode($search_data['document'][0]['title']) !!};
 	var infoAuthors = {!! json_encode($search_data['document'][0]['authors']) !!};
 	var infoDownload = {!! json_encode($search_data['document'][0]['pdf']) !!};
+	var infoConference = {!! json_encode($search_data['document'][0]['pubtitle']) !!};
 
 	// function to create a new row in the table
 	function addTableEntry() {
@@ -107,7 +110,7 @@
 
 		// Conference name cell
 		var conf = document.createElement("td");
-		var node2 = document.createTextNode("conference yay");
+		var node2 = document.createTextNode(infoConference);
 		conf.appendChild(node2);
 		row.appendChild(conf);
 

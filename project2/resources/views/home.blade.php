@@ -100,9 +100,6 @@
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
 
-	<!--{!! Form::text('textfield', null, ['required', 'class'=>'form', 'placeholder'=>"Type in a researcher's surname"]) !!}-->
-		<!-- {{ Form::input('researcher_name', 'researcher_name', null, ['class' => 'tags']) }} -->
-	
 	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term']) !!}

@@ -33,6 +33,6 @@ Route::post('form', array('as' => 'form', 'uses'=>'PagesController@postResearche
 
 // Route::get('cloud/{search_term}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
 
-Route::get('cloud/{author}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
+Route::get('/{author}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
 
-Route::get('cloud/{author}/{num_pages}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
+Route::get('/{author}/{num_pages}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
