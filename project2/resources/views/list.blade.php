@@ -74,10 +74,7 @@
 			  	</tr>
 			</thead>
 			<tbody id="tableContents">
-			  <!--tr><td>Jan Molby</td><td>£12,000</td><td>Jan Molby</td><td>£12,000</td><td>£12</td</tr>
-			  <tr><td>Steve Nicol</td><td>£8,500</td><td>Jan Molby</td><td>£1200</td><td>£120</td</tr>
-			  <tr><td>Steve McMahon</td><td>£9,200</td><td>Jan Molby</td><td>£120</td><td>£1200</td</tr>
-			  <tr><td>John Barnes</td><td>£15,300</td><td>Jan Molby</td><td>£12</td><td>£12,000</td</tr-->
+
 			</tbody>
 		</table>
 	</div>
@@ -86,55 +83,67 @@
 
 <script>
 
-	var infoTitle = {!! json_encode($search_data['document'][0]['title']) !!};
-	var infoAuthors = {!! json_encode($search_data['document'][0]['authors']) !!};
-	var infoDownload = {!! json_encode($search_data['document'][0]['pdf']) !!};
-	var infoConference = {!! json_encode($search_data['document'][0]['pubtitle']) !!};
+	addTableEntries();
 
 	// function to create a new row in the table
-	function addTableEntry() {
+	function addTableEntries() {
 
-		var row = document.createElement("tr");
+		var jsonObj = {!! json_encode($search_data) !!}
+		var word = {!! json_encode($word) !!}
 
-		// Title cell
-		var title = document.createElement("td");
-		var node0 = document.createTextNode(infoTitle);
-		title.appendChild(node0);
-		row.appendChild(title);
+		console.log(jsonObj);
 
-		// Author cell
-		var authors = document.createElement("td");
-		var node1 = document.createTextNode(infoAuthors);
-		authors.appendChild(node1);
-		row.appendChild(authors);
+		for (var i = 0; i < jsonObj.document.length; i++) {
+			var row = document.createElement("tr");
 
-		// Conference name cell
-		var conf = document.createElement("td");
-		var node2 = document.createTextNode(infoConference);
-		conf.appendChild(node2);
-		row.appendChild(conf);
+			// Title cell
+			var title = document.createElement("td");
+			var node0 = document.createTextNode(jsonObj.document[i].title);
+			title.appendChild(node0);
+			row.appendChild(title);
 
-		// Word frequency cell
-		var freq = document.createElement("td");
-		var node3 = document.createTextNode("Frequency yay");
-		freq.appendChild(node3);
-		row.appendChild(freq);
+			// Author cell
+			var authors = document.createElement("td");
+			var node1 = document.createTextNode(jsonObj.document[i].authors);
+			authors.appendChild(node1);
+			row.appendChild(authors);
 
-		// Download link cell
-		var dl = document.createElement("td");
-		dl.className = "sorttable_nosort";
-		var link = document.createElement("a");
-		link.href = infoDownload;
-		var node4 = document.createTextNode(infoDownload);
-		link.appendChild(node4);
-		dl.appendChild(link);
-		row.appendChild(dl);
+			// Conference name cell
+			var conf = document.createElement("td");
+			var node2 = document.createTextNode(jsonObj.document[i].pubtitle);
+			conf.appendChild(node2);
+			row.appendChild(conf);
 
-		var element = document.getElementById("tableContents");
-		element.appendChild(row);
+			var abstract = jsonObj.document[i].abstract.toLowerCase();
+			var wordArray = abstract.split(/[ .?!,*'"]/);
+			var wordCount = 0;
+
+			for (var k = 0; k < wordArray.length; k++) {
+				if (wordArray[k] == word) {
+					wordCount++;
+				}
+			}
+
+			// Word frequency cell
+			var freq = document.createElement("td");
+			var node3 = document.createTextNode(wordCount);
+			freq.appendChild(node3);
+			row.appendChild(freq);
+
+			// Download link cell
+			var dl = document.createElement("td");
+			dl.className = "sorttable_nosort";
+			var link = document.createElement("a");
+			link.href = jsonObj.document[i].pdf;
+			var node4 = document.createTextNode(jsonObj.document[i].pdf);
+			link.appendChild(node4);
+			dl.appendChild(link);
+			row.appendChild(dl);
+
+			var element = document.getElementById("tableContents");
+			element.appendChild(row);
+		}	
 	}
-
-	addTableEntry();
 
 </script>
 
