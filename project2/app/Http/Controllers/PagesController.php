@@ -45,6 +45,10 @@ class PagesController extends Controller {
             $all_abstracts .= $search_data['document'][$x]['abstract'];
         } 
 
+        $jsonResponse = shell_exec('python ~/csci310-project2/project2/scrape.py ' . $author);
+        $map = json_decode($jsonResponse, true);
+        print_r($map);
+
         return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author]);
     }
 
