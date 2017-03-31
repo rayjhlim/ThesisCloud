@@ -74,10 +74,10 @@
 			  	</tr>
 			</thead>
 			<tbody id="tableContents">
-			  <tr><td>Jan Molby</td><td>£12,000</td><td>Jan Molby</td><td>£12,000</td><td>£12</td</tr>
+			  <!--tr><td>Jan Molby</td><td>£12,000</td><td>Jan Molby</td><td>£12,000</td><td>£12</td</tr>
 			  <tr><td>Steve Nicol</td><td>£8,500</td><td>Jan Molby</td><td>£1200</td><td>£120</td</tr>
 			  <tr><td>Steve McMahon</td><td>£9,200</td><td>Jan Molby</td><td>£120</td><td>£1200</td</tr>
-			  <tr><td>John Barnes</td><td>£15,300</td><td>Jan Molby</td><td>£12</td><td>£12,000</td</tr>
+			  <tr><td>John Barnes</td><td>£15,300</td><td>Jan Molby</td><td>£12</td><td>£12,000</td</tr-->
 			</tbody>
 		</table>
 	</div>
@@ -124,7 +124,7 @@
 		var dl = document.createElement("td");
 		dl.className = "sorttable_nosort";
 		var link = document.createElement("a");
-		link.href = "http://www.google.com/";
+		link.href = infoDownload;
 		var node4 = document.createTextNode(infoDownload);
 		link.appendChild(node4);
 		dl.appendChild(link);
