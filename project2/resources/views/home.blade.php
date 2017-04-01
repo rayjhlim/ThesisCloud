@@ -58,32 +58,6 @@
 			margin-left: auto;
 		}
 
-<<<<<<< HEAD
-		$sliderWidth: 50% !default;
-		$sliderHandleDefaultColor: white !default;
-		$sliderHandlerHoverColor: black !default; 
-		$sliderHandlerSize: 10px !default;
-		$sliderTrackColor: #d7dcdf !default;
-		$sliderTrackHeight: 5px !default;
-		$sliderLabelColor: white !default;
-		$sliderLabelWidth: 16px !default;
-
-		.adjustSliderInfo {
-			color: white;
-			font-size: 14px;
-			width: 58%;
-		}
-
-		.slider {
-			margin: 38px 0 0 0%;
-			width: $sliderWidth;
-
-		}
-
-	
-
-
-=======
 		.slider {
 			margin-right: auto;
 			margin-left: auto;
@@ -102,8 +76,8 @@
 
 	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
 
-		{!! Form::text('search_term', null, ['id' => 'search_term']) !!}
-		{!! Form::submit('Generate word cloud', ['id'=>'submitButton']) !!}
+		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
+		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
 
 	{{ Form::close() }}
 
