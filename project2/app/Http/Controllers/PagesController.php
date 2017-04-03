@@ -10,7 +10,7 @@ class PagesController extends Controller {
 
     public function startPage()
     {
-        return view('welcome');
+        return view('home');
     }
 
     /*
@@ -67,6 +67,22 @@ class PagesController extends Controller {
         $search_data = json_decode($json, TRUE);
 
         return view('list')->with(['search_data'=> $search_data, 'word' => $word]);
+    }
+
+    /*
+    * function used for Welcome page
+    * returns json data of search result
+    */
+    public function getInfoFromTitle($author, $num_pages, $word, $title)  {
+        $author = trim($author);
+        $word = trim($word);
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$num_pages&ti=$title";
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $search_data = json_decode($json, TRUE);
+
+        return view('abstract')->with(['search_data'=> $search_data, 'word' => $word]);
     }
 
     /*

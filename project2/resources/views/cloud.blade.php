@@ -126,28 +126,17 @@
 		  return a.size - b.size;
 		});
 
-		// console.log('before splicing... array has size: ' + newArray.length);
-		// var count = 0;
 		for (var i = 0; i < newArray.length; i++) {
-			// console.log('text: "' + newArray[i].text + '"   size: ' + newArray[i].size);
+			
 			// this algorithm assumes that all filler words have a frequency greater than
 			if (newArray[i].size > 5) {
-				// console.log(newArray[i].text + ' had size greater than 5 so taking it out');
 				newArray.splice(i, 1);
 				i--;
-				// count++;
 			}
 		}
 
-		// console.log('spliced ' + count + ' times')
-
 		// now only return the top 100 so that the api is not slow
 		newArray.splice(0, 150);
-
-		// console.log('after splicing... array has size: ' + newArray.length);
-		// for (var i = 0; i < newArray.length; i++) {
-		// 	console.log('text: "' + newArray[i].text + '"   size: ' + newArray[i].size);
-		// }
 	}
 
 	function generateWordCloud() {

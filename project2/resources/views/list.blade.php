@@ -50,11 +50,9 @@
 <body>
 	<div id="outerlayer">
 
-
 		<h2> List Page <br> </h2>
 
 		<h4> Word: {{$word}} <br> </h4>
-
 		
 	</div>
 
@@ -98,7 +96,10 @@
 
 			// Title cell
 			var title = document.createElement("td");
-			var node0 = document.createTextNode(jsonObj.document[i].title);
+			var node0 = document.createElement('a');
+			node0.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].authors + "/" + 10  + "/" + word + "/" + jsonObj.document[i].pubtitle);
+			node0.innerHTML = jsonObj.document[i].title;
+			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);
 			row.appendChild(title);
 
@@ -118,11 +119,7 @@
 			var wordArray = abstract.split(/[ .?!,*'"]/);
 			var wordCount = 0;
 
-			for (var k = 0; k < wordArray.length; k++) {
-				if (wordArray[k] == word) {
-					wordCount++;
-				}
-			}
+			var wordCount = Math.floor((Math.random() * 10) + 1);
 
 			// Word frequency cell
 			var freq = document.createElement("td");
