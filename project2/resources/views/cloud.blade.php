@@ -64,20 +64,20 @@
 
 		<div id="wordcloud"></div>
 
-		{!! Form::open(['method'=>'post']) !!}
-			{{ Form::input('artist_name', 'artist_name', null, ['class' => 'tags', 'name'=>'researcher_name', 'type'=>'researcher_name', 'id' => 'researcher_name']) }}
-			
-			{!! Form::submit('Generate word cloud',['class'=>'form', 'name'=>'submit', 'type'=>'submit']) !!}
+		{{ Form::open(array('route' => 'refreshCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
-			{{ Form::selectRange('number', 10, 15) }}
+		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
+		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
 
-			<div class="slider">
-				<span> <br> Set how many papers to include in the word cloud <br> </span>
-				<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
-				<span id="sliderValue"> 10 </span>
-			</div>
+		{{ Form::close() }}
 
-		{!! Form::close() !!}
+		<div class="slider">
+			<span> <br> Set how many papers to include in the word cloud <br> </span>
+			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
+		<span id="sliderValue"> 10 </span>
+	</div>
+
+
 	</div>
 
 	<script type="text/javascript" src="{{ URL::asset('js/lib/d3/d3.js') }}"></script>

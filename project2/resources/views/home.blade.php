@@ -74,7 +74,7 @@
 <body>
 	<h1> Welcome to ACM and IEEE word cloud generator! <br> </h1>
 
-	{{ Form::open(array('route' => 'form', 'method'=>'post', 'id'=>'myArr')) }}
+	{{ Form::open(array('route' => 'goToCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
