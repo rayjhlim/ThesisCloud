@@ -39,20 +39,23 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <h1 id="papertitle">Paper Title</h1>
+                <h1 id="papertitle"></h1>
 
                 <div class="abstract">
                     <p id="abstractContent">this is where the abstract content goes</p>
                 </div>
 
                 <div class="buttons">
-                    <!--<button id="backToSongsButton" onclick="window.location='{{ url("list") }}'">Back to List</button>-->
-                    <button id="backToCloudButton" onclick="window.location='{{ url("cloud") }}'">Back to Cloud</button>
+
                 </div>
             </div>
         </div>
 
         <script>
+
+        var jsonObj = {!! json_encode($search_data) !!}
+
+        console.log(jsonObj);
 
         </script>
     </body>
