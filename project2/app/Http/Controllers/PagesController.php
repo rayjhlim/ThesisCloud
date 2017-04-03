@@ -98,7 +98,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $conference_json = json_decode($json, TRUE);
 
-        return view('welcome');
+        return view('home');
     }
 
     public function goToCloudPage($search_term)
