@@ -88,6 +88,7 @@
 
 		var jsonObj = {!! json_encode($search_data) !!}
 		var word = {!! json_encode($word) !!}
+		var author = {!! json_encode($author) !!}
 
 		console.log(jsonObj);
 
@@ -97,7 +98,7 @@
 			// Title cell
 			var title = document.createElement("td");
 			var node0 = document.createElement('a');
-			node0.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].authors + "/" + 10  + "/" + word + "/" + jsonObj.document[i].pubtitle);
+			node0.setAttribute('href',"http://localhost:8000/" + author + "/" + 10  + "/" + word + "/" + jsonObj.document[i].title);
 			node0.innerHTML = jsonObj.document[i].title;
 			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);

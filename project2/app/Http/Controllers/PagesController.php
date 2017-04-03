@@ -66,7 +66,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('list')->with(['search_data'=> $search_data, 'word' => $word]);
+        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word]);
     }
 
     /*
@@ -76,13 +76,14 @@ class PagesController extends Controller {
     public function getInfoFromTitle($author, $num_pages, $word, $title)  {
         $author = trim($author);
         $word = trim($word);
+        $title = trim($title);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$num_pages&ti=$title";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('abstract')->with(['search_data'=> $search_data, 'word' => $word]);
+        return view('abstract')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'title' => $title]);
     }
 
     /*

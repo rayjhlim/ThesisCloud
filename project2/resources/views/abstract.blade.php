@@ -39,10 +39,30 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <h1 id="papertitle"></h1>
+
+                <div class="title">
+                    <h3>Title:</h3>
+                    <h3 id="papertitle"></h3>
+                </div>
+
+                <div class="authors">
+                    <h4>Authors:</h4>
+                    <h4 id="authorContent"></h4>
+                </div>
+
+                <div class="conference">
+                    <h4>Conference:</h4>
+                    <h4 id="conferenceContent"></h4>
+                </div>
 
                 <div class="abstract">
-                    <p id="abstractContent">this is where the abstract content goes</p>
+                    <h4>Abstract:</h4>
+                    <p id="abstractContent"></p>
+                </div>
+
+                <div class="download">
+                    <h5>Download link:</h5>
+                    <a id="downloadLink" href=""></p>
                 </div>
 
                 <div class="buttons">
@@ -54,6 +74,13 @@
         <script>
 
         var jsonObj = {!! json_encode($search_data) !!}
+
+        document.querySelector('#papertitle').innerHTML = jsonObj.document.title;
+        document.querySelector('#authorContent').innerHTML = jsonObj.document.authors;
+        document.querySelector('#conferenceContent').innerHTML = jsonObj.document.pubtitle;
+        document.querySelector('#abstractContent').innerHTML = jsonObj.document.abstract;
+        document.querySelector('#downloadLink').innerHTML = jsonObj.document.pdf;
+        document.querySelector('#downloadLink').setAttribute("href", jsonObj.document.pdf);
 
         console.log(jsonObj);
 
