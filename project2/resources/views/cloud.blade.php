@@ -67,6 +67,7 @@
 		{{ Form::open(array('route' => 'refreshCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
+		
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
 
 		{{ Form::close() }}
