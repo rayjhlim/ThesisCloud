@@ -41,13 +41,13 @@ class PagesController extends Controller {
         $search_data = json_decode($json, TRUE);
         $all_abstracts = "";
 
-        $jsonResponse = shell_exec('python ~/hw-lupu/csci310-project2/project2/scrape.py ' . $author);
-        $map = json_decode($jsonResponse, true);
+        // $jsonResponse = shell_exec('python ~/hw-lupu/csci310-project2/project2/scrape.py ' . $author);
+        // $map = json_decode($jsonResponse, true);
         // print_r($map);
 
         for ($x = 0; $x < $numPapers; $x++) {
             $all_abstracts .= $search_data['document'][$x]['abstract'];
-            $all_abstracts .= $map[$x]['abstract'];
+            // $all_abstracts .= $map[$x]['abstract'];
         } 
 
         return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 
