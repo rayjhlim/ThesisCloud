@@ -50,9 +50,9 @@
 <body>
 	<div id="outerlayer">
 
-		<h2> List Page <br> </h2>
+		<h2> Conference List Page <br> </h2>
 
-		<h4> Word: {{$word}} <br> </h4>
+		<h4> Conference: {{$confName}} <br> </h4>
 		
 	</div>
 
@@ -66,8 +66,6 @@
 			  	<tr>
 			  		<th>Title</th>
 			  		<th>Authors</th>
-			  		<th>Conference Name</th>
-			  		<th>Word Frequency</th>
 			  		<th class="sorttable_nosort">Download Link</th>
 			  	</tr>
 			</thead>
@@ -87,9 +85,8 @@
 	function addTableEntries() {
 
 		var jsonObj = {!! json_encode($search_data) !!}
-		var word = {!! json_encode($word) !!}
-		var author = {!! json_encode($author) !!}
-		var numPapers = {!! json_encode($numPapers) !!}
+
+		console.log(jsonObj);
 
 		console.log(jsonObj);
 
@@ -99,7 +96,7 @@
 			// Title cell
 			var title = document.createElement("td");
 			var node0 = document.createElement('a');
-			node0.setAttribute('href',"http://localhost:8000/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
+			node0.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].title);
 			node0.innerHTML = jsonObj.document[i].title;
 			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);
@@ -111,25 +108,9 @@
 			authors.appendChild(node1);
 			row.appendChild(authors);
 
-			// Conference name cell
-			var conf = document.createElement("td");
-			var node2 = document.createElement('a');
-			node2.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].pubtitle);
-			node2.innerHTML = jsonObj.document[i].pubtitle;
-			conf.appendChild(node2);
-			row.appendChild(conf);
-
 			var abstract = jsonObj.document[i].abstract.toLowerCase();
 			var wordArray = abstract.split(/[ .?!,*'"]/);
 			var wordCount = 0;
-
-			var wordCount = Math.floor((Math.random() * 10) + 1);
-
-			// Word frequency cell
-			var freq = document.createElement("td");
-			var node3 = document.createTextNode(wordCount);
-			freq.appendChild(node3);
-			row.appendChild(freq);
 
 			// Download link cell
 			var dl = document.createElement("td");
