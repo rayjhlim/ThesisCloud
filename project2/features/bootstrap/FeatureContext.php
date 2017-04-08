@@ -64,12 +64,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        $session->visit('http://127.0.0.1:8000/Halfond/8');
-        //$submitButton->submit();
+        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        $submitButton->submit();
 
         // check if in correct url
         $url = $session->getCurrentUrl();
-        if($url === 'http://127.0.0.1:8000/Halfond/8') {
+        if($url === 'http://127.0.0.1:8000/Halfond/10') {
             echo "Test passed = Still at same page";
         }
         else {
@@ -152,11 +152,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        $session->visit('http://127.0.0.1:8000/Halfond/8');
-        //$submitButton->submit();  
+        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        $submitButton->submit();  
 
         $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/8' === $url) {
+        if('http://127.0.0.1:8000/Halfond/10' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
@@ -222,11 +222,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        $session->visit('http://127.0.0.1:8000/Halfond/8');
-        //$submitButton->submit();  
+        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        $submitButton->submit();  
 
         $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/8' === $url) {
+        if('http://127.0.0.1:8000/Halfond/10' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
