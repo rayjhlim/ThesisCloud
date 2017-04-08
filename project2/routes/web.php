@@ -35,8 +35,8 @@ Route::post('refreshCloud', array('as' => 'refreshCloud', 'uses'=>'PagesControll
 
 // Route::get('cloud/{search_term}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
 
-Route::get('/{author}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
+Route::get('/{author}/{numPapers}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
 
-Route::get('/{author}/{num_pages}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
+Route::get('/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
 
-Route::get('/{author}/{num_pages}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
+Route::get('/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));

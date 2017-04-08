@@ -17,9 +17,9 @@ class PagesController extends Controller {
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getSearchTerm($search_term, $num_pages)  {
+    public function getSearchTerm($search_term, $numPapers)  {
         $term = trim($search_term);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=$term&hc=$num_pages";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?querytext=$term&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
@@ -32,9 +32,9 @@ class PagesController extends Controller {
     * function used to get author 
     * returns json data of author
     */
-    public function getAuthor($author, $num_pages) {
+    public function getAuthor($author, $numPapers) {
         $author = trim($author);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$num_pages";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement',
             LIBXML_NOCDATA);
         $json = json_encode($xml);
@@ -45,39 +45,40 @@ class PagesController extends Controller {
         // $map = json_decode($jsonResponse, true);
         // print_r($map);
 
-        for ($x = 0; $x <= 5; $x++) {
+        for ($x = 0; $x < $numPapers; $x++) {
             $all_abstracts .= $search_data['document'][$x]['abstract'];
             // $all_abstracts .= $map[$x]['abstract'];
         } 
 
-        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author]);
+        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 
+            'numPapers' => $numPapers]);
     }
 
     /*
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getInfoFromWord($author, $num_pages, $word)  {
+    public function getInfoFromWord($author, $numPapers, $word)  {
         $author = trim($author);
         $word = trim($word);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$num_pages";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word]);
+        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'numPapers' => $numPapers]);
     }
 
     /*
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getInfoFromTitle($author, $num_pages, $word, $title)  {
+    public function getInfoFromTitle($author, $numPapers, $word, $title)  {
         $author = trim($author);
         $word = trim($word);
         $title = trim($title);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$num_pages&ti=$title";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers&ti=$title";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
@@ -101,15 +102,15 @@ class PagesController extends Controller {
         return view('home');
     }
 
-    public function goToCloudPage($search_term)
+    public function goToCloudPage($search_term, $numPapers)
     {
-        return view('cloud')->with('search_term', $search_term);
+        return view('cloud')->with(['search_term' => $search_term, 'numPapers' => $numPapers]);
     }
 
     public function postResearcherNameToCloudPage()
     {
         // redirect to cloud page using form input
-        return Redirect::route('cloud', ['author' => Input::get('search_term'), 'num_pages' => 10]);
+        return Redirect::route('cloud', ['author' => Input::get('search_term'), 'numPapers' => Input::get('numPapers')]);
     }
 
 }
