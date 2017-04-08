@@ -38,18 +38,18 @@ class PagesControllerTest extends TestCase
         $word = "raw";
         $num_papers = "10";
         $response = $controller->$func($author_name, $num_papers, $word);
-        $stringResponse = strval($response);
         $this->assertContains('Lupu', $stringResponse); // test that tag data has been filled in
     }
     
-    // public function testGetAbstractView()
-    // {
-    //     $controller = new PagesController();
-    //     $func = "getAbstractView";
-    //     $response = $controller->$func();
-    //     $stringResponse = strval($response);
-    //     $this->assertContains('highlightText()', $stringResponse); // method only found in song
-    // }
+    public function testGetAbstractFromTitle()
+    {
+        $controller = new PagesController();
+        $func = "getAbstractFromTitle";
+        $title = "Mobile PAES: Demonstrating Authority Devolution for Policy Evaluation in Crisis Management Scenarios";
+        $response = $controller->$func();
+        $stringResponse = strval($response);
+        $this->assertContains('Mobile PAES', $stringResponse); // method only found in song
+    }
 
     public function testGetConferenceListView()
     {
@@ -59,5 +59,16 @@ class PagesControllerTest extends TestCase
         $response = $controller->$func($conference_name);
         $stringResponse = strval($response);
         $this->assertContains('Welcome', $stringResponse); // test that tag data has been filled in
+    }
+
+    public function testSliderValue()
+    {
+        $controller = new PagesController();
+        $func = "getAuthor";
+        $author = "Lupu";
+        $num_pages = "2";
+        $response = $controller->func($author, $num_pages);
+        $stringResponse = strval($response);
+        $this->assertContains('Lupu', $stringResponse);
     }
 }
