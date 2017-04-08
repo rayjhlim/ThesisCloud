@@ -68,13 +68,9 @@
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
+		{!! Form::selectRange('numPapers', 1, 10) !!}
 
 		{{ Form::close() }}
-
-		<div class="slider">
-			<span> <br> Set how many papers to include in the word cloud <br> </span>
-			<input class="sliderTrack" type="range" min="0" max="50" value="10" step="1" onchange="showSliderValue(this.value)"/>
-		<span id="sliderValue"> 10 </span>
 	</div>
 
 
@@ -92,6 +88,8 @@
 	var myString = {!! json_encode($search_data) !!};
 
 	var author = {!! json_encode($author) !!};
+
+	var numPapers = {!! json_encode($numPapers) !!};
 
 	var newArray = [], wordObj;
 
@@ -113,7 +111,7 @@
 			if (wordObj.length) {
 				wordObj[0].size += 1;
 			} else {
-				newArray.push({text: word, size: 1, href:'http://localhost:8000/'+ author +'/10/'+ word});	
+				newArray.push({text: word, size: 1, href:'http://localhost:8000/'+ author +'/'+ numPapers + '/'+ word});	
 			}
 		});
 		
