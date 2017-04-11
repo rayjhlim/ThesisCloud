@@ -40,3 +40,9 @@ Route::get('/{author}/{numPapers}', array('as' => 'cloud', 'uses' => 'PagesContr
 Route::get('/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
 
 Route::get('/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
+
+Route::get('/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
+
+Route::get('/{title}', array('as' => 'conflist', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
+
+// Route::get('/{var}', 'PagesController@diverge')->where('var', 'title|confName');

@@ -13,6 +13,25 @@ class PagesController extends Controller {
         return view('home');
     }
 
+    protected $vars = [
+        'title' => 'var-title',
+        'confName'  => 'var-confName'
+    ];
+
+    function diverge($var)
+    {
+        // You can use an associative array to convert the $plan parameter
+        // into the value you need for querying the database
+        $var = $this->vars[$var];
+
+        if ($var == 'title') {
+            getInfoFromOnlyTitle($var);
+        }
+        else if ($var == 'confName') {
+            getInfoFromConf($var);
+        }
+    }
+
     /*
     * function used for Welcome page
     * returns json data of search result
@@ -70,6 +89,32 @@ class PagesController extends Controller {
         return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'numPapers' => $numPapers]);
     }
 
+    public function getInfoFromConf($confName) {
+        $confName = trim($confName);
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName";
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $search_data = json_decode($json, TRUE);
+
+        echo "get info from conference";
+
+        return view('conflist')->with(['confName' => $confName, 'search_data' => $search_data]);
+    }
+
+    public function getInfoFromOnlyTitle($title) {
+        $title = trim($title);
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?ti=$title";
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $search_data = json_decode($json, TRUE);
+
+        echo "get info only from title";
+
+        return view('abstract')->with('search_data', $search_data);
+    }
+
     /*
     * function used for Welcome page
     * returns json data of search result
@@ -84,7 +129,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('abstract')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'title' => $title]);
+        return view('abstract')->with('search_data', $search_data);
     }
 
     /*
