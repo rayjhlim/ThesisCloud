@@ -88,8 +88,6 @@
 
 		console.log(jsonObj);
 
-		console.log(jsonObj);
-
 		for (var i = 0; i < jsonObj.document.length; i++) {
 			var row = document.createElement("tr");
 
@@ -104,13 +102,16 @@
 
 			// Author cell
 			var authors = document.createElement("td");
-			var node1 = document.createTextNode(jsonObj.document[i].authors);
+			var node1 = document.createElement('a');
+			node1.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].authors + "/" + 5);
+			node1.innerHTML = jsonObj.document[i].authors;
+			console.log(jsonObj.document[i].authors);
 			authors.appendChild(node1);
 			row.appendChild(authors);
 
-			var abstract = jsonObj.document[i].abstract.toLowerCase();
-			var wordArray = abstract.split(/[ .?!,*'"]/);
-			var wordCount = 0;
+			// var abstract = jsonObj.document[i].abstract.toLowerCase();
+			// var wordArray = abstract.split(/[ .?!,*'"]/);
+			// var wordCount = 0;
 
 			// Download link cell
 			var dl = document.createElement("td");

@@ -94,6 +94,7 @@
 		console.log(jsonObj);
 
 		for (var i = 0; i < jsonObj.document.length; i++) {
+
 			var row = document.createElement("tr");
 
 			// Title cell
@@ -107,9 +108,16 @@
 
 			// Author cell
 			var authors = document.createElement("td");
-			var node1 = document.createTextNode(jsonObj.document[i].authors);
+			var node1 = document.createElement('a');
+			node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
+			node1.innerHTML = jsonObj.document[i].authors;
+			console.log(jsonObj.document[i].authors);
 			authors.appendChild(node1);
 			row.appendChild(authors);
+
+			// var node1 = document.createTextNode(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
 
 			// Conference name cell
 			var conf = document.createElement("td");
