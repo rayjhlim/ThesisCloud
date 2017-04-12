@@ -45,4 +45,4 @@ Route::get('/{confName}', array('as' => 'list', 'uses' => 'PagesController@getIn
 
 Route::get('/{title}', array('as' => 'conflist', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
 
-// Route::get('/{var}', 'PagesController@diverge')->where('var', 'title|confName');
+Route::get('/{var}', 'PagesController@diverge')->where('var', 'title|confName');

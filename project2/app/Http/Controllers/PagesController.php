@@ -24,10 +24,10 @@ class PagesController extends Controller {
         // into the value you need for querying the database
         $var = $this->vars[$var];
 
-        if ($var == 'title') {
+        if ($var == 'var-title') {
             getInfoFromOnlyTitle($var);
         }
-        else if ($var == 'confName') {
+        else if ($var == 'var-confName') {
             getInfoFromConf($var);
         }
     }
@@ -97,7 +97,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        echo "get info from conference";
+        // echo "get info from conference";
 
         return view('conflist')->with(['confName' => $confName, 'search_data' => $search_data]);
     }

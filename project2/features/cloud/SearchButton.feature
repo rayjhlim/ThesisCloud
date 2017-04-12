@@ -3,6 +3,6 @@ Feature: Search button (cloud page)
 	on the cloud page, we need to test that each of its
 	features work as intended. 
 
-Scenario: Search button directs user to CloudPage
-	Given I search Halfond from cloud page
-	Then I should be on cloud page
+	Scenario: Search button directs user to CloudPage
+		Given I search Halfond from cloud page
+		Then I should be on cloud page
