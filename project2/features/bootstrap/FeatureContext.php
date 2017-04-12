@@ -31,6 +31,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // BEHAT SUCKS BALLS
     }
 
+
+    //          //
+    // SPRINT 1 //
+    //          //
+
     /**
      * @Given I search Halfond from cloud page
      */
@@ -64,12 +69,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        
+        // search for dropdown
+        $dropdown = $page->find('css','#dropdown');
+        if(null === $dropdown) {
+            throw new \Exception('dropdown not found');
+        }
+
+        $dropdown->selectOption("8");
+
+
         $submitButton->submit();
 
         // check if in correct url
         $url = $session->getCurrentUrl();
-        if($url === 'http://127.0.0.1:8000/Halfond/10') {
+        if($url === 'http://127.0.0.1:8000/Halfond/8') {
             echo "Test passed = Still at same page";
         }
         else {
@@ -152,11 +166,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        
+        // search for dropdown
+        $dropdown = $page->find('css','#dropdown');
+        if(null === $dropdown) {
+            throw new \Exception('dropdown not found');
+        }
+
+        $dropdown->selectOption("8");
+
         $submitButton->submit();  
 
         $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/10' === $url) {
+        if('http://127.0.0.1:8000/Halfond/8' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
@@ -222,11 +244,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         $textInput->setValue('Halfond');
-        //$session->visit('http://127.0.0.1:8000/Halfond/8');
+        
+        // search for dropdown
+        $dropdown = $page->find('css','#dropdown');
+        if(null === $dropdown) {
+            throw new \Exception('dropdown not found');
+        }
+
+        $dropdown->selectOption("8");
+
         $submitButton->submit();  
 
         $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/10' === $url) {
+        if('http://127.0.0.1:8000/Halfond/8' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
@@ -269,42 +299,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
 
-
-
     //          //
     // SPRINT 2 //
     //          //
-     /**
-     * @Given I search Lupu from home page for one paper
-     */
-    public function iSearchLupuFromHomePageForOnePaper()
-    {
-        // Then I should be on cloud page for Lupu
-    }
-
-    /**
-     * @Then I should be on cloud page for Lupu
-     */
-    public function iShouldBeOnCloudPageForLupu()
-    {
-        // STUB
-    }
-
-    /**
-     * @Given I search Lupu from home page for three papers
-     */
-    public function iSearchLupuFromHomePageForThreePapers()
-    {
-        // Then I should be on cloud page for Lupu
-    }
-
-    /**
-     * @Given I search Lupu from home page for ten papers
-     */
-    public function iSearchLupuFromHomePageForTenPapers()
-    {
-        // Then I should be on cloud page for Lupu
-    }
 
     /**
      * @Given I search Orso on the home page
