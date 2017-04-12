@@ -267,4 +267,195 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // STUB
     }
+
+
+
+
+    //          //
+    // SPRINT 2 //
+    //          //
+     /**
+     * @Given I search Lupu from home page for one paper
+     */
+    public function iSearchLupuFromHomePageForOnePaper()
+    {
+        // Then I should be on cloud page for Lupu
+    }
+
+    /**
+     * @Then I should be on cloud page for Lupu
+     */
+    public function iShouldBeOnCloudPageForLupu()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I search Lupu from home page for three papers
+     */
+    public function iSearchLupuFromHomePageForThreePapers()
+    {
+        // Then I should be on cloud page for Lupu
+    }
+
+    /**
+     * @Given I search Lupu from home page for ten papers
+     */
+    public function iSearchLupuFromHomePageForTenPapers()
+    {
+        // Then I should be on cloud page for Lupu
+    }
+
+    /**
+     * @Given I search Orso on the home page
+     */
+    public function iSearchOrsoOnTheHomePage()
+    {
+        // Then the progress bar should show effort
+    }
+
+    /**
+     * @Then the progress bar should show effort
+     */
+    public function theProgressBarShouldShowEffort()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I click on Command-Form Coverage
+     */
+    public function iClickOnCommandFormCoverage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should be on the abstract page for that paper
+     */
+    public function iShouldBeOnTheAbstractPageForThatPaper()
+    {
+        // STUB
+    }
+
+    /**
+     * @Then the word focuses is highlighted in yellow
+     */
+    public function theWordFocusesIsHighlightedInYellow()
+    {
+        // STUB
+    }
+
+    /**
+     * @Then there should be download link for that paper's PDF
+     */
+    public function thereShouldBeDownloadLinkForThatPaperSPdf()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I click on Alessandro Orso from list for focuses and Halfond
+     */
+    public function iClickOnAlessandroOrsoFromListForFocusesAndHalfond()
+    {
+        // Then I should be on the word cloud page for Alessandro Orso
+    }
+
+    /**
+     * @Then I should be on the word cloud page for Alessandro Orso
+     */
+    public function iShouldBeOnTheWordCloudPageForAlessandroOrso()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I click on a bibtex on the list for testers and Halfond
+     */
+    public function iClickOnABibtexOnTheListForTestersAndHalfond()
+    {
+        // Then I should access the paper's bibtex
+    }
+
+    /**
+     * @Then I should access the paper's bibtex
+     */
+    public function iShouldAccessThePaperSBibtex()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I am on the list for IEEE Transactions on Software Engineering
+     */
+    public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering()
+    {
+        // STUB
+    }
+
+    /**
+     * @Then the page should contain:
+     */
+    public function thePageShouldContain(TableNode $table)
+    {
+        // Given I am on the list for IEEE Transactions on Software Engineering
+    }
+
+    /**
+     * @Given I am on the list for areas and Orso
+     */
+    public function iAmOnTheListForAreasAndOrso()
+    {
+        // Then the header should contain focuses
+    }
+
+     /**
+     * @Given I click the first title from the list for focuses and Halfond
+     */
+    public function iClickTheFirstTitleFromTheListForFocusesAndHalfond()
+    {
+        // iShouldBeOnTheAbstractPageForThatPaper
+    }
+
+    /**
+     * @Given I click the first title from the list for prone and Lupu
+     */
+    public function iClickTheFirstTitleFromTheListForProneAndLupu()
+    {
+        // Then there should be a PDF download link
+    }
+
+    /**
+     * @Then there should be a PDF download link
+     */
+    public function thereShouldBeAPdfDownloadLink()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I am on the list for focuses and Halfond8
+     */
+    public function iAmOnTheListForFocusesAndHalfond2()
+    {
+        // STUB
+    }
+
+    /**
+     * @Then the page should contain the titles:
+     */
+    public function thePageShouldContainTheTitles(TableNode $table)
+    {
+        // Given I am on the list for focuses and Halfond8
+    }
+
+    /**
+     * @Then the page should contain the conference names:
+     */
+    public function thePageShouldContainTheConferenceNames(TableNode $table)
+    {
+        // Given I am on the list for focuses and Halfond8
+    }
+
 }

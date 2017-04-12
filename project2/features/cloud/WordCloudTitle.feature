@@ -3,6 +3,6 @@ Feature: Word cloud title
 	see the searched text that
 	are initialized to the word cloud
 
-	Scenario: Upon initialization, the label's text lists the searched text of the Word Cloud Title is initialized for
+	Scenario: The label's text lists the searched text of the Word Cloud Title is initialized for
 		Given I am on the cloud page for Boehm
 		Then the header should contain Boehm
