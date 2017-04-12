@@ -25,9 +25,11 @@ class PagesController extends Controller {
         $var = $this->vars[$var];
 
         if ($var == 'var-title') {
+            echo "var is title";
             getInfoFromOnlyTitle($var);
         }
         else if ($var == 'var-confName') {
+            echo "var is conf name";
             getInfoFromConf($var);
         }
     }
@@ -89,7 +91,8 @@ class PagesController extends Controller {
         return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'numPapers' => $numPapers]);
     }
 
-    public function getInfoFromConf($confName) {
+    // author}/{numPapers}/{word}/{title}/{confName
+    public function getInfoFromConf($var0, $var1, $var2, $var3, $confName) {
         $confName = trim($confName);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
@@ -102,7 +105,8 @@ class PagesController extends Controller {
         return view('conflist')->with(['confName' => $confName, 'search_data' => $search_data]);
     }
 
-    public function getInfoFromOnlyTitle($title) {
+    // /{author}/{numPapers}/{word}/{title}/{confName}/{title}
+    public function getInfoFromOnlyTitle($var0, $var1, $var2, $var3, $var4, $title) {
         $title = trim($title);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?ti=$title";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 

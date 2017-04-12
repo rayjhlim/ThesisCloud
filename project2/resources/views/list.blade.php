@@ -122,7 +122,7 @@
 			// Conference name cell
 			var conf = document.createElement("td");
 			var node2 = document.createElement('a');
-			node2.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].pubtitle);
+			node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/" + jsonObj.document[i].pubtitle);
 			node2.innerHTML = jsonObj.document[i].pubtitle;
 			conf.appendChild(node2);
 			row.appendChild(conf);
