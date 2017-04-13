@@ -94,7 +94,7 @@
 			// Title cell
 			var title = document.createElement("td");
 			var node0 = document.createElement('a');
-			node0.setAttribute('href',"http://localhost:8000/" + jsonObj.document[i].title);
+			node0.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/var4/" + jsonObj.document[i].title);
 			node0.innerHTML = jsonObj.document[i].title;
 			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);

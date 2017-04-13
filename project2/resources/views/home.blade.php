@@ -79,7 +79,7 @@
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
 
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
-		{!! Form::selectRange('numPapers', 1, 10) !!}
+		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!}
 
 	{{ Form::close() }}
 
