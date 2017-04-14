@@ -318,45 +318,21 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // STUB
     }
-
-    /**
-     * @Given I click on Command-Form Coverage
-     */
-    public function iClickOnCommandFormCoverage()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then I should be on the abstract page for that paper
-     */
-    public function iShouldBeOnTheAbstractPageForThatPaper()
-    {
-        // STUB
-    }
-
-    /**
-     * @Then the word focuses is highlighted in yellow
-     */
-    public function theWordFocusesIsHighlightedInYellow()
-    {
-        // STUB
-    }
-
-    /**
-     * @Then there should be download link for that paper's PDF
-     */
-    public function thereShouldBeDownloadLinkForThatPaperSPdf()
-    {
-        // STUB
-    }
-
+    
     /**
      * @Given I click on Alessandro Orso from list for focuses and Halfond
      */
     public function iClickOnAlessandroOrsoFromListForFocusesAndHalfond()
     {
-        // Then I should be on the word cloud page for Alessandro Orso
+        /*
+         // Visting the page
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('127.0.0.1:8000/Halfond/8/focuses');
+
+        // Manipulating the page
+        */
     }
 
     /**
@@ -388,7 +364,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering()
     {
-        // STUB
+         // Visting the page
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/var0/var1/var2/var3/IEEE%20Transactions%20on%20Software%20Engineering');
+
+        // Manipulating the page
+        $page = $session->getPage(); 
+
+
+
     }
 
     /**
@@ -397,14 +383,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function thePageShouldContain(TableNode $table)
     {
         // Given I am on the list for IEEE Transactions on Software Engineering
-    }
-
-    /**
-     * @Given I am on the list for areas and Orso
-     */
-    public function iAmOnTheListForAreasAndOrso()
-    {
-        // Then the header should contain focuses
     }
 
      /**

@@ -1,10 +1,6 @@
 Feature: Paper list 
 	Paper list page should contain the things needed 
 
-	Scenario: Header of page should be word clicked 
-		Given I am on the list for areas and Orso
-		Then the header should contain focuses
-
 	Scenario: Page should contain the following titles
 		Given I am on the list for focuses and Halfond8 
 		Then the page should contain the titles: 

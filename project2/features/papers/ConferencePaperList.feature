@@ -4,4 +4,4 @@ Feature: Conference paper list
 	Scenario: Paper should contain the following titles
 		Given I am on the list for IEEE Transactions on Software Engineering
 		Then the page should contain: 
-			| title | author |                                                          
+			| title |                                                         
