@@ -18,11 +18,22 @@ class PagesControllerTest extends TestCase
         $this->assertContains('Welcome', $stringResponse); // string only found in start
     }
 
+    // public function testGetSearchTerm()
+    // {
+    //     $controller = new PagesController();
+    //     $func = "getSearchTerm";
+    //     $search_term = "java";
+    //     $num_papers = "2";
+    //     $response = $controller->$func($search_term, $num_papers);
+    //     $string_response = strval($response);
+    //     $this->assertContains('Man', $string_response);
+    // }
+
     public function testGetAuthor()
     {
         $controller = new PagesController();
         $func = "getAuthor";
-        $num_pages = "10";
+        $num_pages = "1";
         $view = "cloud";
         $author_name = "Lupu";
         $response = $controller->$func($author_name, $num_pages);
@@ -30,7 +41,7 @@ class PagesControllerTest extends TestCase
         $this->assertContains('Lupu', $stringResponse); // method only found in cloud
     }
 
-    public function testGetWordInfo()
+    public function testGetInfoFromWord()
     {
         $controller = new PagesController();
         $func = "getInfoFromWord";
@@ -38,18 +49,32 @@ class PagesControllerTest extends TestCase
         $word = "raw";
         $num_papers = "10";
         $response = $controller->$func($author_name, $num_papers, $word);
+        $stringResponse = strval($response);
         $this->assertContains('Lupu', $stringResponse); // test that tag data has been filled in
     }
-    
-    public function testGetAbstractFromTitle()
-    {
-        $controller = new PagesController();
-        $func = "getAbstractFromTitle";
-        $title = "Mobile PAES: Demonstrating Authority Devolution for Policy Evaluation in Crisis Management Scenarios";
-        $response = $controller->$func();
-        $stringResponse = strval($response);
-        $this->assertContains('Mobile PAES', $stringResponse); // method only found in song
-    }
+        
+    // public function testGetInfoFromConf()
+    // {
+    //     $controller = new PagesController();
+    //     $func = "getInfoFromConf";
+    //     $author = "Lupu";
+    //     $num_papers = "10";
+    //     $word = "raw";
+
+    // }
+
+    // public function testGetInfoFromTitle()
+    // {
+    //     $controller = new PagesController();
+    //     $func = "getInfoFromTitle";
+    //     $author = "Lupu";
+    //     $num_papers = "10";
+    //     $word = "raw";
+    //     $title = "Mobile PAES: Demonstrating Authority Devolution for Policy Evaluation in Crisis Management Scenarios";
+    //     $response = $controller->$func($author, $num_papers, $word, $title);
+    //     $string_response = strval($response);
+    //     $this->assertContains('Mobile PAES', $string_response);
+    // }
 
     public function testGetConferenceListView()
     {
@@ -67,7 +92,7 @@ class PagesControllerTest extends TestCase
         $func = "getAuthor";
         $author = "Lupu";
         $num_pages = "2";
-        $response = $controller->func($author, $num_pages);
+        $response = $controller->$func($author, $num_pages);
         $stringResponse = strval($response);
         $this->assertContains('Lupu', $stringResponse);
     }

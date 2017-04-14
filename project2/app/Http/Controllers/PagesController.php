@@ -25,11 +25,11 @@ class PagesController extends Controller {
         $var = $this->vars[$var];
 
         if ($var == 'var-title') {
-            echo "var is title";
+            // echo "var is title";
             getInfoFromOnlyTitle($var);
         }
         else if ($var == 'var-confName') {
-            echo "var is conf name";
+            // echo "var is conf name";
             getInfoFromConf($var);
         }
     }
@@ -66,11 +66,15 @@ class PagesController extends Controller {
         // $map = json_decode($jsonResponse, true);
         // print_r($map);
 
-        for ($x = 0; $x < $numPapers; $x++) {
-            $all_abstracts .= $search_data['document'][$x]['abstract'];
-            // $all_abstracts .= $map[$x]['abstract'];
-        } 
-
+        if (count($search_data['document']) > 10) {
+            $all_abstracts .= $search_data['document']['abstract'];
+        }
+        else {
+            foreach($search_data['document'] as $document) {
+                $all_abstracts .= $document['abstract'];
+            }
+        }
+        // echo $all_abstracts;
         return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 
             'numPapers' => $numPapers]);
     }
@@ -114,7 +118,7 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        echo "get info only from title";
+        // echo "get info only from title";
 
         return view('abstract')->with('search_data', $search_data);
     }
