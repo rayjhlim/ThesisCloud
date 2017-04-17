@@ -325,7 +325,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     //          //
     // SPRINT 2 //
     //          //
-
     /**
      * @Given I search Orso on the home page
      */
@@ -343,9 +342,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
     
     /**
-     * @Given I click on Alessandro Orso from list for focuses and Halfond
+     * @Given I click on Sonal Mahajan from list for focuses and Halfond
      */
-    public function iClickOnAlessandroOrsoFromListForFocusesAndHalfond()
+    public function iClickOnSonalMahajanFromListForFocusesAndHalfond()
     {
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -356,26 +355,25 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Command-Form'));
-        $name = $row->find('css', sprintf('td:contains("%s")', 'William'));
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Detection'));
+        $name = $row->find('css', sprintf('td:contains("%s")', 'Sonal'));
         $link = $name->find('css', 'a');
 
         $link->click();
-        /*
+        
         $url = $session->getCurrentUrl();
-        if('http://localhost:8000/Orso/5' === $url) {
+        if('http://localhost:8000/Mahajan/5' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
             throw new \Exception('not in cloud page for Orso');
         }
-        */
     }
 
     /**
-     * @Then I should be on the word cloud page for Alessandro Orso
+     * @Then I should be on the word cloud page for Sonal Mahajan
      */
-    public function iShouldBeOnTheWordCloudPageForAlessandroOrso()
+    public function iShouldBeOnTheWordCloudPageForSonalMahajan()
     {
         // STUB
     }
