@@ -108,12 +108,29 @@
 
 			// Author cell
 			var authors = document.createElement("td");
-			var node1 = document.createElement('a');
-			node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
-			node1.innerHTML = jsonObj.document[i].authors;
-			console.log(jsonObj.document[i].authors);
-			authors.appendChild(node1);
+			var authorArr = jsonObj.document[i].authors.split("; ");
+
+			for (var j=0; j<authorArr.length; j++) {
+				var authorLink = document.createElement('a');
+				var authorNameArr = authorArr[j].split(" ");
+				var authorLastName = authorNameArr[authorNameArr.length-1];
+				authorLink.setAttribute('href', "http://localhost:8000/" + authorLastName + "/" + 5);
+
+				if (j<authorArr.length-1)
+					authorLink.innerHTML = authorArr[j] + ", ";
+				else
+					authorLink.innerHTML = authorArr[j];
+				authors.appendChild(authorLink);
+			}
 			row.appendChild(authors);
+
+			// var authors = document.createElement("td");
+			// var node1 = document.createElement('a');
+			// node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
+			// node1.innerHTML = jsonObj.document[i].authors;
+			// console.log(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
 
 			// var node1 = document.createTextNode(jsonObj.document[i].authors);
 			// authors.appendChild(node1);
