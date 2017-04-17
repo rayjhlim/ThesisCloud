@@ -31,16 +31,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // BEHAT SUCKS BALLS
     }
 
-
+    
     //          //
     // SPRINT 1 //
     //          //
-
     /**
      * @Given I search Halfond from cloud page
      */
     public function iSearchHalfondFromCloudPage()
     {
+        /*
+
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -89,6 +90,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('no at word cloud for halfond');
         }
+
+        */
     }
 
     /**
@@ -104,6 +107,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheCloudPageForBoehm()
     {
+        /*
+
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver); 
@@ -123,6 +128,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('title is not Boehm');
         }
+
+        */
     }
 
     /**
@@ -138,6 +145,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchHalfondFromHomePage()
     {
+        /*
+
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -184,6 +193,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('not in cloud page after searching for Halfond from home');
         }
+
+        */
     }
 
     /**
@@ -191,6 +202,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepageAndISearchAnEmptyForm()
     {
+       /*
+
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -201,6 +214,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();   
         $url = $session->getCurrentUrl();
         echo "Test passed = Current url: " . $url;
+
+        */
     }
 
     /**
@@ -216,7 +231,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepageAndISearchForHalfond()
     {
-         // Visting the page
+        /*
+
+        // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
@@ -262,6 +279,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('not in cloud page after searching for Halfond in home');
         }
+
+        */
     }
 
     /**
@@ -269,6 +288,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForFocusesAndHalfond()
     {
+        /*
+
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -288,6 +309,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('h4 is not focuses');
         }
+
+        */
     }
 
     /**
@@ -297,7 +320,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // STUB
     }
-
+    
 
     //          //
     // SPRINT 2 //
@@ -324,14 +347,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnAlessandroOrsoFromListForFocusesAndHalfond()
     {
-        /*
-         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('127.0.0.1:8000/Halfond/8/focuses');
+        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $page = $session->getPage(); 
+        
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Command-Form'));
+        $name = $row->find('css', sprintf('td:contains("%s")', 'William'));
+        $link = $name->find('css', 'a');
 
-        // Manipulating the page
+        $link->click();
+        /*
+        $url = $session->getCurrentUrl();
+        if('http://localhost:8000/Orso/5' === $url) {
+            echo "Test passed = Current url: " . $url;
+        }
+        else {
+            throw new \Exception('not in cloud page for Orso');
+        }
         */
     }
 
@@ -364,17 +401,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering()
     {
-         // Visting the page
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://localhost:8000/var0/var1/var2/var3/IEEE%20Transactions%20on%20Software%20Engineering');
-
-        // Manipulating the page
-        $page = $session->getPage(); 
-
-
-
+        // STUB
     }
 
     /**
@@ -382,15 +409,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thePageShouldContain(TableNode $table)
     {
-        // Given I am on the list for IEEE Transactions on Software Engineering
-    }
+        $actualValues = array();
 
-     /**
-     * @Given I click the first title from the list for focuses and Halfond
-     */
-    public function iClickTheFirstTitleFromTheListForFocusesAndHalfond()
-    {
-        // iShouldBeOnTheAbstractPageForThatPaper
+        foreach ($table as $row) {
+            $actualValues[] = $row['title'];
+        }
+
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/var0/var1/var2/var3/IEEE%20Transactions%20on%20Software%20Engineering');
+        $page = $session->getPage(); 
+
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+   
+        foreach ($actualValues as $name) {
+            $check = $tableContents->find('css', sprintf('tr:contains("%s")', $name));
+            if (null === $check) {
+                throw new \Exception('names do not match: test failed');
+            }
+        }
     }
 
     /**
@@ -398,7 +438,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickTheFirstTitleFromTheListForProneAndLupu()
     {
-        // Then there should be a PDF download link
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Lupu/8/prone');
+        $page = $session->getPage(); 
+
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'On efficient'));
+        $name = $row->find('css', sprintf('td:contains("%s")', 'On efficient'));
+        $link = $name->find('css', 'a');
+
+        $link->click();
     }
 
     /**
@@ -422,7 +475,27 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thePageShouldContainTheTitles(TableNode $table)
     {
-        // Given I am on the list for focuses and Halfond8
+        $actualValues = array();
+        foreach ($table as $row) {
+            $actualValues[] = $row['title'];
+        }
+
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $page = $session->getPage(); 
+
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+   
+        foreach ($actualValues as $name) {
+            $check = $tableContents->find('css', sprintf('tr:contains("%s")', $name));
+            if (null === $check) {
+                throw new \Exception('names do not match: test failed');
+            }
+        }
     }
 
     /**
@@ -430,7 +503,27 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function thePageShouldContainTheConferenceNames(TableNode $table)
     {
-        // Given I am on the list for focuses and Halfond8
+        $actualValues = array();
+        foreach ($table as $row) {
+            $actualValues[] = $row['conference'];
+        }
+
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $page = $session->getPage(); 
+
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+   
+        foreach ($actualValues as $name) {
+            $check = $tableContents->find('css', sprintf('tr:contains("%s")', $name));
+            if (null === $check) {
+                throw new \Exception('names do not match: test failed');
+            }
+        }
     }
 
 }
