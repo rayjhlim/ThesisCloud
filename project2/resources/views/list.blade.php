@@ -83,6 +83,11 @@
 
 	addTableEntries();
 
+	window.onload = function() {
+	        (document.getElementsByTagName( 'th' )[3]).click();
+	        (document.getElementsByTagName( 'th' )[3]).click();
+	    };
+
 	// function to create a new row in the table
 	function addTableEntries() {
 

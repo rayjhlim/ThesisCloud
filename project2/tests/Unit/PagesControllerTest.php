@@ -18,17 +18,6 @@ class PagesControllerTest extends TestCase
         $this->assertContains('Welcome', $stringResponse); // string only found in start
     }
 
-    // public function testGetSearchTerm()
-    // {
-    //     $controller = new PagesController();
-    //     $func = "getSearchTerm";
-    //     $search_term = "java";
-    //     $num_papers = "2";
-    //     $response = $controller->$func($search_term, $num_papers);
-    //     $string_response = strval($response);
-    //     $this->assertContains('Man', $string_response);
-    // }
-
     public function testGetAuthor()
     {
         $controller = new PagesController();
@@ -80,16 +69,6 @@ class PagesControllerTest extends TestCase
         $this->assertContains('A Multibeam', $string_response);
     }
 
-    public function testGetConferenceListView()
-    {
-        $controller = new PagesController();
-        $func = "getConferenceObject";
-        $conference_name = "4222553";
-        $response = $controller->$func($conference_name);
-        $stringResponse = strval($response);
-        $this->assertContains('Welcome', $stringResponse); // test that tag data has been filled in
-    }
-
     public function testSliderValue()
     {
         $controller = new PagesController();
@@ -100,4 +79,25 @@ class PagesControllerTest extends TestCase
         $stringResponse = strval($response);
         $this->assertContains('Lupu', $stringResponse);
     }
+
+    public function testGetConferenceListView()
+    {
+        $controller = new PagesController();
+        $func = "getConferenceObject";
+        $conference_name = "4222553";
+        $response = $controller->$func($conference_name);
+        $stringResponse = strval($response);
+        $this->assertContains('Welcome', $stringResponse); // test that tag data has been filled in
+    }
+
+    // public function testGetSearchTerm()
+    // {
+    //     $controller = new PagesController();
+    //     $func = "getSearchTerm";
+    //     $search_term = "java";
+    //     $num_papers = "2";
+    //     $response = $controller->$func($search_term, $num_papers);
+    //     $string_response = strval($response);
+    //     $this->assertContains('Man', $string_response);
+    // }
 }
