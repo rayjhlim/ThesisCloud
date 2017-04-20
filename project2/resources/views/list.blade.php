@@ -166,6 +166,7 @@
 			dl.className = "sorttable_nosort";
 			var link = document.createElement("a");
 			link.href = jsonObj.document[i].pdf;
+			link.download = "paper";
 			var node4 = document.createTextNode(jsonObj.document[i].pdf);
 			link.appendChild(node4);
 			dl.appendChild(link);
