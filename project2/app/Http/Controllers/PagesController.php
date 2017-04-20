@@ -146,71 +146,71 @@ class PagesController extends Controller {
         $all_abstracts = "";
 
 
-        //Script to run the python code for ACM
-        //Only works if the project folder is in ~/
-        $jsonResponse = shell_exec('python ~/csci310-project2/project2/scrape.py ' . $author);
-        $map = json_decode($jsonResponse, true);
-        // print_r($map);
+        // //Script to run the python code for ACM
+        // //Only works if the project folder is in ~/
+        // $jsonResponse = shell_exec('python ~/csci310-project2/project2/scrape.py ' . $author);
+        // $map = json_decode($jsonResponse, true);
+        // // print_r($map);
 
 
-                $acm_word_map = array();
+        //         $acm_word_map = array();
 
-        foreach ($map as $paper) {
-            $author = strtoupper($paper['author']);
-            $source = $paper['source'];
-            $abstract = $paper['abstract'];
-            $publicationDate = $paper['publicationDate'];
-            $title = strtoupper($paper['title']);
+        // foreach ($map as $paper) {
+        //     $author = strtoupper($paper['author']);
+        //     $source = $paper['source'];
+        //     $abstract = $paper['abstract'];
+        //     $publicationDate = $paper['publicationDate'];
+        //     $title = strtoupper($paper['title']);
 
-            $token_array = preg_split('/\s+/', $paper['abstract']);
+        //     $token_array = preg_split('/\s+/', $paper['abstract']);
 
-            foreach ($token_array as $token) {
-                $token = trim($token);
-                $token = strtoupper($token);
+        //     foreach ($token_array as $token) {
+        //         $token = trim($token);
+        //         $token = strtoupper($token);
 
-                if(!array_key_exists($token, $filler_words)) {
-                    //print($token . '#');
-                    if(array_key_exists($token, $acm_word_map)) {
-                        $acm_word_map[$token]['count'] += 1;
-                        if(array_key_exists($author, $acm_word_map[$token])) {
-                            if(array_key_exists($title, $acm_word_map[$token][$author])) {
-                                $acm_word_map[$token][$author][$title]['count'] += 1;
-                            } else {
-                                $acm_word_map[$token][$author][$title] = array();
-                                $acm_word_map[$token][$author][$title]['title'] = $title;
-                                $acm_word_map[$token][$author][$title]['count'] = 1;
-                                $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
-                                $acm_word_map[$token][$author][$title]['source'] = $source;
-                                $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
-                            }
-                        } else {
-                            $acm_word_map[$token][$author] = array();
-                            $acm_word_map[$token][$author]['author'] = $author;
-                            $acm_word_map[$token][$author][$title] = array();
-                            $acm_word_map[$token][$author][$title]['title'] = $title;
-                            $acm_word_map[$token][$author][$title]['count'] = 1;
-                            $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
-                            $acm_word_map[$token][$author][$title]['source'] = $source;
-                            $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
-                        }
-                    } else {
-                        $acm_word_map[$token]['count'] = 1;
-                        $acm_word_map[$token]['word'] = $token;
-                        $acm_word_map[$token][$author] = array();
-                        $acm_word_map[$token][$author]['author'] = $author;
-                        $acm_word_map[$token][$author][$title] = array();
-                        $acm_word_map[$token][$author][$title]['title'] = $title;
-                        $acm_word_map[$token][$author][$title]['count'] = 1;
-                        $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
-                        $acm_word_map[$token][$author][$title]['source'] = $source;
-                        $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
-                    }
-                }
-            }
-            // foreach ($acm_word_map as $word) {
-            //     print_r($word);
-            // }
-        }
+        //         if(!array_key_exists($token, $filler_words)) {
+        //             //print($token . '#');
+        //             if(array_key_exists($token, $acm_word_map)) {
+        //                 $acm_word_map[$token]['count'] += 1;
+        //                 if(array_key_exists($author, $acm_word_map[$token])) {
+        //                     if(array_key_exists($title, $acm_word_map[$token][$author])) {
+        //                         $acm_word_map[$token][$author][$title]['count'] += 1;
+        //                     } else {
+        //                         $acm_word_map[$token][$author][$title] = array();
+        //                         $acm_word_map[$token][$author][$title]['title'] = $title;
+        //                         $acm_word_map[$token][$author][$title]['count'] = 1;
+        //                         $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
+        //                         $acm_word_map[$token][$author][$title]['source'] = $source;
+        //                         $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
+        //                     }
+        //                 } else {
+        //                     $acm_word_map[$token][$author] = array();
+        //                     $acm_word_map[$token][$author]['author'] = $author;
+        //                     $acm_word_map[$token][$author][$title] = array();
+        //                     $acm_word_map[$token][$author][$title]['title'] = $title;
+        //                     $acm_word_map[$token][$author][$title]['count'] = 1;
+        //                     $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
+        //                     $acm_word_map[$token][$author][$title]['source'] = $source;
+        //                     $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
+        //                 }
+        //             } else {
+        //                 $acm_word_map[$token]['count'] = 1;
+        //                 $acm_word_map[$token]['word'] = $token;
+        //                 $acm_word_map[$token][$author] = array();
+        //                 $acm_word_map[$token][$author]['author'] = $author;
+        //                 $acm_word_map[$token][$author][$title] = array();
+        //                 $acm_word_map[$token][$author][$title]['title'] = $title;
+        //                 $acm_word_map[$token][$author][$title]['count'] = 1;
+        //                 $acm_word_map[$token][$author][$title]['abstract'] = $abstract;
+        //                 $acm_word_map[$token][$author][$title]['source'] = $source;
+        //                 $acm_word_map[$token][$author][$title]['publicationDate'] = $publicationDate;                        
+        //             }
+        //         }
+        //     }
+        //     // foreach ($acm_word_map as $word) {
+        //     //     print_r($word);
+        //     // }
+        // }
 
 
         if (count($search_data['document']) > 10) {

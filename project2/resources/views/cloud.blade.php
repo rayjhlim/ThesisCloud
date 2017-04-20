@@ -105,6 +105,8 @@
 	function generateHash(txt){
 		txt = txt.toLowerCase();
 
+		txt = txt.replace(/[^a-z0-9+]+/gi, ' ');
+
 		var wordArray = txt.split(/[ .?!,*'"]/);
 
 		wordArray.forEach(function (word) {
