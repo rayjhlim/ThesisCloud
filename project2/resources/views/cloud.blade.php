@@ -88,6 +88,9 @@
 
 	var myString = {!! json_encode($search_data) !!};
 
+	console.log(myString);
+
+	// author or conference name
 	var author = {!! json_encode($author) !!};
 
 	var numPapers = {!! json_encode($numPapers) !!};

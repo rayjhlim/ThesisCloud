@@ -75,8 +75,7 @@ class PagesController extends Controller {
             }
         }
         // echo $all_abstracts;
-        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 
-            'numPapers' => $numPapers]);
+        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 'numPapers' => $numPapers]);
     }
 
     /*
@@ -98,15 +97,24 @@ class PagesController extends Controller {
     // author}/{numPapers}/{word}/{title}/{confName
     public function getInfoFromConf($var0, $var1, $var2, $var3, $confName) {
         $confName = trim($confName);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName&hc=5";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        // echo "get info from conference";
+        $all_abstracts = "";
 
-        return view('conflist')->with(['confName' => $confName, 'search_data' => $search_data]);
+        // $jsonResponse = shell_exec('python ~/hw-lupu/csci310-project2/project2/scrape.py ' . $author);
+        // $map = json_decode($jsonResponse, true);
+        // print_r($search_data);
+
+
+        foreach($search_data['document'] as $document) {
+            $all_abstracts .= $document['abstract'];
+        }
+
+        return view('cloud')->with(['author' => $confName, 'search_data' => $all_abstracts, 'numPapers' => 5]);
     }
 
     // /{author}/{numPapers}/{word}/{title}/{confName}/{title}
