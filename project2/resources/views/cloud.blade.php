@@ -48,6 +48,10 @@
 			font-family: serif;
 		}
 
+		a {
+			color: blue;
+			text-decoration: underline;
+		}
 
 	</style>
 
@@ -55,14 +59,15 @@
 
 <body>
 	<div id="outerlayer">
+		<div id = "screenshotTarget">
+			<div id="wordcloud"></div>
 
-		<div id="wordcloud"> 
+			<h2> Search term: {{$author}} <br> </h2>
 
+			<div id="wordcloud"></div>
 		</div>
 
-		<h2> Search term: {{$author}} <br> </h2>
-
-		<div id="wordcloud"></div>
+		<a id="download">Download as Image</a>
 
 		{{ Form::open(array('route' => 'refreshCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
@@ -155,6 +160,46 @@
 	function showSliderValue(newValue) {
 		document.getElementById("sliderValue").innerHTML = newValue;
 	}
+
+	function convertToCanvas() {
+		html2canvas(document.getElementById("screenshotTarget"), {
+            onrendered: function(canvas) {
+                // Canvas
+                console.log("rendered");
+                canvas.id = "cloudCanvas";
+
+                var canvasBuffer = document.createElement('canvas');
+                canvasBuffer.id = 'buffer';
+                canvasBuffer.width = 10;
+                canvasBuffer.height = 800;
+                document.body.appendChild(canvasBuffer);
+                document.body.appendChild(canvas);
+	        },
+            width: document.getElementById("screenshotTarget").offsetWidth,
+            height: document.getElementById("screenshotTarget").offsetHeight
+        });
+	}
+
+	function removeCanvas(canvasID) {
+		var element = document.getElementById(canvasID);
+        document.body.removeChild(element);
+        var element2 = document.getElementById('buffer');
+        document.body.removeChild(element2);
+	}
+
+	function downloadAsImage() {
+		document.getElementById('download').href = document.getElementById('cloudCanvas').toDataURL("image/jpeg");
+	    document.getElementById('download').download = 'cloud.jpeg';
+	}
+
+	setTimeout(function() {
+		convertToCanvas();
+
+		setTimeout(function() {
+			downloadAsImage();
+			removeCanvas('cloudCanvas');
+		}, 600);
+	}, 4500);
 	
 	</script>
 

@@ -24,6 +24,11 @@
 			margin-bottom: 2%
 		}
 
+		h4 {
+			font-weight: bold;
+			color: white;
+		}
+
 		table.sortable thead {
 		    background-color:#333;
 		    color:#fff;
@@ -40,6 +45,17 @@
 		td {
 			color:#000;
 			background-color:#eee;
+		}
+
+		button {
+			color: black;
+			background-color: white;
+			font-size: 14px;
+			width: 18%;
+			margin-top: 2%;
+			margin-bottom: 2%;
+			text-align: center;
+			font-weight: bold;
 		}
 
 
@@ -59,8 +75,9 @@
 	<script type="text/javascript" src="{{ URL::asset('js/sorttable.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 
-	<div class="tableDiv">
+	<div class="tableDiv" id="tableDiv">
 		<table class="sortable" id="sortable">
 			<thead>
 			  	<tr>
@@ -75,6 +92,11 @@
 
 			</tbody>
 		</table>
+	</div>
+
+	<div class="downloadDiv">
+		<button id="pdf" onclick="downloadAsPDF()">Download as PDF</button>
+		<button id="plainText" onclick="downloadAsPlainText()">Download as Plain Text</button>
 	</div>
 
 </body>
@@ -129,18 +151,6 @@
 			}
 			row.appendChild(authors);
 
-			// var authors = document.createElement("td");
-			// var node1 = document.createElement('a');
-			// node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
-			// node1.innerHTML = jsonObj.document[i].authors;
-			// console.log(jsonObj.document[i].authors);
-			// authors.appendChild(node1);
-			// row.appendChild(authors);
-
-			// var node1 = document.createTextNode(jsonObj.document[i].authors);
-			// authors.appendChild(node1);
-			// row.appendChild(authors);
-
 			// Conference name cell
 			var conf = document.createElement("td");
 			var node2 = document.createElement('a');
@@ -176,6 +186,47 @@
 			element.appendChild(row);
 		}	
 	}
+
+	function downloadAsPDF() {
+		html2canvas(document.getElementById("tableDiv"), {
+            onrendered: function(canvas) {
+                // Canvas
+                console.log("rendered");
+                canvas.id = "listCanvas";
+                var canvasBuffer = document.createElement('canvas');
+                canvasBuffer.id = 'buffer';
+                canvasBuffer.width = 10;
+                canvasBuffer.height = 200;
+                document.body.appendChild(canvasBuffer);
+                document.body.appendChild(canvas);
+
+                // Convert to pdf
+                var imgData = canvas.toDataURL('image/png');              
+                var doc = new jsPDF('l', 'mm');
+                doc.addImage(imgData, 'PNG', 5, 5);
+                doc.save('PaperList.pdf');
+	        },
+            width: document.getElementById("tableDiv").offsetWidth,
+            height: document.getElementById("tableDiv").offsetHeight
+        });
+
+        // remove canvases
+        setTimeout(function() {
+        	var element = document.getElementById('listCanvas');
+	        document.body.removeChild(element);
+	        var element2 = document.getElementById('buffer');
+	        document.body.removeChild(element2);
+        }, 500);
+                
+	}
+
+	function downloadAsPlainText() {
+		
+	}
+
+
+
+    
 
 </script>
 
