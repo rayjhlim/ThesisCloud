@@ -54,6 +54,89 @@ class PagesController extends Controller {
     * returns json data of author
     */
     public function getAuthor($author, $numPapers) {
+
+        $filler_words = [
+            "IT" => 1,
+            "SHE" => 1,
+            "HE"=> 1,
+            "THEY"=> 1,
+            "ABOUT" => 1,
+            "\0" => 1,
+            "BELOW" => 1,
+            "EXCEPTING" => 1,
+            "OFF" => 1,
+            "TOWARD" => 1,
+            "ABOVE" => 1,
+            "BENEATH" => 1,
+            "FOR" => 1,   
+            "ON" => 1,
+            "UNDER" => 1,
+            "ACROSS" => 1,
+            "BESIDES" => 1,
+            "FROM" => 1,
+            "ONTO" => 1,    
+            "UNDERNEATH" => 1,
+            "AFTER" => 1,
+            "BETWEEN" => 1,    
+            "IN" => 1,
+            "OUT" => 1,
+            "UNTIL" => 1,
+            "AGAINST" => 1,    
+            "BEYOND" => 1,    
+            "OUTSIDE" => 1,
+            "UP" => 1,
+            "ALONG" => 1,
+            "BUT" => 1,
+            "INSIDE" => 1,
+            "OVER" => 1,
+            "UPON" => 1,
+            "AMONG" => 1,
+            "BY" => 1,    
+            "PAST" => 1,
+            "AROUND" => 1,
+            "CONCERNING" => 1,
+            "INSTEAD" => 1,
+            "REGARDING" => 1,
+            "WITH" => 1,
+            "AT" => 1,
+            "DESPITE" => 1,
+            "INTO" => 1,
+            "SINCE" => 1,
+            "WITHIN" => 1,
+            "BECAUSE" => 1,
+            "DOWN" => 1,
+            "LIKE" => 1,
+            "THROUGH" => 1,
+            "WITHOUT" => 1,
+            "BEFORE" => 1,
+            "DURING" => 1,
+            "NEAR" => 1,
+            "THROUGHOUT" => 1,
+            "BEHIND" => 1,
+            "EXCEPT" => 1,
+            "OF" => 1,
+            "TO" => 1,
+            "OR" => 1,
+            "IF" =>1,
+            'THE' => 1,
+            'A' => 1,
+            'AS' => 1,
+            '...' => 1,
+            'WE' => 1,
+            'AND' => 1,
+            'HAS' => 1,
+            'IS' => 1,
+            'THIS' => 1,
+            'THAT' => 1,
+            'AN' => 1,
+            'CAN' => 1,
+            'WAS' => 1,
+            'WHICH' => 1,
+            'BE' => 1
+        ];
+
+
+
         $author = trim($author);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement',
@@ -62,8 +145,11 @@ class PagesController extends Controller {
         $search_data = json_decode($json, TRUE);
         $all_abstracts = "";
 
-        // $jsonResponse = shell_exec('python ~/hw-lupu/csci310-project2/project2/scrape.py ' . $author);
-        // $map = json_decode($jsonResponse, true);
+
+        //Script to run the python code for ACM
+        //Only works if the project folder is in ~/
+        $jsonResponse = shell_exec('python ~/csci310-project2/project2/scrape.py ' . $author);
+        $map = json_decode($jsonResponse, true);
         // print_r($map);
 
         if (count($search_data['document']) > 10) {
