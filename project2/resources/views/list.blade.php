@@ -74,6 +74,7 @@
 
 	<script type="text/javascript" src="{{ URL::asset('js/sorttable.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/FileSaver.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 
@@ -221,12 +222,32 @@
 	}
 
 	function downloadAsPlainText() {
-		
+		// Header info
+		var tableText = "";
+		tableText += "Paper List\n\n";
+		tableText += "Word: " + {!! json_encode($word) !!} + "\n\n";
+
+		// Grab all info from the table
+		var table = document.getElementById("sortable");
+		for (var i = 1, row; row = table.rows[i]; i++) {
+		   	//iterate through rows
+		   	//rows would be accessed using the "row" variable assigned in the for loop
+		   	for (var j = 0, col; col = row.cells[j]; j++) {
+		     	//iterate through columns
+		     	//columns would be accessed using the "col" variable assigned in the for loop
+		     	var headerContent = table.rows[0].cells[j].innerHTML;
+		     	var cellContent = col.innerHTML;
+				if (j==3) headerContent = "Word Frequency";
+				cellContent = cellContent.replace(/<[^>]*>/g,'');
+				tableText += (headerContent + ": " + cellContent + "\n");
+		   	}  
+		   	tableText += "\n";
+		}
+
+		// Convert to text and download
+		var blob = new Blob([tableText], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "PaperList.txt");
 	}
-
-
-
-    
 
 </script>
 
