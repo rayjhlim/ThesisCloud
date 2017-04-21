@@ -570,11 +570,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // STUB
     }
-
+    
     /**
-     * @Given I click on an author from list for focuses and Halfond
+     * @Given I search Bengio from home page
      */
-    public function iClickOnAnAuthorFromListForFocusesAndHalfond()
+    public function iSearchBengioFromHomePage()
     {
         
     }
@@ -635,4 +635,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // STUB
     }
 
+    /**
+     * @Given I click on the first conference from the list for across and Lee
+     */
+    public function iClickOnTheFirstConferenceFromTheListForAcrossAndLee()
+    {
+        throw new \Exception('word cloud not populated');
+    }
+
+    /**
+     * @Given I click on the word second
+     */
+    public function iClickOnTheWordSecond()
+    {
+        // Given I click on the first conference from the list for across and Lee
+    }
+
+    /**
+     * @Then I should be on a populated paper list page
+     */
+    public function iShouldBeOnAPopulatedPaperListPage()
+    {
+        // Given I click on the first conference from the list for across and Lee
+    }
+    
 }
