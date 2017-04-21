@@ -40,7 +40,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchHalfondFromCloudPage()
     {
-        /*
 
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -91,7 +90,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new \Exception('no at word cloud for halfond');
         }
 
-        */
     }
 
     /**
@@ -107,7 +105,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheCloudPageForBoehm()
     {
-        /*
 
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -129,7 +126,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new \Exception('title is not Boehm');
         }
 
-        */
     }
 
     /**
@@ -145,7 +141,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchHalfondFromHomePage()
     {
-        /*
 
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -194,7 +189,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new \Exception('not in cloud page after searching for Halfond from home');
         }
 
-        */
     }
 
     /**
@@ -202,7 +196,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepageAndISearchAnEmptyForm()
     {
-       /*
 
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -215,7 +208,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $url = $session->getCurrentUrl();
         echo "Test passed = Current url: " . $url;
 
-        */
     }
 
     /**
@@ -231,8 +223,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepageAndISearchForHalfond()
     {
-        /*
-
+        
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -280,7 +271,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new \Exception('not in cloud page after searching for Halfond in home');
         }
 
-        */
     }
 
     /**
@@ -288,7 +278,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForFocusesAndHalfond()
     {
-        /*
 
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -310,7 +299,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             throw new \Exception('h4 is not focuses');
         }
 
-        */
     }
 
     /**
@@ -379,56 +367,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Given I click on a bibtex on the list for testers and Halfond
-     */
-    public function iClickOnABibtexOnTheListForTestersAndHalfond()
-    {
-        // Then I should access the paper's bibtex
-    }
-
-    /**
-     * @Then I should access the paper's bibtex
-     */
-    public function iShouldAccessThePaperSBibtex()
-    {
-        // STUB
-    }
-
-    /**
      * @Given I am on the list for IEEE Transactions on Software Engineering
      */
     public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering()
     {
         // STUB
-    }
-
-    /**
-     * @Then the page should contain:
-     */
-    public function thePageShouldContain(TableNode $table)
-    {
-        $actualValues = array();
-
-        foreach ($table as $row) {
-            $actualValues[] = $row['title'];
-        }
-
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://localhost:8000/var0/var1/var2/var3/IEEE%20Transactions%20on%20Software%20Engineering');
-        $page = $session->getPage(); 
-
-        $table = $page->find('css','.tableDiv');
-        $sortable = $table->find('css','.sortable');
-        $tableContents = $sortable->find('css','#tableContents');
-   
-        foreach ($actualValues as $name) {
-            $check = $tableContents->find('css', sprintf('tr:contains("%s")', $name));
-            if (null === $check) {
-                throw new \Exception('names do not match: test failed');
-            }
-        }
     }
 
     /**
@@ -450,12 +393,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $link = $name->find('css', 'a');
 
         $link->click();
-    }
+        $page = $session->getPage(); 
+        $download = $page->find('css','.download');
+        $linkPDF = $download->find('css','a');
 
-    /**
-     * @Then there should be a PDF download link
+        echo "method not completed";
+    }
+    
+     /**
+     * @Then cicking the PDF link opens a PDF
      */
-    public function thereShouldBeAPdfDownloadLink()
+    public function cickingThePdfLinkOpensAPdf()
     {
         // STUB
     }
@@ -522,6 +470,142 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
                 throw new \Exception('names do not match: test failed');
             }
         }
+    }
+
+    /**
+     * @Given I click on the first conference from the list for term and Bengio
+     */
+    public function iClickOnTheFirstConferenceFromTheListForTermAndBengio()
+    {
+        
+    }
+
+    /**
+     * @Then I should be on the word cloud for IEEE Transactions
+     */
+    public function iShouldBeOnTheWordCloudForIeeeTransactions()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I am on the list for easily and Cote
+     */
+    public function iAmOnTheListForEasilyAndCote()
+    {
+        
+    }
+
+    /**
+     * @Then the page should be ordered by frequency
+     */
+    public function thePageShouldBeOrderedByFrequency()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I am on the list for fields and Cote
+     */
+    public function iAmOnTheListForFieldsAndCote()
+    {
+       
+    }
+
+    /**
+     * @Then clicking authors will order to list based on authors
+     */
+    public function clickingAuthorsWillOrderToListBasedOnAuthors()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I am on the list for system and Cote
+     */
+    public function iAmOnTheListForSystemAndCote()
+    {
+        
+    }
+
+    /**
+     * @Then clicking title will order to list based on titles
+     */
+    public function clickingTitleWillOrderToListBasedOnTitles()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I search Bengio from home page
+     */
+    public function iSearchBengioFromHomePage()
+    {
+        
+    }
+
+    /**
+     * @Given I click on an author from list for focuses and Halfond
+     */
+    public function iClickOnAnAuthorFromListForFocusesAndHalfond()
+    {
+        
+    }
+
+     /**
+     * @Then the word cloud generated should contain different font sizes
+     */
+    public function theWordCloudGeneratedShouldContainDifferentFontSizes()
+    {
+        // STUB
+    }
+
+     /**
+     * @Given I click download on the cloud page for Bengio
+     */
+    public function iClickDownloadOnTheCloudPageForBengio()
+    {
+        
+    }
+
+    /**
+     * @Then a download for Bengio's wordcloud begins
+     */
+    public function aDownloadForBengioSWordcloudBegins()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I click download as PDF in list for focuses and Halfond
+     */
+    public function iClickDownloadAsPdfInListForFocusesAndHalfond()
+    {
+        
+    }
+
+    /**
+     * @Then a download of PDF for paper list begins
+     */
+    public function aDownloadOfPdfForPaperListBegins()
+    {
+        // STUB
+    }
+
+    /**
+     * @Given I click download as plaintext in list for focuses and Halfond
+     */
+    public function iClickDownloadAsPlaintextInListForFocusesAndHalfond()
+    {
+        // 
+    }
+
+    /**
+     * @Then a download of plaintext for paper list begins
+     */
+    public function aDownloadOfPlaintextForPaperListBegins()
+    {
+        // STUB
     }
 
 }

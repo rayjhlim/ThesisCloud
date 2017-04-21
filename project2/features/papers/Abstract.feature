@@ -3,4 +3,4 @@ Feature: Abstract page
 
 	Scenario: Abstract page PDF link
 		Given I click the first title from the list for prone and Lupu
-		Then there should be a PDF download link 
+		Then cicking the PDF link opens a PDF
