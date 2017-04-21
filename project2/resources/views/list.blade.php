@@ -24,11 +24,6 @@
 			margin-bottom: 2%
 		}
 
-		h4 {
-			font-weight: bold;
-			color: white;
-		}
-
 		table.sortable thead {
 		    background-color:#333;
 		    color:#fff;
@@ -47,17 +42,6 @@
 			background-color:#eee;
 		}
 
-		button {
-			color: black;
-			background-color: white;
-			font-size: 14px;
-			width: 18%;
-			margin-top: 2%;
-			margin-bottom: 2%;
-			text-align: center;
-			font-weight: bold;
-		}
-
 
 	</style>
 
@@ -74,11 +58,9 @@
 
 	<script type="text/javascript" src="{{ URL::asset('js/sorttable.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/html2canvas.js') }}"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/FileSaver.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 
-	<div class="tableDiv" id="tableDiv">
+	<div class="tableDiv">
 		<table class="sortable" id="sortable">
 			<thead>
 			  	<tr>
@@ -93,11 +75,6 @@
 
 			</tbody>
 		</table>
-	</div>
-
-	<div class="downloadDiv">
-		<button id="pdf" onclick="downloadAsPDF()">Download as PDF</button>
-		<button id="plainText" onclick="downloadAsPlainText()">Download as Plain Text</button>
 	</div>
 
 </body>
@@ -128,7 +105,7 @@
 			// Title cell
 			var title = document.createElement("td");
 			var node0 = document.createElement('a');
-			node0.setAttribute('href',"http://localhost:8000/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
+			node0.setAttribute('href',"http://localhost:8000/var0/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
 			node0.innerHTML = jsonObj.document[i].title;
 			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);
@@ -142,7 +119,7 @@
 				var authorLink = document.createElement('a');
 				var authorNameArr = authorArr[j].split(" ");
 				var authorLastName = authorNameArr[authorNameArr.length-1];
-				authorLink.setAttribute('href', "http://localhost:8000/" + authorLastName + "/" + 5);
+				authorLink.setAttribute('href', "http://localhost:8000/1/" + authorLastName + "/" + 5);
 
 				if (j<authorArr.length-1)
 					authorLink.innerHTML = authorArr[j] + ", ";
@@ -152,10 +129,22 @@
 			}
 			row.appendChild(authors);
 
+			// var authors = document.createElement("td");
+			// var node1 = document.createElement('a');
+			// node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
+			// node1.innerHTML = jsonObj.document[i].authors;
+			// console.log(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
+
+			// var node1 = document.createTextNode(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
+
 			// Conference name cell
 			var conf = document.createElement("td");
 			var node2 = document.createElement('a');
-			node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/" + jsonObj.document[i].pubtitle);
+			node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/0/" + jsonObj.document[i].pubtitle);
 			node2.innerHTML = jsonObj.document[i].pubtitle;
 			conf.appendChild(node2);
 			row.appendChild(conf);
@@ -186,67 +175,6 @@
 			var element = document.getElementById("tableContents");
 			element.appendChild(row);
 		}	
-	}
-
-	function downloadAsPDF() {
-		html2canvas(document.getElementById("tableDiv"), {
-            onrendered: function(canvas) {
-                // Canvas
-                console.log("rendered");
-                canvas.id = "listCanvas";
-                var canvasBuffer = document.createElement('canvas');
-                canvasBuffer.id = 'buffer';
-                canvasBuffer.width = 10;
-                canvasBuffer.height = 200;
-                document.body.appendChild(canvasBuffer);
-                document.body.appendChild(canvas);
-
-                // Convert to pdf
-                var imgData = canvas.toDataURL('image/png');              
-                var doc = new jsPDF('l', 'mm');
-                doc.addImage(imgData, 'PNG', 5, 5);
-                doc.save('PaperList.pdf');
-	        },
-            width: document.getElementById("tableDiv").offsetWidth,
-            height: document.getElementById("tableDiv").offsetHeight
-        });
-
-        // remove canvases
-        setTimeout(function() {
-        	var element = document.getElementById('listCanvas');
-	        document.body.removeChild(element);
-	        var element2 = document.getElementById('buffer');
-	        document.body.removeChild(element2);
-        }, 500);
-                
-	}
-
-	function downloadAsPlainText() {
-		// Header info
-		var tableText = "";
-		tableText += "Paper List\n\n";
-		tableText += "Word: " + {!! json_encode($word) !!} + "\n\n";
-
-		// Grab all info from the table
-		var table = document.getElementById("sortable");
-		for (var i = 1, row; row = table.rows[i]; i++) {
-		   	//iterate through rows
-		   	//rows would be accessed using the "row" variable assigned in the for loop
-		   	for (var j = 0, col; col = row.cells[j]; j++) {
-		     	//iterate through columns
-		     	//columns would be accessed using the "col" variable assigned in the for loop
-		     	var headerContent = table.rows[0].cells[j].innerHTML;
-		     	var cellContent = col.innerHTML;
-				if (j==3) headerContent = "Word Frequency";
-				cellContent = cellContent.replace(/<[^>]*>/g,'');
-				tableText += (headerContent + ": " + cellContent + "\n");
-		   	}  
-		   	tableText += "\n";
-		}
-
-		// Convert to text and download
-		var blob = new Blob([tableText], {type: "text/plain;charset=utf-8"});
-		saveAs(blob, "PaperList.txt");
 	}
 
 </script>
