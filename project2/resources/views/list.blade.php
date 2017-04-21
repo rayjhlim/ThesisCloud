@@ -178,7 +178,10 @@
 			var link = document.createElement("a");
 			link.href = jsonObj.document[i].pdf;
 			link.download = "paper";
-			var node4 = document.createTextNode(jsonObj.document[i].pdf);
+			console.log("paper linK: " +jsonObj.document[i].pdf);
+			var origText = jsonObj.document[i].pdf;
+			var linkText = origText.slice(0,35) + "\n" + origText.slice(35,70);
+			var node4 = document.createTextNode(linkText);
 			link.appendChild(node4);
 			dl.appendChild(link);
 			row.appendChild(dl);
@@ -204,7 +207,7 @@
                 // Convert to pdf
                 var imgData = canvas.toDataURL('image/png');              
                 var doc = new jsPDF('l', 'mm');
-                doc.addImage(imgData, 'PNG', 5, 5);
+                doc.addImage(imgData, 'PNG', 1, 1);
                 doc.save('PaperList.pdf');
 	        },
             width: document.getElementById("tableDiv").offsetWidth,
