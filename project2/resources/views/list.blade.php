@@ -24,11 +24,6 @@
 			margin-bottom: 2%
 		}
 
-		h4 {
-			font-weight: bold;
-			color: white;
-		}
-
 		table.sortable thead {
 		    background-color:#333;
 		    color:#fff;
@@ -58,6 +53,9 @@
 			font-weight: bold;
 		}
 
+		h4 {
+			color: white;
+		}
 
 	</style>
 
@@ -128,7 +126,7 @@
 			// Title cell
 			var title = document.createElement("td");
 			var node0 = document.createElement('a');
-			node0.setAttribute('href',"http://localhost:8000/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
+			node0.setAttribute('href',"http://localhost:8000/var0/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
 			node0.innerHTML = jsonObj.document[i].title;
 			console.log(jsonObj.document[i].title);
 			title.appendChild(node0);
@@ -142,7 +140,7 @@
 				var authorLink = document.createElement('a');
 				var authorNameArr = authorArr[j].split(" ");
 				var authorLastName = authorNameArr[authorNameArr.length-1];
-				authorLink.setAttribute('href', "http://localhost:8000/" + authorLastName + "/" + 5);
+				authorLink.setAttribute('href', "http://localhost:8000/1/" + authorLastName + "/" + 5);
 
 				if (j<authorArr.length-1)
 					authorLink.innerHTML = authorArr[j] + ", ";
@@ -152,10 +150,22 @@
 			}
 			row.appendChild(authors);
 
+			// var authors = document.createElement("td");
+			// var node1 = document.createElement('a');
+			// node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
+			// node1.innerHTML = jsonObj.document[i].authors;
+			// console.log(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
+
+			// var node1 = document.createTextNode(jsonObj.document[i].authors);
+			// authors.appendChild(node1);
+			// row.appendChild(authors);
+
 			// Conference name cell
 			var conf = document.createElement("td");
 			var node2 = document.createElement('a');
-			node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/" + jsonObj.document[i].pubtitle);
+			node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/0/" + jsonObj.document[i].pubtitle);
 			node2.innerHTML = jsonObj.document[i].pubtitle;
 			conf.appendChild(node2);
 			row.appendChild(conf);

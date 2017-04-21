@@ -53,7 +53,7 @@ class PagesController extends Controller {
     * function used to get author 
     * returns json data of author
     */
-    public function getAuthor($author, $numPapers) {
+    public function getAuthor($isAuthor, $author, $numPapers) {
 
         $filler_words = [
             "IT" => 1,
@@ -222,17 +222,27 @@ class PagesController extends Controller {
             }
         }
         // echo $all_abstracts;
-        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 'numPapers' => $numPapers]);
+        return view('cloud')->with(['search_data'=> $all_abstracts, 'author' => $author, 'numPapers' => $numPapers, 'isAuthor' => 1]);
     }
 
     /*
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getInfoFromWord($author, $numPapers, $word)  {
+    public function getInfoFromWord($isAuthor, $author, $numPapers, $word)  {
         $author = trim($author);
         $word = trim($word);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers";
+        $isAuthor = trim($isAuthor);
+
+        // it is a conference
+        if ($isAuthor == 0) {
+            $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$author&querytext=$word&hc=$numPapers";
+        }
+        // it is an author
+        else {
+            $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers";
+        }
+        
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
@@ -242,7 +252,7 @@ class PagesController extends Controller {
     }
 
     // author}/{numPapers}/{word}/{title}/{confName
-    public function getInfoFromConf($var0, $var1, $var2, $var3, $confName) {
+    public function getInfoFromConf($var0, $var1, $var2, $var3, $isAuthor, $confName) {
         $confName = trim($confName);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName&hc=5";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
@@ -261,11 +271,11 @@ class PagesController extends Controller {
             $all_abstracts .= $document['abstract'];
         }
 
-        return view('cloud')->with(['author' => $confName, 'search_data' => $all_abstracts, 'numPapers' => 5]);
+        return view('cloud')->with(['author' => $confName, 'search_data' => $all_abstracts, 'numPapers' => 5, 'isAuthor' => $isAuthor]);
     }
 
     // /{author}/{numPapers}/{word}/{title}/{confName}/{title}
-    public function getInfoFromOnlyTitle($var0, $var1, $var2, $var3, $var4, $title) {
+    public function getInfoFromOnlyTitle($var0, $var1, $var2, $var3, $var4, $var5, $title) {
         $title = trim($title);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?ti=$title";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
@@ -282,7 +292,7 @@ class PagesController extends Controller {
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getInfoFromTitle($author, $numPapers, $word, $title)  {
+    public function getInfoFromTitle($var0, $author, $numPapers, $word, $title)  {
         $author = trim($author);
         $word = trim($word);
         $title = trim($title);
@@ -312,13 +322,13 @@ class PagesController extends Controller {
 
     public function goToCloudPage($search_term, $numPapers)
     {
-        return view('cloud')->with(['search_term' => $search_term, 'numPapers' => $numPapers]);
+        return view('cloud')->with(['search_term' => $search_term, 'numPapers' => $numPapers, 'isAuthor' => 1]);
     }
 
     public function postResearcherNameToCloudPage()
     {
         // redirect to cloud page using form input
-        return Redirect::route('cloud', ['author' => Input::get('search_term'), 'numPapers' => Input::get('numPapers')]);
+        return Redirect::route('cloud', ['author' => Input::get('search_term'), 'numPapers' => Input::get('numPapers'), 'isAuthor' => 1]);
     }
 
 }

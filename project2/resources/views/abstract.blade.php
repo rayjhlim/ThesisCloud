@@ -62,7 +62,7 @@
 
                 <div class="download">
                     <h5>Download link:</h5>
-                    <a id="downloadLink" href=""></a>
+                    <a id="downloadLink" href=""></p>
                 </div>
 
                 <div class="buttons">

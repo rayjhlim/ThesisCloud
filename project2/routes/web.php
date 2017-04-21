@@ -35,14 +35,14 @@ Route::post('refreshCloud', array('as' => 'refreshCloud', 'uses'=>'PagesControll
 
 // Route::get('cloud/{search_term}/{num_pages}', array('as' => 'cloud', 'uses' => 'PagesController@getSearchTerm'));
 
-Route::get('/{author}/{numPapers}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
+Route::get('{isAuthor}/{author}/{numPapers}', array('as' => 'cloud', 'uses' => 'PagesController@getAuthor'));
 
-Route::get('/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
+Route::get('/{isAuthor}/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
 
-Route::get('/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
+Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
 
-Route::get('/{var0}/{var1}/{var2}/{var3}/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
+Route::get('/{var0}/{var1}/{var2}/{var3}/{isAuthor}/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
 
-Route::get('/{var0}/{var1}/{var2}/{var3}/{var4}/{title}', array('as' => 'conflist', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
+Route::get('/{var0}/{var1}/{var2}/{var3}/{var4}/{var5}/{title}', array('as' => 'conflist', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
 
 // Route::get('/{var}', 'PagesController@diverge')->where('var', 'title|confName');
