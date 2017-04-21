@@ -397,7 +397,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $download = $page->find('css','.download');
         $linkPDF = $download->find('css','a');
 
-        echo "method not completed";
+        // FINISH THIS METHOD
     }
     
      /**
@@ -477,7 +477,30 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheFirstConferenceFromTheListForTermAndBengio()
     {
-        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Bengio/8/term');
+        $page = $session->getPage(); 
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
+        $name = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
+        $link = $name->find('css', 'a');
+
+        $link->click();
+
+         // check if in correct url
+        $url = $session->getCurrentUrl();
+        if($url === 'http://localhost:8000/var0/var1/var2/var3/Neural%20Networks,%202001.%20Proceedings.%20IJCNN%20%2701.%20International%20Joint%20Conference%20on') {
+            echo "Test passed = At word cloud page for the specified conference";
+        }
+        else {
+            throw new \Exception('Not at word cloud page for the speficied conference');
+        }
+
     }
 
     /**
@@ -493,7 +516,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForEasilyAndCote()
     {
-        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Cote/8/Easily');
+        $page = $session->getPage(); 
     }
 
     /**
@@ -509,7 +536,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForFieldsAndCote()
     {
-       
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Cote/8/Fields');
+        $page = $session->getPage(); 
     }
 
     /**
@@ -525,7 +556,11 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForSystemAndCote()
     {
-        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/Cote/8/System');
+        $page = $session->getPage(); 
     }
 
     /**
@@ -534,14 +569,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function clickingTitleWillOrderToListBasedOnTitles()
     {
         // STUB
-    }
-
-    /**
-     * @Given I search Bengio from home page
-     */
-    public function iSearchBengioFromHomePage()
-    {
-        
     }
 
     /**
