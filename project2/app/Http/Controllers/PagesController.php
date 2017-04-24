@@ -137,6 +137,8 @@ class PagesController extends Controller {
 
 
 
+        //shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $article_number);
+
         $author = trim($author);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement',
@@ -318,6 +320,14 @@ class PagesController extends Controller {
         $conference_json = json_decode($json, TRUE);
 
         return view('home');
+    }
+
+    /*
+    * function used to get IEEE bibtex
+    */
+
+    public function getBibTex($article_number) {
+        shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $article_number);
     }
 
     public function goToCloudPage($search_term, $numPapers)
