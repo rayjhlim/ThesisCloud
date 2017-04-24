@@ -13,27 +13,6 @@ class PagesController extends Controller {
         return view('home');
     }
 
-    protected $vars = [
-        'title' => 'var-title',
-        'confName'  => 'var-confName'
-    ];
-
-    function diverge($var)
-    {
-        // You can use an associative array to convert the $plan parameter
-        // into the value you need for querying the database
-        $var = $this->vars[$var];
-
-        if ($var == 'var-title') {
-            // echo "var is title";
-            getInfoFromOnlyTitle($var);
-        }
-        else if ($var == 'var-confName') {
-            // echo "var is conf name";
-            getInfoFromConf($var);
-        }
-    }
-
     /*
     * function used for Welcome page
     * returns json data of search result
@@ -250,13 +229,13 @@ class PagesController extends Controller {
         $json = json_encode($xml);
         $search_data = json_decode($json, TRUE);
 
-        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'word' => $word, 'numPapers' => $numPapers]);
+        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'isAuthor' => $isAuthor, 'word' => $word, 'numPapers' => $numPapers]);
     }
 
     // author}/{numPapers}/{word}/{title}/{confName
     public function getInfoFromConf($var0, $var1, $var2, $var3, $isAuthor, $confName) {
         $confName = trim($confName);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName&hc=5";
+        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$confName";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
         $json = json_encode($xml);
@@ -266,9 +245,14 @@ class PagesController extends Controller {
 
         // $jsonResponse = shell_exec('python ~/hw-lupu/csci310-project2/project2/scrape.py ' . $author);
         // $map = json_decode($jsonResponse, true);
+        // print_r(count($search_data['document']));
+
+        // echo "you are in getInfoFromConf";
         // print_r($search_data);
 
-
+        // if (count($search_data['document']) > 10) {
+        //     $all_abstracts .= $search_data['document']['abstract'];
+        // }
         foreach($search_data['document'] as $document) {
             $all_abstracts .= $document['abstract'];
         }
