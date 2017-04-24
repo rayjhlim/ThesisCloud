@@ -43,6 +43,4 @@ Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', '
 
 Route::get('/{var0}/{var1}/{var2}/{var3}/{isAuthor}/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
 
-Route::get('/{var0}/{var1}/{var2}/{var3}/{var4}/{var5}/{title}', array('as' => 'conflist', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
-
-// Route::get('/{var}', 'PagesController@diverge')->where('var', 'title|confName');
+Route::get('/{var0}/{var1}/{var2}/{var3}/{var4}/{var5}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
