@@ -109,97 +109,6 @@
 	        (document.getElementsByTagName( 'th' )[3]).click();
 	    };
 
-	// // function to create a new row in the table
-	// function addTableEntries() {
-
-	// 	var jsonObj = {!! json_encode($search_data) !!}
-	// 	var word = {!! json_encode($word) !!}
-	// 	var author = {!! json_encode($author) !!}
-	// 	var numPapers = {!! json_encode($numPapers) !!}
-
-	// 	console.log(jsonObj);
-
-	// 	for (var i = 0; i < jsonObj.document.length; i++) {
-
-	// 		var row = document.createElement("tr");
-
-	// 		// Title cell
-	// 		var title = document.createElement("td");
-	// 		var node0 = document.createElement('a');
-	// 		node0.setAttribute('href',"http://localhost:8000/var0/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
-	// 		node0.innerHTML = jsonObj.document[i].title;
-	// 		console.log(jsonObj.document[i].title);
-	// 		title.appendChild(node0);
-	// 		row.appendChild(title);
-
-	// 		// Author cell
-	// 		var authors = document.createElement("td");
-	// 		var authorArr = jsonObj.document[i].authors.split("; ");
-
-	// 		for (var j=0; j<authorArr.length; j++) {
-	// 			var authorLink = document.createElement('a');
-	// 			var authorNameArr = authorArr[j].split(" ");
-	// 			var authorLastName = authorNameArr[authorNameArr.length-1];
-	// 			authorLink.setAttribute('href', "http://localhost:8000/1/" + authorLastName + "/" + 5);
-
-	// 			if (j<authorArr.length-1)
-	// 				authorLink.innerHTML = authorArr[j] + ", ";
-	// 			else
-	// 				authorLink.innerHTML = authorArr[j];
-	// 			authors.appendChild(authorLink);
-	// 		}
-	// 		row.appendChild(authors);
-
-	// 		// var authors = document.createElement("td");
-	// 		// var node1 = document.createElement('a');
-	// 		// node1.setAttribute('href',"http://localhost:8000/" + author + "/" + 5);
-	// 		// node1.innerHTML = jsonObj.document[i].authors;
-	// 		// console.log(jsonObj.document[i].authors);
-	// 		// authors.appendChild(node1);
-	// 		// row.appendChild(authors);
-
-	// 		// var node1 = document.createTextNode(jsonObj.document[i].authors);
-	// 		// authors.appendChild(node1);
-	// 		// row.appendChild(authors);
-
-	// 		// Conference name cell
-	// 		var conf = document.createElement("td");
-	// 		var node2 = document.createElement('a');
-	// 		node2.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/0/" + jsonObj.document[i].pubtitle);
-	// 		node2.innerHTML = jsonObj.document[i].pubtitle;
-	// 		conf.appendChild(node2);
-	// 		row.appendChild(conf);
-
-	// 		var abstract = jsonObj.document[i].abstract.toLowerCase();
-	// 		var wordArray = abstract.split(/[ .?!,*'"]/);
-	// 		var wordCount = 0;
-
-	// 		var wordCount = Math.floor((Math.random() * 10) + 1);
-
-	// 		// Word frequency cell
-	// 		var freq = document.createElement("td");
-	// 		var node3 = document.createTextNode(wordCount);
-	// 		freq.appendChild(node3);
-	// 		row.appendChild(freq);
-
-	// 		// Download link cell
-	// 		var dl = document.createElement("td");
-	// 		dl.className = "sorttable_nosort";
-	// 		var link = document.createElement("a");
-	// 		link.href = jsonObj.document[i].pdf;
-	// 		link.download = "paper";
-	// 		console.log("paper linK: " +jsonObj.document[i].pdf);
-	// 		var origText = jsonObj.document[i].pdf;
-	// 		var linkText = origText.slice(0,35) + "\n" + origText.slice(35,70);
-	// 		var node4 = document.createTextNode(linkText);
-	// 		link.appendChild(node4);
-	// 		dl.appendChild(link);
-	// 		row.appendChild(dl);
-
-	// 		var element = document.getElementById("tableContents");
-	// 		element.appendChild(row);
-	// 	}	
-	// }
 
 	// function to create a new row in the table
 	function addTableEntries() {
@@ -246,8 +155,9 @@
 			}
 
 			console.log('author being passed to link: ' + author);
+			console.log('word being passed to link: ' + word);
 
-			node0.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/var4/var5/" + jsonObj.document.title);
+			node0.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/var4/"+word+"/" + jsonObj.document.title);
 
 			node0.innerHTML = jsonObj.document.title;
 			// console.log(jsonObj.document[i].title);
@@ -329,9 +239,9 @@
 
 
 				console.log('author being passed to link: ' + author);
+				console.log('word being passed to link: ' + word);
 
-				// node0.setAttribute('href',"http://localhost:8000/var0/" + author + "/" + numPapers + "/" + word + "/" + jsonObj.document[i].title);
-				node0.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/var4/var5/" + jsonObj.document[i].title);
+				node0.setAttribute('href',"http://localhost:8000/var0/var1/var2/var3/var4/"+word+"/" + jsonObj.document[i].title);
 				node0.innerHTML = jsonObj.document[i].title;
 				// console.log(jsonObj.document[i].title);
 				title.appendChild(node0);

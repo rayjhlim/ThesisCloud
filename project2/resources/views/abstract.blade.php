@@ -75,14 +75,47 @@
 
         var jsonObj = {!! json_encode($search_data) !!}
 
-        document.querySelector('#papertitle').innerHTML = jsonObj.document.title;
-        document.querySelector('#authorContent').innerHTML = jsonObj.document.authors;
-        document.querySelector('#conferenceContent').innerHTML = jsonObj.document.pubtitle;
-        document.querySelector('#abstractContent').innerHTML = jsonObj.document.abstract;
-        document.querySelector('#downloadLink').innerHTML = jsonObj.document.pdf;
-        document.querySelector('#downloadLink').setAttribute("href", jsonObj.document.pdf);
+        var word = {!! json_encode($word) !!}
 
+        if (jsonObj.document.length == null) {
+            document.querySelector('#papertitle').innerHTML = jsonObj.document.title;
+            document.querySelector('#authorContent').innerHTML = jsonObj.document.authors;
+            document.querySelector('#conferenceContent').innerHTML = jsonObj.document.pubtitle;
+            document.querySelector('#abstractContent').innerHTML = jsonObj.document.abstract;
+            document.querySelector('#downloadLink').innerHTML = jsonObj.document.pdf;
+            document.querySelector('#downloadLink').setAttribute("href", jsonObj.document.pdf);
+
+        }
+        else {
+            document.querySelector('#papertitle').innerHTML = jsonObj.document[0].title;
+            document.querySelector('#authorContent').innerHTML = jsonObj.document[0].authors;
+            document.querySelector('#conferenceContent').innerHTML = jsonObj.document[0].pubtitle;
+            document.querySelector('#abstractContent').innerHTML = jsonObj.document[0].abstract;
+            document.querySelector('#downloadLink').innerHTML = jsonObj.document[0].pdf;
+            document.querySelector('#downloadLink').setAttribute("href", jsonObj.document[0].pdf);
+        }
+        
         console.log(jsonObj);
+
+
+        var content = document.querySelector('#abstractContent').innerHTML;
+
+        content = content.toLowerCase();
+
+        highlightText();
+
+        function highlightText(){
+            var highlight = word.toLowerCase();
+
+            var regExpObj = new RegExp(highlight, 'g');
+
+            console.log('this is the word: ' + highlight);
+
+            var newStr = '<span class="highlight1">' + highlight + '</span>';
+            
+            document.querySelector('#abstractContent').innerHTML = content.replace(regExpObj, newStr);
+        
+        }
 
         </script>
     </body>
