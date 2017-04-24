@@ -159,11 +159,6 @@
 		.start();
 	}
 	
-
-	function showSliderValue(newValue) {
-		document.getElementById("sliderValue").innerHTML = newValue;
-	}
-
 	function convertToCanvas() {
 			html2canvas(document.getElementById("screenshotTarget"), {
 	            onrendered: function(canvas) {
