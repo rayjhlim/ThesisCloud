@@ -22,7 +22,7 @@ def main():
 	driver.find_element_by_xpath("//input[@value='download-bibtex']").click()
 	time.sleep(1)
 	driver.find_element_by_xpath("//button[contains(text(), 'Download')]").click()
-	driver.switch_to_window(driver.window_handles[1])
+	#driver.switch_to_window(driver.window_handles[1])
 	time.sleep(1)
 	print(driver.page_source)
 

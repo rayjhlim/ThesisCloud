@@ -116,7 +116,7 @@ class PagesController extends Controller {
 
 
 
-        //shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $article_number);
+        //shell_exec('python ~/csci310-project2/project2/bibtex.py ' . '337334');
 
         $author = trim($author);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$numPapers";
