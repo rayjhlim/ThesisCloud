@@ -259,8 +259,9 @@ class PagesController extends Controller {
     }
 
     // /{author}/{numPapers}/{word}/{title}/{confName}/{title}
-    public function getInfoFromOnlyTitle($var0, $var1, $var2, $var3, $var4, $var5, $title) {
+    public function getInfoFromOnlyTitle($var0, $var1, $var2, $var3, $var4, $word, $title) {
         $title = trim($title);
+        // $word = trim($word);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?ti=$title";
         $xml = simplexml_load_file($url, 'SimpleXMLElement', 
             LIBXML_NOCDATA);
@@ -269,7 +270,7 @@ class PagesController extends Controller {
 
         // echo "get info only from title";
 
-        return view('abstract')->with('search_data', $search_data);
+        return view('abstract')->with(['search_data'=> $search_data, 'word' => $word]);
     }
 
     /*

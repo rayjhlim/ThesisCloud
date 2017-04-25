@@ -95,7 +95,7 @@
 
 	var myString = {!! json_encode($search_data) !!};
 
-	console.log(myString);
+	// console.log(myString);
 
 	var isAuthor = {!! json_encode($isAuthor) !!};	
 
