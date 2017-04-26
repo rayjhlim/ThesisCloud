@@ -53,6 +53,23 @@
 			text-decoration: underline;
 		}
 
+		#myProgress {
+		    width: 40%;
+		    background-color: #ddd;
+		    margin-left: 30%;
+		    margin-top: 2%;
+		    display: none;
+		}
+
+		#myBar {
+		    width: 10%;
+		    height: 30px;
+		    background-color: #4CAF50;
+		    text-align: center; 
+		    line-height: 30px; 
+		    color: white; 
+		}
+
 
 	</style>
 
@@ -74,10 +91,15 @@
 		{{ Form::open(array('route' => 'refreshCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
+
+		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton', 'onclick'=>'calculateProgress()']) !!}
+		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!}
+
+		{{ Form::close() }}
+
 		
-		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
-		
-		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!} <br>
+
+
 
 		<div style="color:white"> <h4> Pick search criteria </h4> </div>		
 
@@ -90,6 +112,10 @@
 		<div style="color:white"> Keyword </div>
 
 		{{ Form::close() }}
+
+		<div id="myProgress">
+	  		<div id="myBar">10%</div>
+		</div>
 
 	</div>
 
@@ -169,39 +195,56 @@
 	}
 	
 	function convertToCanvas() {
-			html2canvas(document.getElementById("screenshotTarget"), {
-	            onrendered: function(canvas) {
-	                // Canvas
-	                console.log("rendered");
-	                canvas.id = "cloudCanvas";
-	                var canvasBuffer = document.createElement('canvas');
-	                canvasBuffer.id = 'buffer';
-	                canvasBuffer.width = 10;
-	                canvasBuffer.height = 800;
-	                document.body.appendChild(canvasBuffer);
-	                document.body.appendChild(canvas);
-		        },
-	            width: document.getElementById("screenshotTarget").offsetWidth,
-	            height: document.getElementById("screenshotTarget").offsetHeight
-	        });
-		}
-		function removeCanvas(canvasID) {
-			var element = document.getElementById(canvasID);
-	        document.body.removeChild(element);
-	        var element2 = document.getElementById('buffer');
-	        document.body.removeChild(element2);
-		}
-		function downloadAsImage() {
-			document.getElementById('download').href = document.getElementById('cloudCanvas').toDataURL("image/jpeg");
-		    document.getElementById('download').download = 'cloud.jpeg';
-		}
+		html2canvas(document.getElementById("screenshotTarget"), {
+            onrendered: function(canvas) {
+                // Canvas
+                console.log("rendered");
+                canvas.id = "cloudCanvas";
+                var canvasBuffer = document.createElement('canvas');
+                canvasBuffer.id = 'buffer';
+                canvasBuffer.width = 10;
+                canvasBuffer.height = 800;
+                document.body.appendChild(canvasBuffer);
+                document.body.appendChild(canvas);
+	        },
+            width: document.getElementById("screenshotTarget").offsetWidth,
+            height: document.getElementById("screenshotTarget").offsetHeight
+        });
+	}
+	function removeCanvas(canvasID) {
+		var element = document.getElementById(canvasID);
+        document.body.removeChild(element);
+        var element2 = document.getElementById('buffer');
+        document.body.removeChild(element2);
+	}
+	function downloadAsImage() {
+		document.getElementById('download').href = document.getElementById('cloudCanvas').toDataURL("image/jpeg");
+	    document.getElementById('download').download = 'cloud.jpeg';
+	}
+	setTimeout(function() {
+		convertToCanvas();
 		setTimeout(function() {
-			convertToCanvas();
-			setTimeout(function() {
-				downloadAsImage();
-				removeCanvas('cloudCanvas');
-			}, 600);
-		}, 4500);
+			downloadAsImage();
+			removeCanvas('cloudCanvas');
+		}, 600);
+	}, 4500);
+
+	var width = 0;
+
+	function calculateProgress() {
+	    var prog = document.getElementById("myProgress"); 
+	    prog.style.display = "block";
+	    var elem = document.getElementById("myBar"); 
+	    width += 1;
+	    elem.style.width = width + '%'; 
+	    elem.innerHTML = width * 1 + '%';
+	    var multiplier = Math.random() % 3 + 1;
+	     
+	    if (width == 60 || width == 66 || width == 80 || width == 90 || width == 95 || width == 97 || width == 99) { 
+	        return setTimeout(calculateProgress, 30 * multiplier); 
+	    }
+	    return width >= 100 || setTimeout(calculateProgress, 5);
+	}
 	
 	</script>
 
