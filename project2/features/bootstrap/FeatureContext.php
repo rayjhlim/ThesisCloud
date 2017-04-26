@@ -283,7 +283,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Halfond/10/focuses');
+        $session->visit('http://127.0.0.1:8000/');
 
         // Manipulating the page
         $page = $session->getPage(); 
@@ -337,7 +337,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
         $page = $session->getPage(); 
         
         $table = $page->find('css','.tableDiv');
@@ -382,7 +382,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Lupu/8/prone');
+        $session->visit('http://127.0.0.1:8000/1/lupu/8/prone');
         $page = $session->getPage(); 
 
         $table = $page->find('css','.tableDiv');
@@ -429,7 +429,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
         $page = $session->getPage(); 
 
         $table = $page->find('css','.tableDiv');
@@ -457,7 +457,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Halfond/8/focuses');
+        $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
         $page = $session->getPage(); 
 
         $table = $page->find('css','.tableDiv');
@@ -480,7 +480,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Bengio/8/term');
+        $session->visit('http://127.0.0.1:8000/bengio/8/term');
         $page = $session->getPage(); 
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
@@ -527,7 +527,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Cote/8/Easily');
+        $session->visit('http://127.0.0.1:8000/1/cote/8/easily');
         $page = $session->getPage(); 
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
@@ -564,7 +564,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Cote/8/Easily');
+        $session->visit('http://127.0.0.1:8000/1/cote/8/fields');
         $page = $session->getPage();
 
 
@@ -604,7 +604,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://localhost:8000/Cote/8/Easily');
+        $session->visit('http://127.0.0.1:8000/1/cote/8/system');
         $page = $session->getPage();
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
@@ -633,7 +633,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Halfond/8');
+        $session->visit('http://127.0.0.1:8000/');
         $page = $session->getPage();
 
         $form = $page->find('css','#myArr');
@@ -707,7 +707,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Halfond/8/Focuses');
+        $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
         $page = $session->getPage();
         $outerLayer = $page->find('css','.downloadDiv');
         $plainTextButton = $outerLayer->find('css', '#plainText');
@@ -719,7 +719,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         } else {
             throw new \Exception('Plaintext not downloaded');
         }
-    }
+    } 
 
     /**
      * @Then a download of PDF for paper list begins
@@ -738,7 +738,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Lee/8/Focuses');
+        $session->visit('http://127.0.0.1:8000/1/lee/8/focuses');
         $page = $session->getPage();
         $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
         $name = $row->find('css', sprintf('td:contains("%s")', 'Neural'));

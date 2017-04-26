@@ -94,14 +94,6 @@
 		
 	{{ Form::close() }}
 
-		
-	<script type="text/javascript">
-
-	function showSliderValue(newValue) {
-		document.getElementById("sliderValue").innerHTML = newValue;
-	}
-
-	</script>
 </body>
 
 </html>
