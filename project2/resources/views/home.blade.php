@@ -77,10 +77,21 @@
 	{{ Form::open(array('route' => 'goToCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
-
+		
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton']) !!}
-		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!}
+		
+		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!} <br>
+		
+		<div style="color:white"> <h4> Pick search criteria </h4> </div>		
 
+		{{ Form::radio('toggle','Username', true) }}
+
+		<div style="color:white"> Username </div>
+		
+		{{ Form::radio('toggle','Keyword') }}
+
+		<div style="color:white"> Keyword </div>
+		
 	{{ Form::close() }}
 
 		
