@@ -91,18 +91,31 @@
 		{{ Form::open(array('route' => 'refreshCloud', 'method'=>'post', 'id'=>'myArr')) }}
 
 		{!! Form::text('search_term', null, ['id' => 'search_term', 'name'=>'search_term']) !!}
-		
+
 		{!! Form::submit('Generate word cloud', ['id'=>'submitButton', 'name'=>'submitButton', 'onclick'=>'calculateProgress()']) !!}
 		{!! Form::selectRange('numPapers', 1, 10, 5, ['id'=>'dropdown']) !!}
+
+		{{ Form::close() }}
+
+		
+
+
+
+		<div style="color:white"> <h4> Pick search criteria </h4> </div>		
+
+		{{ Form::radio('toggle','Username', true) }}
+
+		<div style="color:white"> Username </div>
+		
+		{{ Form::radio('toggle','Keyword') }}
+
+		<div style="color:white"> Keyword </div>
 
 		{{ Form::close() }}
 
 		<div id="myProgress">
 	  		<div id="myBar">10%</div>
 		</div>
-
-	</div>
-
 
 	</div>
 
