@@ -9,7 +9,7 @@
         <style>
             
             body {
-                background-color: gray;
+                background-color: #6495ed;
                 font-size: 120%;
                 font-family:Arial, Helvetica, sans-serif;
             }
@@ -62,7 +62,7 @@
 
                 <div class="download">
                     <h5>Download link:</h5>
-                    <a id="downloadLink" href=""></p>
+                    <a id="downloadLink" href="" download="paper"></p>
                 </div>
 
                 <div class="buttons">
