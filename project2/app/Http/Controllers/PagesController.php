@@ -114,10 +114,6 @@ class PagesController extends Controller {
             'BE' => 1
         ];
 
-
-
-        shell_exec('python ~/csci310-project2/project2/bibtex.py ' . '337334');
-
         $author = trim($author);
         $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&hc=$numPapers";
         $xml = simplexml_load_file($url, 'SimpleXMLElement',
@@ -311,8 +307,30 @@ class PagesController extends Controller {
     * function used to get IEEE bibtex
     */
 
-    public function getBibTex($article_number) {
+    // "http://localhost:8000/var0/var1/"+numPapers+"/"+author+"/"+word+"/"+isAuthor+"/"+jsonObj+"/" + jsonObj.document.arnumber
+
+    public function getBibTex($var0, $var1, $var2, $numPapers, $author, $word, $isAuthor, $article_number) {
         shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $article_number);
+
+        $author = trim($author);
+        $word = trim($word);
+        $isAuthor = trim($isAuthor);
+
+        // it is a conference
+        if ($isAuthor == 0) {
+            $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?jn=$author&querytext=$word&hc=$numPapers";
+        }
+        // it is an author
+        else {
+            $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers";
+        }
+        
+        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+            LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $search_data = json_decode($json, TRUE);
+
+        return view('list')->with(['search_data'=> $search_data, 'author' => $author, 'isAuthor' => $isAuthor, 'word' => $word, 'numPapers' => $numPapers]);
     }
 
     // public function goToCloudPage($search_term, $numPapers)
