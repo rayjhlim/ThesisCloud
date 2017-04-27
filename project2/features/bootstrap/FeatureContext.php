@@ -606,7 +606,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      /**
      * @Given I click the first title from the lsit for case and Ben
      */
-    public function iClickTheFirstTitleFromTheLsitForCaseAndBen()
+    public function iClickTheFirstTitleFromTheListForCaseAndBen()
     {
         
     }
