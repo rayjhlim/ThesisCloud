@@ -290,18 +290,43 @@
 				// Download link cell
 				var dl = document.createElement("td");
 				dl.className = "sorttable_nosort";
+
+				var cell1 = document.createElement("td");
 				var link = document.createElement("a");
 				link.href = jsonObj.document[i].pdf;
 				link.download = "paper";
 				var node4 = document.createTextNode(jsonObj.document[i].pdf);
 				link.appendChild(node4);
-				dl.appendChild(link);
+				cell1.appendChild(link);
+
+				var cell2 = document.createElement("td");
+				var bibLink = document.createElement("a");
+				bibLink.innerHTML = "\n\nShow BibTex";
+				$arnum = jsonObj.document[i].arnumber;
+				bibLink.href = "javascript:showBibTex($arnum);";
+				cell2.appendChild(bibLink);
+
+
+				//dl.appendChild(link);
+				//dl.appendChild(bibLink);
+				dl.appendChild(cell1);
+				dl.appendChild(cell2);
 				row.appendChild(dl);
+
+				console.log("ARNUM: " +jsonObj.document[i].arnumber);
 
 				var element = document.getElementById("tableContents");
 				element.appendChild(row);
 			}	
 		}
+	}
+
+	function showBibTex($arnumber)
+	{
+		console.log("showing bib tex for "+ $arnumber);
+		// var sys = require('sys');
+		// var exec = require('')
+		// shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $arnumber);
 	}
 
 	function downloadAsPDF() {

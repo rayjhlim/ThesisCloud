@@ -39,7 +39,7 @@ Route::get('{isAuthor}/{author}/{numPapers}', array('as' => 'cloud', 'uses' => '
 
 Route::get('/{isAuthor}/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
 
-Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
+//Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
 
 Route::get('/{var0}/{var1}/{var2}/{var3}/{isAuthor}/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
 

@@ -279,33 +279,33 @@ class PagesController extends Controller {
     * function used for Welcome page
     * returns json data of search result
     */
-    public function getInfoFromTitle($var0, $author, $numPapers, $word, $title)  {
-        $author = trim($author);
-        $word = trim($word);
-        $title = trim($title);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers&ti=$title";
-        $xml = simplexml_load_file($url, 'SimpleXMLElement', 
-            LIBXML_NOCDATA);
-        $json = json_encode($xml);
-        $search_data = json_decode($json, TRUE);
+    // public function getInfoFromTitle($var0, $author, $numPapers, $word, $title)  {
+    //     $author = trim($author);
+    //     $word = trim($word);
+    //     $title = trim($title);
+    //     $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=$author&querytext=$word&hc=$numPapers&ti=$title";
+    //     $xml = simplexml_load_file($url, 'SimpleXMLElement', 
+    //         LIBXML_NOCDATA);
+    //     $json = json_encode($xml);
+    //     $search_data = json_decode($json, TRUE);
 
-        return view('abstract')->with('search_data', $search_data);
-    }
+    //     return view('abstract')->with('search_data', $search_data);
+    // }
 
     /*
     * function used to get papers from same conference
     * returns json data of other papers
     */
-    public function getConferenceObject($publication_number) {
-        $pub_number = trim($publication_number);
-        $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?pn=$pub_number&hc=10";
-        $xml = simplexml_load_file($url, 'SimpleXMLElement',
-            LIBXML_NOCDATA);
-        $json = json_encode($xml);
-        $conference_json = json_decode($json, TRUE);
+    // public function getConferenceObject($publication_number) {
+    //     $pub_number = trim($publication_number);
+    //     $url = "http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?pn=$pub_number&hc=10";
+    //     $xml = simplexml_load_file($url, 'SimpleXMLElement',
+    //         LIBXML_NOCDATA);
+    //     $json = json_encode($xml);
+    //     $conference_json = json_decode($json, TRUE);
 
-        return view('home');
-    }
+    //     return view('home');
+    // }
 
     /*
     * function used to get IEEE bibtex
@@ -315,14 +315,15 @@ class PagesController extends Controller {
         shell_exec('python ~/csci310-project2/project2/bibtex.py ' . $article_number);
     }
 
-    public function goToCloudPage($search_term, $numPapers)
-    {
-        return view('cloud')->with(['search_term' => $search_term, 'numPapers' => $numPapers, 'isAuthor' => 1]);
-    }
+    // public function goToCloudPage($search_term, $numPapers)
+    // {
+    //     return view('cloud')->with(['search_term' => $search_term, 'numPapers' => $numPapers, 'isAuthor' => 1]);
+    // }
 
     public function postResearcherNameToCloudPage()
     {
         // redirect to cloud page using form input
+        echo "post researcher called";
         return Redirect::route('cloud', ['author' => Input::get('search_term'), 'numPapers' => Input::get('numPapers'), 'isAuthor' => 1]);
     }
 
