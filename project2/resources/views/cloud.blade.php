@@ -97,10 +97,6 @@
 
 		{{ Form::close() }}
 
-		
-
-
-
 		<div style="color:white"> <h4> Pick search criteria </h4> </div>		
 
 		{{ Form::radio('toggle','Username', true) }}

@@ -99,7 +99,6 @@
 		
 		<div style="color:white"> <h4> Pick search criteria </h4> </div>		
 
-
 		{{ Form::radio('toggle','Username', true) }}
 
 		<div style="color:white"> Username </div>
@@ -110,8 +109,6 @@
 		
 	{{ Form::close() }}
 
-<<<<<<< HEAD
-=======
 	<div id="myProgress">
   		<div id="myBar">10%</div>
 	</div>
@@ -141,7 +138,7 @@
 	}
 
 	</script>
->>>>>>> 35964338e062b66dcd8f7ed1af41169e03262b3f
+
 </body>
 
 </html>

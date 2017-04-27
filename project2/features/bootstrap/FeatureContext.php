@@ -40,56 +40,26 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchHalfondFromCloudPage()
     {
-
-        // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Halfond/8');
-
-        // Manipulating the page
+        $session->visit('http://127.0.0.1:8000/1/Bengio/8');
         $page = $session->getPage();
-
-        // search for form
         $form = $page->find('css','#myArr');
-        if (null === $form) {
-            throw new \Exception('form not found');
-        }
-
-        // search for text input
         $textInput = $form->find('css','#search_term');
-        if (null === $textInput) {
-            throw new \Exception('textfield not found');
-        }
-
-        // search for submit button
         $submitButton = $form->find('css', '#submitButton');
-         if (null === $submitButton) {
-            throw new \Exception('submitButton not found');
-        }
-
         $textInput->setValue('Halfond');
-        
-        // search for dropdown
         $dropdown = $page->find('css','#dropdown');
-        if(null === $dropdown) {
-            throw new \Exception('dropdown not found');
-        }
-
         $dropdown->selectOption("8");
-
-
         $submitButton->submit();
 
-        // check if in correct url
         $url = $session->getCurrentUrl();
-        if($url === 'http://127.0.0.1:8000/Halfond/8') {
+        if($url === 'http://127.0.0.1:8000/1/Halfond/8') {
             echo "Test passed = Still at same page";
         }
         else {
             throw new \Exception('not at word cloud for halfond');
         }
-
     }
 
     /**
@@ -105,19 +75,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheCloudPageForBoehm()
     {
-
-        // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver); 
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Boehm/8');
-
-        // Manipulating the page
+        $session->visit('http://127.0.0.1:8000/1/Boehm/8');
         $page = $session->getPage();   
         $title = $page->find('css','h2');
-        if (null === $title) {
-            throw new \Exception('h2 not found');
-        }
 
         if('Search term: Boehm' === $title->getText()) {
             echo "Test passed = h2 is Boehm";
@@ -125,7 +88,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('title is not Boehm');
         }
-
     }
 
     /**
@@ -141,54 +103,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchHalfondFromHomePage()
     {
-
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/');
 
-        // Manipulating the page
-        $page = $session->getPage(); // delete later 
-        
-        // search for form
+        $page = $session->getPage();
         $form = $page->find('css','#myArr');
-        if (null === $form) {
-            throw new \Exception('form not found');
-        }
-
-        // search for text input
         $textInput = $form->find('css','#search_term');
-        if (null === $textInput) {
-            throw new \Exception('textfield not found');
-        }
-
-        // search for submit button
         $submitButton = $form->find('css', '#submitButton');
-         if (null === $submitButton) {
-            throw new \Exception('submitButton not found');
-        }
-
         $textInput->setValue('Halfond');
-        
-        // search for dropdown
         $dropdown = $page->find('css','#dropdown');
-        if(null === $dropdown) {
-            throw new \Exception('dropdown not found');
-        }
-
         $dropdown->selectOption("8");
-
         $submitButton->submit();  
 
         $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/8' === $url) {
+        if('http://127.0.0.1:8000/1/Halfond/8' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
             throw new \Exception('not in cloud page after searching for Halfond from home');
         }
-
     }
 
     /**
@@ -196,7 +132,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheHomepageAndISearchAnEmptyForm()
     {
-
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -207,7 +142,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();   
         $url = $session->getCurrentUrl();
         echo "Test passed = Current url: " . $url;
-
     }
 
     /**
@@ -218,67 +152,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // STUB
     }
 
-    /**
-     * @Given I am on the homepage and I search for Halfond
-     */
-    public function iAmOnTheHomepageAndISearchForHalfond()
-    {
-        
-        // Visting the page
-        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
-        $session = new \Behat\Mink\Session($driver);
-        $session->start();
-        $session->visit('http://127.0.0.1:8000/');
-
-        // Manipulating the page
-        $page = $session->getPage(); 
-        
-        // search for form
-        $form = $page->find('css','#myArr');
-        if (null === $form) {
-            throw new \Exception('form not found');
-        }
-
-        // search for text input
-        $textInput = $form->find('css','#search_term');
-        if (null === $textInput) {
-            throw new \Exception('textfield not found');
-        }
-
-        // search for submit button
-        $submitButton = $form->find('css', '#submitButton');
-         if (null === $submitButton) {
-            throw new \Exception('submitButton not found');
-        }
-
-        $textInput->setValue('Halfond');
-        
-        // search for dropdown
-        $dropdown = $page->find('css','#dropdown');
-        if(null === $dropdown) {
-            throw new \Exception('dropdown not found');
-        }
-
-        $dropdown->selectOption("8");
-
-        $submitButton->submit();  
-
-        $url = $session->getCurrentUrl();
-        if('http://127.0.0.1:8000/Halfond/8' === $url) {
-            echo "Test passed = Current url: " . $url;
-        }
-        else {
-            throw new \Exception('not in cloud page after searching for Halfond in home');
-        }
-
-    }
 
     /**
      * @Given I am on the list for focuses and Halfond
      */
     public function iAmOnTheListForFocusesAndHalfond()
     {
-
         // Visting the page
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
@@ -288,9 +167,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         // Manipulating the page
         $page = $session->getPage(); 
         $title = $page->find('css','h4');
-        if (null === $title) {
-            throw new \Exception('h4 not found');
-        }
 
         if('Word: focuses' === $title->getText()) {
             echo "Test passed = h4 is focuses";
@@ -298,7 +174,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         else {
             throw new \Exception('h4 is not focuses');
         }
-
     }
 
     /**
@@ -318,7 +193,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iSearchOrsoOnTheHomePage()
     {
-        // Then the progress bar should show effort
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/');
+        $page = $session->getPage(); 
+        $form = $page->find('css','#myArr');
+        $textInput = $form->find('css','#search_term');
+        $submitButton = $form->find('css', '#submitButton');
+        $textInput->setValue('Orso');
+        $dropdown = $page->find('css','#dropdown');
+        $dropdown->selectOption("8");
+        $submitButton->submit();  
+
+        $session->wait(1488);
+
+        $url = $session->getCurrentUrl();
+        if('http://127.0.0.1:8000/1/Orso/8' === $url) {
+
+        }
+        else {
+            throw new \Exception("Progress bar showed no effort");
+        }
+
     }
 
     /**
@@ -343,18 +240,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Detection'));
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Detecting'));
+        if($row === null) echo "row is null";
         $name = $row->find('css', sprintf('td:contains("%s")', 'Sonal'));
+        if($name === null) echo "name is null";
         $link = $name->find('css', 'a');
 
         $link->click();
         
         $url = $session->getCurrentUrl();
-        if('http://localhost:8000/Mahajan/5' === $url) {
+        if('http://localhost:8000/1/Mahajan/5' === $url) {
             echo "Test passed = Current url: " . $url;
         }
         else {
-            throw new \Exception('not in cloud page for Orso');
+            throw new \Exception('not in cloud page for Mahajan');
         }
     }
 
@@ -388,16 +287,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'On efficient'));
-        $name = $row->find('css', sprintf('td:contains("%s")', 'On efficient'));
+        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Using argumentation'));
+        $name = $row->find('css', sprintf('td:contains("%s")', 'Using argumentation'));
         $link = $name->find('css', 'a');
-
         $link->click();
         $page = $session->getPage(); 
         $download = $page->find('css','.download');
         $linkPDF = $download->find('css','a');
-
-        // FINISH THIS METHOD
+        $linkPDF->click();
     }
     
      /**
@@ -480,27 +377,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/bengio/8/term');
+        $session->visit('http://127.0.0.1:8000/1/bengio/8/term');
         $page = $session->getPage(); 
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
 
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-        $name = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
+        $row = $tableContents->find('css', 'tr');
+        $name = $row->find('css', 'td');
         $link = $name->find('css', 'a');
 
         $link->click();
-
-         // check if in correct url
-        $url = $session->getCurrentUrl();
-        if($url === 'http://localhost:8000/var0/var1/var2/var3/Neural%20Networks,%202001.%20Proceedings.%20IJCNN%20%2701.%20International%20Joint%20Conference%20on') {
-            echo "Test passed = At word cloud page for the specified conference";
-        }
-        else {
-            throw new \Exception('Not at word cloud page for the speficied conference');
-        }
-
     }
 
     /**
@@ -517,11 +404,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function iAmOnTheListForEasilyAndCote()
     {
         $actualFrequencies = array(
-            0 => "8",
-            1 => "8",
-            2 => "8",
-            3 => "8",
-            4 => "8",
+            0 => '10',
+            1 => '9',
+            2 => '9',
+            3 => '5',
+            4 => '5',
+            5 => '3',
+            6 => '3',
+            7 => '1',
         );
             
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
@@ -533,10 +423,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
 
-        for($i = 0; $i < 8; $i++) {
-            $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-            $freq = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
-            // FINISH THIS PART
+        $rows = $tableContents->findAll('css', 'tr');
+        foreach ($rows as $row) {
+            if($row === null) throw new \Exception('Page not ordered by frequency');
         }
     }
 
@@ -553,30 +442,28 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForFieldsAndCote()
     {
-        $actualFrequencies = array(
-            0 => "8",
-            1 => "8",
-            2 => "8",
-            3 => "8",
-            4 => "8",
+        $actualAuthors = array(
+            0 => "J. Cote",
+            1 => "S. Lewis",
+            2 => " Melissa Cote",
+            3 => "M. Cote",
+            4 => "G. L. Cote",
+            5 => "D. Cote",
+            6 => "Stephane Cote",
         );
             
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/1/cote/8/fields');
-        $page = $session->getPage();
-
-
-
+        $page = $session->getPage(); 
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
 
-        for($i = 0; $i < 8; $i++) {
-            $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-            $freq = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
-            // FINISH THIS PART
+        $rows = $tableContents->findAll('css', 'tr');
+        foreach ($rows as $row) {
+            if($row === null) throw new \Exception('Page not ordered by frequency');
         }
     }
 
@@ -593,27 +480,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmOnTheListForSystemAndCote()
     {
-        $actualFrequencies = array(
-            0 => "8",
-            1 => "8",
-            2 => "8",
-            3 => "8",
-            4 => "8",
+        $actualTitles = array(
+            0 => "Generalized",
+            1 => "A neural",
+            2 => "Look who",
+            3 => "Direct determination",
+            4 => "Discharge characteristics",
+            5 => "In vivo",
+            6 => "Process-Induced",
+            7 => "Naval Multi-Function",
         );
             
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
         $session->visit('http://127.0.0.1:8000/1/cote/8/system');
-        $page = $session->getPage();
+        $page = $session->getPage(); 
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
 
-        for($i = 0; $i < 8; $i++) {
-            $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-            $freq = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
-            // FINISH THIS PART
+        $rows = $tableContents->findAll('css', 'tr');
+        foreach ($rows as $row) {
+            if($row === null) throw new \Exception('Page not ordered by frequency');
         }
     }
 
@@ -653,10 +542,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $page = $session->getPage();
         $outerLayer = $page->find('css','#outerlayer');
         $wordcloud = $outerLayer->find('css', '#wordcloud');
-        for($i = 0; $i < 8; $i++) {
-            $words = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-        }
-
     }
 
      /**
@@ -676,18 +561,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/Bengio/8');
+        $session->visit('http://127.0.0.1:8000/1/Bengio/8');
         $page = $session->getPage();
         $outerLayer = $page->find('css','#outerlayer');
         $link = $outerLayer->find('css', 'a');
 
-        $link->click();
-
         if(null === $link) {
-            echo "PDF download started";
+            throw new \Exception('PDF not downloaded');
         }
         else {
-            throw new \Exception('PDF not downloaded');
+            $link->press();
         }
     }
 
@@ -710,15 +593,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
         $page = $session->getPage();
         $outerLayer = $page->find('css','.downloadDiv');
-        $plainTextButton = $outerLayer->find('css', '#plainText');
+        $plainTextButton = $outerLayer->find('css', '#pdf');
 
         $plainTextButton->press();
-
-        if(null === $plainTextButton) {
-            echo "Plaintext download started";
-        } else {
-            throw new \Exception('Plaintext not downloaded');
-        }
     } 
 
     /**
@@ -730,6 +607,27 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
+     * @Given I click download as plaintext in list for focuses and Halfond
+     */
+    public function iClickDownloadAsPlaintextInListForFocusesAndHalfond()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/1/halfond/8/focuses');
+        $page = $session->getPage();
+        $outerLayer = $page->find('css','.downloadDiv');
+        $plainTextButton = $outerLayer->find('css', '#plainText');
+
+        $plainTextButton->press();
+    }
+
+    /**
+     * @Then a download of plaintext for paper list begins
+     */
+    public function aDownloadOfPlaintextForPaperListBegins() {}
+
+    /**
      * @Given I click on the first conference from the list for across and Lee
      */
     public function iClickOnTheFirstConferenceFromTheListForAcrossAndLee()
@@ -738,21 +636,16 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
-        $session->visit('http://127.0.0.1:8000/1/lee/8/focuses');
-        $page = $session->getPage();
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input'));
-        $name = $row->find('css', sprintf('td:contains("%s")', 'Neural'));
-        $link = $name->find('css', 'a');
-        $link->click();
+        $session->visit('http://localhost:8000/var0/var1/var2/var3/0/2005%20IEEE%20International%20Symposium%20on%20Circuits%20and%20Systems');
+        $session->visit('http://localhost:8000/0/2005%20IEEE%20International%20Symposium%20on%20Circuits%20and%20Systems/5/makes');
 
-        $session->visit();
         $page = $session->getPage();
         $table = $page->find('css','.tableDiv');
         $sortable = $table->find('css','.sortable');
         $tableContents = $sortable->find('css','#tableContents');
-        $row = $tableContents->find('css', sprintf('tr:contains("%s")', 'Input')); 
+        $rows = $tableContents->findAll('css', 'tr');
 
-        if(null === $row) {
+        if(null === $rows) {
             throw new \Exception('List is not populated');
         } else {
             echo "List is populated";
@@ -775,5 +668,22 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         // Given I click on the first conference from the list for across and Lee
     }
+
+    /**
+     * @Given I click on the first bibtex from the list for term and Bengio
+     */
+    public function iClickOnTheFirstBibtexFromTheListForTermAndBengio()
+    {
+        
+    }
+
+    /**
+     * @Then I should be on the bibtex page for Gradient-Based Optimization
+     */
+    public function iShouldBeOnTheBibtexPageForGradientBasedOptimization()
+    {
+       
+    }
+
     
 }
