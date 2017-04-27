@@ -26,10 +26,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
-    {
-        // BEHAT SUCKS BALLS
-    }
+    public function __construct() {}
 
     
     //          //
@@ -65,10 +62,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on cloud page
      */
-    public function iShouldBeOnCloudPage()
-    {
-        // STUB
-    }
+    public function iShouldBeOnCloudPage() {}
 
     /**
      * @Given I am on the cloud page for Boehm
@@ -93,10 +87,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then the header should contain Boehm
      */
-    public function theHeaderShouldContainBoehm()
-    {
-        // STUB
-    }
+    public function theHeaderShouldContainBoehm() {}
 
     /**
      * @Given I search Halfond from home page
@@ -147,11 +138,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on home page
      */
-    public function iShouldBeOnHomePage()
-    {
-        // STUB
-    }
-
+    public function iShouldBeOnHomePage() {}
 
     /**
      * @Given I am on the list for focuses and Halfond
@@ -179,10 +166,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then the header should contain focuses
      */
-    public function theHeaderShouldContainFocuses()
-    {
-        // STUB
-    }
+    public function theHeaderShouldContainFocuses() { }
     
 
     //          //
@@ -221,10 +205,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then the progress bar should show effort
      */
-    public function theProgressBarShouldShowEffort()
-    {
-        // STUB
-    }
+    public function theProgressBarShouldShowEffort() {}
     
     /**
      * @Given I click on Sonal Mahajan from list for focuses and Halfond
@@ -260,18 +241,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on the word cloud page for Sonal Mahajan
      */
-    public function iShouldBeOnTheWordCloudPageForSonalMahajan()
-    {
-        // STUB
-    }
+    public function iShouldBeOnTheWordCloudPageForSonalMahajan() {}
 
     /**
      * @Given I am on the list for IEEE Transactions on Software Engineering
      */
-    public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering()
-    {
-        // STUB
-    }
+    public function iAmOnTheListForIeeeTransactionsOnSoftwareEngineering() {}
 
     /**
      * @Given I click the first title from the list for prone and Lupu
@@ -300,18 +275,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      /**
      * @Then cicking the PDF link opens a PDF
      */
-    public function cickingThePdfLinkOpensAPdf()
-    {
-        // STUB
-    }
+    public function cickingThePdfLinkOpensAPdf() {}
 
     /**
      * @Given I am on the list for focuses and Halfond8
      */
-    public function iAmOnTheListForFocusesAndHalfond2()
-    {
-        // STUB
-    }
+    public function iAmOnTheListForFocusesAndHalfond2() {}
 
     /**
      * @Then the page should contain the titles:
@@ -393,10 +362,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on the word cloud for IEEE Transactions
      */
-    public function iShouldBeOnTheWordCloudForIeeeTransactions()
-    {
-        // STUB
-    }
+    public function iShouldBeOnTheWordCloudForIeeeTransactions() {}
 
     /**
      * @Given I am on the list for easily and Cote
@@ -432,10 +398,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then the page should be ordered by frequency
      */
-    public function thePageShouldBeOrderedByFrequency()
-    {
-        // STUB
-    }
+    public function thePageShouldBeOrderedByFrequency() {}
 
     /**
      * @Given I am on the list for fields and Cote
@@ -470,10 +433,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then clicking authors will order to list based on authors
      */
-    public function clickingAuthorsWillOrderToListBasedOnAuthors()
-    {
-        // STUB
-    }
+    public function clickingAuthorsWillOrderToListBasedOnAuthors() {}
 
     /**
      * @Given I am on the list for system and Cote
@@ -509,10 +469,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then clicking title will order to list based on titles
      */
-    public function clickingTitleWillOrderToListBasedOnTitles()
-    {
-        // STUB
-    }
+    public function clickingTitleWillOrderToListBasedOnTitles() {}
     
     /**
      * @Given I search Bengio from home page
@@ -547,10 +504,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      /**
      * @Then the word cloud generated should contain different font sizes
      */
-    public function theWordCloudGeneratedShouldContainDifferentFontSizes()
-    {
-        // STUB
-    }
+    public function theWordCloudGeneratedShouldContainDifferentFontSizes() {}
 
      /**
      * @Given I click download on the cloud page for Bengio
@@ -577,10 +531,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then a download for Bengio's wordcloud begins
      */
-    public function aDownloadForBengioSWordcloudBegins()
-    {
-        // STUB
-    }
+    public function aDownloadForBengioSWordcloudBegins() {}
 
     /**
      * @Given I click download as PDF in list for focuses and Halfond
@@ -652,6 +603,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
     }
 
+     /**
+     * @Given I click the first title from the lsit for case and Ben
+     */
+    public function iClickTheFirstTitleFromTheLsitForCaseAndBen()
+    {
+        
+    }
+
+    /**
+     * @Then the word case is highlighted
+     */
+    public function theWordCaseIsHighlighted() {}
+
 
     /**
      * @Given I click on the word second
@@ -664,10 +628,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on a populated paper list page
      */
-    public function iShouldBeOnAPopulatedPaperListPage()
-    {
-        // Given I click on the first conference from the list for across and Lee
-    }
+    public function iShouldBeOnAPopulatedPaperListPage() {}
 
     /**
      * @Given I click on the first bibtex from the list for term and Bengio
@@ -680,10 +641,5 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     /**
      * @Then I should be on the bibtex page for Gradient-Based Optimization
      */
-    public function iShouldBeOnTheBibtexPageForGradientBasedOptimization()
-    {
-       
-    }
-
-    
+    public function iShouldBeOnTheBibtexPageForGradientBasedOptimization() {}
 }
