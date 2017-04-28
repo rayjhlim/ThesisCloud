@@ -583,7 +583,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheFirstConferenceFromTheListForAcrossAndLee()
     {
-
         $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
         $session = new \Behat\Mink\Session($driver);
         $session->start();
@@ -608,7 +607,22 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickTheFirstTitleFromTheListForCaseAndBen()
     {
-        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/1/Ben/8/case');
+
+        $page = $session->getPage();
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+        $firstRow = $tableContents->find('css', 'tr');
+        $firstTitle = $firstRow->find('css','td');
+        $link = $firstTitle->find('css','a');
+        $link->click();
+
+        $page = $session->getPage();
+        $abstractContent = $page->find('css','p');
     }
 
     /**
@@ -635,11 +649,111 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iClickOnTheFirstBibtexFromTheListForTermAndBengio()
     {
-        
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://127.0.0.1:8000/1/Bengio/8/term');
+
+        $page = $session->getPage();
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+        $firstRow = $tableContents->find('css', 'tr');
+        $firstTitle = $firstRow->find('css', sprintf('td:contains("%s")', 'Show'));
+        $link = $firstTitle->find('css','a');
+        $link->click();   
     }
 
     /**
      * @Then I should be on the bibtex page for Gradient-Based Optimization
      */
     public function iShouldBeOnTheBibtexPageForGradientBasedOptimization() {}
+
+      /**
+     * @Given I search for a paper list for Lee with three papers
+     */
+    public function iSearchForAPaperListForLeeWithThreePapers()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/1/Lee/3/passed');
+        $page = $session->getPage();
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+
+        $rows = $tableContents->findAll('css', 'tr');
+
+        $numRows = 0;
+        foreach ($rows as $row) {
+            $numRows++;
+        }
+
+        if($numRows>3) throw new \Exception('List has more than 3 papers');
+    }
+
+    /**
+     * @Then the paper list cannot have more than three rows
+     */
+    public function thePaperListCannotHaveMoreThanThreeRows() {}
+
+    /**
+     * @Given I search for a paper list for Lee with five papers
+     */
+    public function iSearchForAPaperListForLeeWithFivePapers()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/1/Lee/5/will');
+        $page = $session->getPage();
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+
+        $rows = $tableContents->findAll('css', 'tr');
+
+        $numRows = 0;
+        foreach ($rows as $row) {
+            $numRows++;
+        }
+
+        if($numRows>5) throw new \Exception('List has more than 5 papers');
+    }   
+
+    /**
+     * @Then the paper list cannot have more than five rows
+     */
+    public function thePaperListCannotHaveMoreThanFiveRows() {}
+
+    /**
+     * @Given I search for a paper list for Lee with eight papers
+     */
+    public function iSearchForAPaperListForLeeWithEightPapers()
+    {
+        $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');   
+        $session = new \Behat\Mink\Session($driver);
+        $session->start();
+        $session->visit('http://localhost:8000/1/Lee/8/fully');
+        $page = $session->getPage();
+        $table = $page->find('css','.tableDiv');
+        $sortable = $table->find('css','.sortable');
+        $tableContents = $sortable->find('css','#tableContents');
+
+        $rows = $tableContents->findAll('css', 'tr');
+
+        $numRows = 0;
+        foreach ($rows as $row) {
+            $numRows++;
+        }
+
+        if($numRows>8) throw new \Exception('List has more than 8 papers');
+    }
+
+    /**
+     * @Then the paper list cannot have more than eight rows
+     */
+    public function thePaperListCannotHaveMoreThanEightRows() {}
+
 }

@@ -97,7 +97,6 @@
         
         console.log(jsonObj);
 
-
         var content = document.querySelector('#abstractContent').innerHTML;
 
         content = content.toLowerCase();
@@ -114,7 +113,6 @@
             var newStr = '<span class="highlight1">' + highlight + '</span>';
             
             document.querySelector('#abstractContent').innerHTML = content.replace(regExpObj, newStr);
-        
         }
 
         </script>
