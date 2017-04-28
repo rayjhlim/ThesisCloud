@@ -1383,3 +1383,165 @@ Full stack:
 [Child 3185] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 322
 [Child 3185] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
 [Child 3185] ###!!! ABORT: Aborting on channel error.: file /build/firefox-bLMGaO/firefox-52.0.2+build1/ipc/glue/MessageChannel.cpp, line 2143
+1493331766698	geckodriver	INFO	Listening on 127.0.0.1:35565
+1493331767817	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.gKhcPFv3uHLK
+1493331767818	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493331767849	geckodriver::marionette	INFO	Connecting to Marionette on localhost:34488
+1493331773036	Marionette	INFO	Listening on port 34488
+1493331773445	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493332375673	geckodriver	INFO	Listening on 127.0.0.1:54857
+1493332376778	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.rtZETVRtln8g
+1493332376779	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493332376791	geckodriver::marionette	INFO	Connecting to Marionette on localhost:34002
+1493332381307	Marionette	INFO	Listening on port 34002
+1493332381615	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493332410167	geckodriver	INFO	Listening on 127.0.0.1:48886
+1493332411263	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.dJEP0cqFHxCZ
+1493332411263	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493332411275	geckodriver::marionette	INFO	Connecting to Marionette on localhost:36164
+1493332415798	Marionette	INFO	Listening on port 36164
+1493332416161	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493332454280	geckodriver	INFO	Listening on 127.0.0.1:43962
+1493332455389	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.xUNZCuEGYWzX
+1493332455389	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493332455400	geckodriver::marionette	INFO	Connecting to Marionette on localhost:36884
+1493332460155	Marionette	INFO	Listening on port 36884
+1493332460418	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1493332528196	geckodriver	INFO	Listening on 127.0.0.1:51213
+1493332529377	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.U4e1GyGUsZtX
+1493332529378	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493332529387	geckodriver::marionette	INFO	Connecting to Marionette on localhost:39160
+1493332534680	Marionette	INFO	Listening on port 39160
+1493332534957	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(firefox:2972): Gtk-CRITICAL **: gtk_clipboard_set_with_data: assertion 'targets != NULL' failed
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x800006,name=PHttpChannel::Msg_Cancel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400FA,name=PContent::Msg_AsyncMessage) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: chrome://global/content/process-content.js, line 71: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400FA,name=PContent::Msg_AsyncMessage) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: chrome://global/content/process-content.js, line 71: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400FA,name=PContent::Msg_AsyncMessage) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: chrome://global/content/process-content.js, line 71: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400FA,name=PContent::Msg_AsyncMessage) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: chrome://global/content/process-content.js, line 71: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x2C0048,name=PBrowser::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400FA,name=PContent::Msg_AsyncMessage) Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: chrome://global/content/process-content.js, line 71: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x2C0048,name=PBrowser::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400A8,name=PContent::Msg_ConsoleMessage) Channel closing: too late to send/recv, messages will be lost
+
+1493333335849	geckodriver	INFO	Listening on 127.0.0.1:40474
+1493333336954	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.b2O5X9OSbZqv
+1493333336955	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493333336961	geckodriver::marionette	INFO	Connecting to Marionette on localhost:41547
+1493333341204	Marionette	INFO	Listening on port 41547
+1493333341599	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493333367397	geckodriver	INFO	Listening on 127.0.0.1:55575
+1493333368519	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.9misFzt5NMV2
+1493333368520	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493333368538	geckodriver::marionette	INFO	Connecting to Marionette on localhost:44335
+1493333373206	Marionette	INFO	Listening on port 44335
+1493333373387	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493333580487	geckodriver	INFO	Listening on 127.0.0.1:45973
+1493333581599	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.IlBuHcHn8Bcm
+1493333581599	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493333581605	geckodriver::marionette	INFO	Connecting to Marionette on localhost:32976
+1493333585831	Marionette	INFO	Listening on port 32976
+1493333586319	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493333732762	geckodriver	INFO	Listening on 127.0.0.1:48796
+1493333733881	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.qn4znu5IDN8W
+1493333733882	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493333733893	geckodriver::marionette	INFO	Connecting to Marionette on localhost:38395
+1493333739864	Marionette	INFO	Listening on port 38395
+1493333740399	Marionette	WARN	TLS certificate errors will be ignored for this session
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1493334005390	geckodriver	INFO	Listening on 127.0.0.1:43921
+1493334006565	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.qCB3Q2xjqgbN
+1493334006566	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334006577	geckodriver::marionette	INFO	Connecting to Marionette on localhost:45609
+1493334012402	Marionette	INFO	Listening on port 45609
+1493334012959	Marionette	WARN	TLS certificate errors will be ignored for this session
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1493334141694	geckodriver	INFO	Listening on 127.0.0.1:50728
+1493334142808	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.qbxXuebE6oOq
+1493334142808	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334142821	geckodriver::marionette	INFO	Connecting to Marionette on localhost:33113
+1493334148803	Marionette	INFO	Listening on port 33113
+1493334149072	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493334184246	geckodriver	INFO	Listening on 127.0.0.1:58195
+1493334185416	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.qCyTO0KrJJek
+1493334185417	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334185429	geckodriver::marionette	INFO	Connecting to Marionette on localhost:41759
+1493334192409	Marionette	INFO	Listening on port 41759
+1493334193298	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4234] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-4Fdt0Z/firefox-53.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4457] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-4Fdt0Z/firefox-53.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4349] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-4Fdt0Z/firefox-53.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346
+1493334379924	geckodriver	INFO	Listening on 127.0.0.1:58378
+1493334381030	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.XzmyWFvuua6G
+1493334381030	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334381034	geckodriver::marionette	INFO	Connecting to Marionette on localhost:40357
+1493334385319	Marionette	INFO	Listening on port 40357
+1493334385790	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1493334457522	geckodriver	INFO	Listening on 127.0.0.1:58316
+1493334458635	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.dRM6UiLRU9R4
+1493334458636	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334458648	geckodriver::marionette	INFO	Connecting to Marionette on localhost:39287
+1493334463024	Marionette	INFO	Listening on port 39287
+1493334463484	Marionette	WARN	TLS certificate errors will be ignored for this session
+1493334707803	geckodriver	INFO	Listening on 127.0.0.1:58261
+1493334708896	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.XmmXzleqyZxr
+1493334708896	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1493334708906	geckodriver::marionette	INFO	Connecting to Marionette on localhost:39866
+1493334714576	Marionette	INFO	Listening on port 39866
+1493334714980	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2160] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-4Fdt0Z/firefox-53.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 346

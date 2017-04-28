@@ -39,8 +39,14 @@ Route::get('{isAuthor}/{author}/{numPapers}', array('as' => 'cloud', 'uses' => '
 
 Route::get('/{isAuthor}/{author}/{numPapers}/{word}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromWord'));
 
-Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
+//Route::get('{var0}/{author}/{numPapers}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromTitle'));
 
 Route::get('/{var0}/{var1}/{var2}/{var3}/{isAuthor}/{confName}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromConf'));
 
 Route::get('/{var0}/{var1}/{var2}/{var3}/{var4}/{word}/{title}', array('as' => 'list', 'uses' => 'PagesController@getInfoFromOnlyTitle'));
+
+// http://localhost:8000/var0/var1/var2/var3/var4/var5/var6/" + jsonObj.document[i].arnumber
+
+// "http://localhost:8000/var0/var1/"+numPapers+"/"+author+"/"+word+"/"+isAuthor+"/"+jsonObj+"/" + jsonObj.document.arnumber
+
+Route::get('/{var0}/{var1}/{var2}/{numPapers}/{author}/{word}/{isAuthor}/{article_number}', array('as' => 'list', 'uses' => 'PagesController@getBibTex'));
